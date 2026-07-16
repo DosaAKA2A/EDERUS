@@ -430,6 +430,32 @@ footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--text-dim);f
 .dev-credit svg{flex:none;opacity:.85;transition:opacity .4s,transform .5s cubic-bezier(.34,1.56,.64,1)}
 .dev-credit:hover svg{opacity:1;transform:scale(1.12) rotate(-8deg)}
 
+/* ═══ Contador de lanzamiento ═══ */
+.launch-wrap{padding:0 0 4.5rem}
+.launch{max-width:660px;margin-inline:auto;background:linear-gradient(180deg,rgba(16,32,47,.8),rgba(11,20,31,.9));border:1px solid var(--line);border-radius:var(--r-panel);padding:2.1rem 2rem 1.9rem;text-align:center;--gem-hover:var(--azure)}
+.launch__label{font-family:var(--font-body);font-weight:700;font-size:.8rem;letter-spacing:.24em;color:var(--azure);text-transform:uppercase;display:inline-flex;align-items:center;gap:.7rem}
+.launch__label::before,.launch__label::after{content:"";width:8px;height:8px;border-radius:3px;background:var(--azure);box-shadow:0 0 10px rgba(0,178,255,.7)}
+.launch__grid{display:flex;justify-content:center;gap:clamp(1.4rem,4vw,3rem);margin-top:1.5rem}
+.launch__cell{min-width:70px}
+.launch__num{font-family:var(--font-display);font-weight:800;font-size:clamp(2.2rem,4.5vw,3.2rem);line-height:1;color:var(--text);font-variant-numeric:tabular-nums;text-shadow:0 0 30px rgba(0,178,255,.25)}
+.launch__lbl{font-family:var(--font-body);font-weight:600;font-size:.68rem;letter-spacing:.22em;color:var(--text-dim);text-transform:uppercase;margin-top:.55rem}
+.launch--live .launch__grid{display:none}
+.launch__live{display:none;font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:var(--online);margin-top:1.2rem}
+.launch--live .launch__live{display:block}
+@media(max-width:520px){.launch__cell{min-width:56px}}
+
+/* ═══ Staff ═══ */
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:1.2rem}
+.staff-card{background:linear-gradient(180deg,var(--dusk),var(--void-2));border:1px solid var(--line);border-radius:var(--r-panel);padding:1.7rem 1.2rem 1.5rem;text-align:center;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .3s;--gem-hover:var(--azure)}
+.staff-card:hover{transform:translateY(-6px);border-color:var(--azure-deep)}
+.staff-card img{width:84px;height:84px;border-radius:16px;image-rendering:pixelated;border:1px solid var(--line);margin:0 auto 1rem;background:var(--void)}
+.staff-card h3{font-family:var(--font-display);font-weight:700;font-size:.98rem;letter-spacing:.01em;margin-bottom:.7rem;word-break:break-all}
+.role{display:inline-block;font-family:var(--font-body);font-weight:700;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:.32rem .7rem;border-radius:999px;border:1px solid transparent}
+.role--owner{color:#ff96ac;background:rgba(255,109,138,.12);border-color:rgba(255,109,138,.35)}
+.role--manager{color:#7ce8a5;background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.32)}
+.role--developer{color:var(--ice);background:rgba(0,178,255,.1);border-color:rgba(0,178,255,.32)}
+.role--admin{color:var(--gold);background:rgba(255,201,74,.1);border-color:rgba(255,201,74,.32)}
+
 /* ═══ Responsive ═══ */
 @media(max-width:1024px){.grid{grid-template-columns:1fr}}
 @media(max-width:880px){
@@ -516,6 +542,20 @@ footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--text-dim);f
   </div>
 </section>
 
+<!-- ═══════════ CONTADOR DE LANZAMIENTO ═══════════ -->
+<div class="container launch-wrap reveal">
+  <div class="launch tick" id="launch">
+    <span class="launch__label">Lanzamiento oficial</span>
+    <div class="launch__grid">
+      <div class="launch__cell"><div class="launch__num" id="cd-d">--</div><div class="launch__lbl">Días</div></div>
+      <div class="launch__cell"><div class="launch__num" id="cd-h">--</div><div class="launch__lbl">Horas</div></div>
+      <div class="launch__cell"><div class="launch__num" id="cd-m">--</div><div class="launch__lbl">Min</div></div>
+      <div class="launch__cell"><div class="launch__num" id="cd-s">--</div><div class="launch__lbl">Seg</div></div>
+    </div>
+    <div class="launch__live">¡EL SERVIDOR YA ESTÁ EN LÍNEA!</div>
+  </div>
+</div>
+
 <!-- ═══════════ FRANJA DE DATOS ═══════════ -->
 <div class="datastrip">
   <div class="container datastrip__row">
@@ -596,10 +636,23 @@ footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--text-dim);f
   </div>
 </section>
 
+<!-- ═══════════ STAFF ═══════════ -->
+<section class="container" id="staff">
+  <div class="shead reveal">
+    <span class="shead__num">04</span>
+    <div>
+      <span class="shead__kicker">El equipo</span>
+      <h2>Nuestro Staff</h2>
+      <p>Las personas que mantienen Ederus en marcha, dentro y fuera del juego.</p>
+    </div>
+  </div>
+  <div class="staff-grid reveal" style="transition-delay:.1s" id="staff-grid"></div>
+</section>
+
 <!-- ═══════════ CONTACTO ═══════════ -->
 <section class="container" id="contacto">
   <div class="shead reveal">
-    <span class="shead__num">04</span>
+    <span class="shead__num">05</span>
     <div>
       <span class="shead__kicker">Soporte</span>
       <h2>Consultas y reclamos</h2>
@@ -727,14 +780,17 @@ const CONFIG={
   SERVER_IP:"mc.ederus.com",
   SERVER_PORT:25565,
   CURRENCY:"$",
-  DISCORD_GUILD_ID:"",            // ⚠️ pendiente
-  DISCORD_INVITE_CODE:"",         // ⚠️ pendiente
-  DISCORD_INVITE:"",              // ⚠️ pendiente
+  DISCORD_GUILD_ID:"1292881493051441215",
+  DISCORD_INVITE_CODE:"y34ZUs3eMp",
+  DISCORD_INVITE:"https://discord.gg/y34ZUs3eMp",
   TEBEX_PUBLIC_TOKEN:"",          // ⚠️ pendiente
   TEBEX_PROJECT_ID:"",            // ⚠️ pendiente
   TEBEX_HEADLESS:"https://headless.tebex.io/api",
   WORKER_URL:"",                  // ⚠️ pendiente (aún sin desplegar)
   DEFAULT_SKIN:"MHF_Steve",
+  // Apertura del servidor: 1 de agosto de 2026, medianoche hora de Madrid.
+  // Instante fijo (con zona): todos los visitantes ven el mismo contador.
+  LAUNCH_DATE:"2026-08-01T00:00:00+02:00",
 };
 const money=n=>CONFIG.CURRENCY+Number(n).toFixed(2);
 
@@ -1470,6 +1526,47 @@ cSend.onclick=()=>{
     cSend.disabled=false;cSend.textContent="ENVIAR SOLICITUD ▸";
   });
 };
+
+/* ============================================================
+   STAFF
+============================================================ */
+const STAFF=[
+  {n:"IxSain",r:"owner"},
+  {n:"LitleFralexz",r:"owner"},
+  {n:"AlvaroDoria_",r:"manager"},
+  {n:"LowkylvG",r:"manager"},
+  {n:"namkaze",r:"developer"},
+  {n:"Dosa__",r:"developer"},
+  {n:"Ravages",r:"admin"},
+  {n:"AliasElSamu",r:"admin"},
+];
+const ROLE_LABEL={owner:"Owner",manager:"Manager",developer:"Developer",admin:"Admin"};
+document.getElementById("staff-grid").innerHTML=STAFF.map(s=>`
+  <div class="staff-card tick">
+    <img src="https://mc-heads.net/avatar/${encodeURIComponent(s.n)}/84" alt="Skin de ${s.n}" loading="lazy" width="84" height="84">
+    <h3>${s.n}</h3>
+    <span class="role role--${s.r}">${ROLE_LABEL[s.r]||s.r}</span>
+  </div>`).join("");
+
+/* ============================================================
+   CONTADOR DE LANZAMIENTO
+============================================================ */
+(function(){
+  const target=new Date(CONFIG.LAUNCH_DATE).getTime();
+  const el={d:document.getElementById("cd-d"),h:document.getElementById("cd-h"),
+            m:document.getElementById("cd-m"),s:document.getElementById("cd-s")};
+  const box=document.getElementById("launch");
+  const pad=n=>String(n).padStart(2,"0");
+  function tick(){
+    const diff=target-Date.now();
+    if(diff<=0){box.classList.add("launch--live");clearInterval(t);return;}
+    el.d.textContent=pad(Math.floor(diff/86400000));
+    el.h.textContent=pad(Math.floor(diff/3600000)%24);
+    el.m.textContent=pad(Math.floor(diff/60000)%60);
+    el.s.textContent=pad(Math.floor(diff/1000)%60);
+  }
+  const t=setInterval(tick,1000);tick();
+})();
 
 /* Inicializar */
 renderCards();
