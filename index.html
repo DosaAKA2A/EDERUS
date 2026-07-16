@@ -226,7 +226,7 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px) saturate(1.5)
 @media(max-width:900px){.fame-grid{grid-template-columns:1fr}}
 
 /* ═══ Catálogo: rejilla asimétrica, Zaros más ancho ═══ */
-.grid{display:grid;grid-template-columns:1fr 1fr 1.18fr;gap:1.5rem;align-items:stretch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:stretch}
 .card{background:linear-gradient(180deg,var(--dusk),var(--void-2));border:1px solid var(--line);border-radius:var(--r-panel);padding:1.7rem;display:flex;flex-direction:column;position:relative;transition:transform .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .45s;will-change:transform;--gem-hover:var(--card-accent,var(--azure))}
 .card:hover{border-color:var(--card-accent,var(--azure));box-shadow:0 24px 55px rgba(0,0,0,.5);transform:translateY(-8px)}
 .card__top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.4rem;min-height:1.6rem}
