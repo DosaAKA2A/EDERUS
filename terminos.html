@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Términos y Condiciones | EDERUS</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="Términos y condiciones de la tienda oficial de Ederus.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Outfit:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#091118;--void-2:#0d1824;--dusk:#132231;--dusk-2:#192c41;--line:#243c55;
+  --azure:#00B2FF;--azure-soft:#5FC8FF;--azure-deep:#0081B9;--ice:#A1D8FF;
+  --gold:#ffc94a;--danger:#ff6d8a;
+  --text:#e8f2fa;--text-dim:#8fa6bd;
+  --radius:14px;
+  --font-display:"Bricolage Grotesque",sans-serif;
+  --font-body:"Outfit",sans-serif;
+  --font-pixel:"Silkscreen",monospace;
+}
+html{font-size:16px;scroll-behavior:smooth}
+@media(min-width:1800px){html{font-size:18px}}
+@media(min-width:2400px){html{font-size:20px}}
+@media(min-width:3200px){html{font-size:22px}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--void);color:var(--text);font-family:var(--font-body);overflow-x:hidden;min-height:100vh}
+::selection{background:var(--azure);color:#04121c}
+img{display:block;max-width:100%}
+.sky{position:fixed;inset:0;z-index:-2;background:var(--void)}
+.sky::before{content:"";position:absolute;width:70vw;height:70vw;border-radius:50%;filter:blur(130px);opacity:.22;background:radial-gradient(circle,rgba(0,178,255,.4),transparent 65%);top:-30%;right:-20%}
+.container{width:min(880px,90%);margin-inline:auto}
+
+header{position:sticky;top:0;z-index:60;backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);background:rgba(9,17,24,.62);border-bottom:1px solid rgba(36,60,85,.5)}
+.topbar{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;width:min(1260px,90%);margin-inline:auto}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--text)}
+.brand__mark{height:38px;width:auto;flex:none}
+.brand__name{font-family:var(--font-display);font-weight:800;font-size:1.3rem}
+.brand__tag{font-family:var(--font-pixel);font-size:.55rem;color:var(--text-dim);margin-left:.35rem;border:1px solid var(--line);padding:.18rem .45rem;border-radius:6px}
+.back{margin-left:auto;font-family:var(--font-pixel);font-size:.62rem;color:var(--text-dim);text-decoration:none;border:1px solid var(--line);padding:.55rem .9rem;border-radius:10px;transition:border-color .25s,color .25s;white-space:nowrap}
+.back:hover{border-color:var(--azure);color:var(--text)}
+
+.doc{padding:3.5rem 0 4rem}
+.doc__eyebrow{font-family:var(--font-pixel);font-size:.68rem;letter-spacing:.18em;color:var(--ice);text-transform:uppercase;display:inline-flex;align-items:center;gap:.55rem}
+.doc__eyebrow::before{content:"";width:9px;height:9px;background:var(--ice);border-radius:3px}
+.doc h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4vw,2.9rem);letter-spacing:-.02em;margin:.7rem 0 .5rem}
+.doc__meta{color:var(--text-dim);font-size:.9rem}
+.doc__intro{color:var(--text-dim);line-height:1.7;margin-top:1.5rem;font-size:1.02rem;padding:1.3rem 1.5rem;background:var(--dusk);border:1px solid var(--line);border-left:3px solid var(--azure);border-radius:var(--radius)}
+.doc__intro strong{color:var(--text)}
+
+.toc{background:var(--void-2);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem 1.6rem;margin:2rem 0 2.5rem}
+.toc h2{font-family:var(--font-pixel);font-size:.6rem;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase;margin-bottom:.9rem}
+.toc ol{list-style:none;counter-reset:toc;columns:2;column-gap:2rem}
+.toc li{counter-increment:toc;margin-bottom:.5rem;break-inside:avoid}
+.toc a{color:var(--text-dim);text-decoration:none;font-size:.92rem;transition:color .2s;display:flex;gap:.6rem}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-family:var(--font-pixel);font-size:.58rem;color:var(--azure-deep);flex:none;padding-top:.18rem}
+.toc a:hover{color:var(--azure)}
+@media(max-width:640px){.toc ol{columns:1}}
+
+.doc section{margin-bottom:2.5rem;scroll-margin-top:80px}
+.doc h2.s{font-family:var(--font-display);font-weight:700;font-size:1.35rem;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:.75rem}
+.doc h2.s span{font-family:var(--font-pixel);font-size:.6rem;color:var(--azure-deep);flex:none}
+.doc p{color:var(--text-dim);line-height:1.7;margin-bottom:.9rem}
+.doc p:last-child{margin-bottom:0}
+.doc strong{color:var(--text);font-weight:600}
+.doc ul{list-style:none;display:grid;gap:.6rem;margin:.4rem 0 1rem}
+.doc ul li{color:var(--text-dim);line-height:1.65;display:flex;gap:.65rem;align-items:flex-start}
+.doc ul li::before{content:"";width:6px;height:6px;flex:none;background:var(--azure);border-radius:2px;margin-top:.55rem}
+.doc a.inline{color:var(--azure-soft);text-decoration:none}
+.doc a.inline:hover{text-decoration:underline}
+.callout{background:var(--dusk);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1rem 0}
+.callout p{margin:0;font-size:.95rem}
+.callout--danger{border-left-color:var(--danger)}
+
+footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--text-dim);font-size:.88rem}
+.foot{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center;width:min(1260px,90%);margin-inline:auto}
+.foot a{color:var(--azure-soft);text-decoration:none}
+.foot a:hover{color:var(--azure);text-decoration:underline}
+.legal{margin:1.3rem auto 0;width:min(1260px,90%);font-size:.76rem;opacity:.55;max-width:52rem;line-height:1.55}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+
+<header>
+  <div class="topbar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="assets/mark-ederus.webp" alt="Ederus" width="53" height="38">
+      <span class="brand__name">EDERUS</span>
+      <span class="brand__tag">STORE</span>
+    </a>
+    <a class="back" href="/">◂ VOLVER A LA TIENDA</a>
+  </div>
+</header>
+
+<main class="doc container">
+  <span class="doc__eyebrow">Legal</span>
+  <h1>Términos y Condiciones</h1>
+  <p class="doc__meta">Última actualización: 16 de julio de 2026</p>
+
+  <div class="doc__intro">
+    <p>Estos términos regulan las compras realizadas en la tienda de <strong>Ederus</strong> (<strong>mc.ederus.com</strong>). Al comprar cualquier producto aceptas lo que aquí se describe. <strong>Léelos antes de pagar</strong>: contienen información sobre entregas, reembolsos y contracargos que te afecta directamente.</p>
+  </div>
+
+  <nav class="toc">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#s1">Qué estás comprando</a></li>
+      <li><a href="#s2">Requisitos de la compra</a></li>
+      <li><a href="#s3">Entrega</a></li>
+      <li><a href="#s4">Pagos y facturación</a></li>
+      <li><a href="#s5">Reembolsos</a></li>
+      <li><a href="#s6">Contracargos</a></li>
+      <li><a href="#s7">Sanciones y conducta</a></li>
+      <li><a href="#s8">Cambios en los rangos</a></li>
+      <li><a href="#s9">Disponibilidad del servicio</a></li>
+      <li><a href="#s10">Menores de edad</a></li>
+      <li><a href="#s11">Datos personales</a></li>
+      <li><a href="#s12">Propiedad intelectual</a></li>
+      <li><a href="#s13">Cambios en estos términos</a></li>
+      <li><a href="#s14">Contacto</a></li>
+    </ol>
+  </nav>
+
+  <section id="s1">
+    <h2 class="s"><span>01</span> Qué estás comprando</h2>
+    <p>Cuando compras un rango en Ederus <strong>no adquieres un bien físico ni un objeto de tu propiedad</strong>. Adquieres una <strong>licencia personal, intransferible y revocable</strong> para acceder a determinadas ventajas dentro de nuestro servidor de Minecraft.</p>
+    <ul>
+      <li>Las ventajas existen únicamente dentro de Ederus y no tienen valor fuera del servidor.</li>
+      <li>El dinero del juego, los objetos, las llaves y las monedas virtuales <strong>no son convertibles</strong> a dinero real.</li>
+      <li>No puedes vender, ceder, alquilar ni transferir tu rango a otra cuenta o persona.</li>
+      <li>Los rangos son <strong>permanentes</strong> mientras el servidor siga operando y tu cuenta no esté sancionada.</li>
+    </ul>
+    <p>Comprar un rango es, ante todo, una forma de <strong>apoyar económicamente al servidor</strong> para que siga funcionando. Las ventajas son nuestro agradecimiento, no el objeto de un contrato de compraventa de bienes.</p>
+  </section>
+
+  <section id="s2">
+    <h2 class="s"><span>02</span> Requisitos de la compra</h2>
+    <ul>
+      <li><strong>Tu nombre de usuario de Minecraft debe ser correcto.</strong> La entrega se hace a la cuenta que indiques al pagar. Si te equivocas, el rango se entrega a otra persona.</li>
+      <li>Debes tener una <strong>cuenta legítima de Minecraft Java</strong>. No damos soporte a cuentas no oficiales.</li>
+      <li>Debes ser el <strong>titular del método de pago</strong> o contar con la autorización expresa de quien lo sea.</li>
+    </ul>
+    <div class="callout">
+      <p>Si te equivocas de nick, <strong>escríbenos cuanto antes</strong> por el formulario de soporte o por Discord. Si el rango aún no se ha entregado o no se ha usado, normalmente podemos moverlo. Si el jugador que lo recibió ya lo ha usado, no hay marcha atrás.</p>
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2 class="s"><span>03</span> Entrega</h2>
+    <p>Las compras se entregan de forma <strong>automática</strong>, normalmente en menos de un minuto desde que se confirma el pago.</p>
+    <ul>
+      <li>Si estás conectado, el rango se aplica al momento.</li>
+      <li>Si estás desconectado, se aplica <strong>la próxima vez que entres</strong> al servidor.</li>
+      <li>Si pasadas <strong>24 horas</strong> no has recibido tu compra, abre una solicitud de soporte con tu ID de transacción.</li>
+    </ul>
+    <p>Los retrasos causados por caídas del servidor, mantenimiento o incidencias del proveedor de pagos no se consideran incumplimiento: la compra se entrega en cuanto el servicio se restablece.</p>
+  </section>
+
+  <section id="s4">
+    <h2 class="s"><span>04</span> Pagos y facturación</h2>
+    <p>Los pagos se procesan a través de <strong>Tebex Limited</strong>, que actúa como <strong>Merchant of Record</strong> (vendedor registrado) de esta tienda. Esto significa que, legalmente, <strong>la venta la realiza Tebex</strong>, no Ederus.</p>
+    <ul>
+      <li>Tebex gestiona el cobro, la facturación, los impuestos aplicables y el soporte de pagos.</li>
+      <li>El cargo en tu extracto bancario aparecerá a nombre de <strong>Tebex</strong>, no de Ederus.</li>
+      <li>Los precios se muestran en <strong>dólares estadounidenses (USD)</strong>. Tu banco puede aplicar comisiones de cambio de divisa ajenas a nosotros.</li>
+      <li>Ederus <strong>no almacena ni tiene acceso</strong> a los datos de tu tarjeta ni a tu método de pago.</li>
+    </ul>
+    <p>Consulta también los <a class="inline" href="https://www.tebex.io/terms" target="_blank" rel="noopener">términos de Tebex</a>, que se aplican a tu compra junto con los nuestros.</p>
+  </section>
+
+  <section id="s5">
+    <h2 class="s"><span>05</span> Reembolsos</h2>
+    <p>Los rangos son <strong>productos digitales de entrega inmediata</strong>. Como la entrega es instantánea y el contenido se consume dentro del juego, <strong>por norma general no se admiten reembolsos</strong> una vez entregada la compra.</p>
+    <p>Estudiaremos caso por caso, y podremos reembolsar, en estas situaciones:</p>
+    <ul>
+      <li><strong>No recibiste lo que compraste</strong> y no pudimos resolverlo.</li>
+      <li><strong>Cobro duplicado</strong> por un error técnico.</li>
+      <li><strong>Compra no autorizada</strong> por el titular del método de pago, debidamente acreditada.</li>
+      <li>El rango <strong>dejó de funcionar de forma permanente</strong> por causas atribuibles a nosotros y no ofrecimos alternativa.</li>
+    </ul>
+    <p>No son motivo de reembolso: haber cambiado de opinión, dejar de jugar, haber comprado un rango por error habiendo otro que preferías, ser sancionado por incumplir las normas, o el desacuerdo con cambios de contenido descritos en el punto 08.</p>
+    <div class="callout">
+      <p>Los reembolsos, cuando proceden, los ejecuta <strong>Tebex</strong>. Escríbenos primero a nosotros: podemos gestionarlo con ellos y suele ser más rápido que abrir una disputa por tu cuenta.</p>
+    </div>
+    <p>Si resides en la Unión Europea, tu derecho de desistimiento de 14 días sobre contenido digital <strong>decae una vez comenzada la entrega</strong> con tu consentimiento expreso, conforme a la Directiva 2011/83/UE. Al completar la compra aceptas la entrega inmediata y reconoces la pérdida de ese derecho.</p>
+  </section>
+
+  <section id="s6">
+    <h2 class="s"><span>06</span> Contracargos</h2>
+    <div class="callout callout--danger">
+      <p>Abrir un <strong>contracargo o disputa</strong> con tu banco o con PayPal sin habernos contactado antes conllevará el <strong>baneo permanente</strong> de tu cuenta en Ederus y la retirada inmediata de todos los rangos y beneficios asociados, incluidos los de compras anteriores.</p>
+    </div>
+    <p>Un contracargo tiene un coste para el servidor por encima del importe disputado, y suele ser innecesario: casi todos los problemas se resuelven escribiéndonos. <strong>Habla con nosotros primero.</strong></p>
+    <p>Si el contracargo se resuelve a tu favor pero determinamos que la compra fue legítima y entregada, la sanción se mantiene. Podremos exigir el pago del importe y los costes asociados antes de considerar el levantamiento del baneo.</p>
+  </section>
+
+  <section id="s7">
+    <h2 class="s"><span>07</span> Sanciones y conducta</h2>
+    <p>Comprar un rango <strong>no te exime de cumplir las normas del servidor</strong>, y no otorga trato preferente en moderación.</p>
+    <ul>
+      <li>Si eres sancionado, <strong>pierdes el acceso a tus rangos durante la sanción</strong>, sin derecho a reembolso ni compensación.</li>
+      <li>En caso de <strong>baneo permanente</strong> por incumplimiento grave (trampas, exploits, acoso, fraude), los rangos se pierden definitivamente.</li>
+      <li>Usar un rango o sus ventajas para perjudicar a otros jugadores o al servidor puede conllevar su retirada.</li>
+    </ul>
+    <p>Puedes apelar cualquier sanción por el formulario de soporte. Revisamos el historial completo antes de decidir.</p>
+  </section>
+
+  <section id="s8">
+    <h2 class="s"><span>08</span> Cambios en los rangos</h2>
+    <p>Ederus es un servidor vivo. Los beneficios de los rangos <strong>pueden cambiar</strong> con el tiempo por equilibrio del juego, actualizaciones de Minecraft, cambios en los plugins o decisiones de diseño.</p>
+    <ul>
+      <li>Podemos <strong>añadir, modificar o retirar</strong> ventajas concretas de un rango.</li>
+      <li>Si retiramos algo relevante, intentaremos <strong>compensarlo</strong> con una ventaja equivalente.</li>
+      <li>Los cambios de este tipo <strong>no dan derecho a reembolso</strong>.</li>
+      <li>Los precios pueden variar. El precio que pagaste no se revisa retroactivamente en ningún sentido.</li>
+    </ul>
+    <p>Anunciaremos los cambios significativos con antelación en nuestro Discord.</p>
+  </section>
+
+  <section id="s9">
+    <h2 class="s"><span>09</span> Disponibilidad del servicio</h2>
+    <p>Hacemos lo posible por mantener Ederus disponible de forma continua, pero <strong>no garantizamos un servicio ininterrumpido</strong>. Puede haber mantenimientos, caídas, pérdidas de datos por fallos técnicos o incidencias de terceros.</p>
+    <p>Si Ederus cerrara definitivamente, los rangos dejarían de existir junto con el servidor. <strong>No habría reembolso</strong> de compras ya entregadas y disfrutadas. Ten esto en cuenta antes de comprar: estás apoyando un proyecto, con el riesgo que eso implica.</p>
+  </section>
+
+  <section id="s10">
+    <h2 class="s"><span>10</span> Menores de edad</h2>
+    <p>Si eres <strong>menor de 18 años</strong>, necesitas el permiso de tu padre, madre o tutor legal antes de realizar cualquier compra, y debes usar un método de pago del que dispongas legítimamente.</p>
+    <p>Si detectamos una compra realizada por un menor sin autorización, la anularemos y retiraremos el rango. Si eres el titular de una tarjeta y detectas un cargo hecho por un menor a tu cargo, <strong>escríbenos antes de abrir un contracargo</strong>: lo resolveremos.</p>
+  </section>
+
+  <section id="s11">
+    <h2 class="s"><span>11</span> Datos personales</h2>
+    <p>Tratamos la mínima cantidad de datos posible:</p>
+    <ul>
+      <li>Tu <strong>nombre de usuario de Minecraft</strong>, para entregarte la compra y personalizar la tienda. Se guarda en tu propio navegador.</li>
+      <li>Los <strong>mensajes que nos envías</strong> por el formulario de soporte, junto con tu nick, para poder responderte.</li>
+      <li>Los <strong>datos de pago los gestiona Tebex</strong> en su totalidad. Nosotros solo vemos el usuario, el producto y el importe.</li>
+    </ul>
+    <p>No vendemos ni cedemos tus datos a terceros. Puedes solicitar el borrado de tus solicitudes de soporte escribiéndonos.</p>
+  </section>
+
+  <section id="s12">
+    <h2 class="s"><span>12</span> Propiedad intelectual</h2>
+    <p><strong>Ederus no está afiliado, asociado, autorizado ni respaldado por Mojang AB, Microsoft ni ninguna de sus filiales.</strong> Minecraft es una marca registrada de Mojang AB. Este es un servidor gestionado por particulares.</p>
+    <p>La marca Ederus, su logotipo y los contenidos originales de este sitio son propiedad de sus autores. No los uses sin permiso.</p>
+  </section>
+
+  <section id="s13">
+    <h2 class="s"><span>13</span> Cambios en estos términos</h2>
+    <p>Podemos actualizar estos términos cuando sea necesario. La versión vigente es siempre la publicada en esta página, con su fecha de actualización arriba. Los cambios <strong>no se aplican retroactivamente</strong> a compras ya realizadas.</p>
+    <p>Si un cambio es sustancial, lo anunciaremos en el Discord. Seguir comprando tras una actualización implica aceptar la versión nueva.</p>
+  </section>
+
+  <section id="s14">
+    <h2 class="s"><span>14</span> Contacto</h2>
+    <p>Para cualquier duda, problema con una compra o solicitud relacionada con estos términos:</p>
+    <ul>
+      <li>Formulario de soporte: <a class="inline" href="/#contacto">ederus.com/#contacto</a></li>
+      <li>Discord: canal de tickets del servidor</li>
+    </ul>
+    <p>Tiempo medio de respuesta: <strong>24-48 horas</strong>. Para asuntos estrictamente de facturación puedes escribir también a <a class="inline" href="https://www.tebex.io/contact" target="_blank" rel="noopener">Tebex</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="foot">
+    <span>© 2026 Ederus · mc.ederus.com</span>
+    <span><a href="/#catalogo">Tienda</a> · <a href="/#contacto">Soporte</a> · <a href="/terminos.html">Términos y Condiciones</a></span>
+  </div>
+  <p class="legal">Ederus no está afiliado con Mojang AB ni Microsoft. Los pagos son procesados de forma segura por Tebex Limited (Merchant of Record), quienes gestionan facturación, soporte de pagos y reembolsos.</p>
+</footer>
+</body>
+</html>
