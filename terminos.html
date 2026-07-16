@@ -11,7 +11,7 @@
 <meta name="robots" content="index,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Outfit:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Handjet:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --void:#091118;--void-2:#0d1824;--dusk:#132231;--dusk-2:#192c41;--line:#243c55;
@@ -19,9 +19,9 @@
   --gold:#ffc94a;--danger:#ff6d8a;
   --text:#e8f2fa;--text-dim:#8fa6bd;
   --radius:14px;
-  --font-display:"Bricolage Grotesque",sans-serif;
-  --font-body:"Outfit",sans-serif;
-  --font-pixel:"Silkscreen",monospace;
+  --font-display:"Unbounded",sans-serif;
+  --font-body:"Instrument Sans",sans-serif;
+  --font-pixel:"Handjet",monospace;
 }
 html{font-size:16px;scroll-behavior:smooth}
 @media(min-width:1800px){html{font-size:18px}}
@@ -40,12 +40,12 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(18px) saturate(1.6)
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--text)}
 .brand__mark{height:38px;width:auto;flex:none}
 .brand__name{font-family:var(--font-display);font-weight:800;font-size:1.3rem}
-.brand__tag{font-family:var(--font-pixel);font-size:.55rem;color:var(--text-dim);margin-left:.35rem;border:1px solid var(--line);padding:.18rem .45rem;border-radius:6px}
-.back{margin-left:auto;font-family:var(--font-pixel);font-size:.62rem;color:var(--text-dim);text-decoration:none;border:1px solid var(--line);padding:.55rem .9rem;border-radius:10px;transition:border-color .25s,color .25s;white-space:nowrap}
+.brand__tag{font-family:var(--font-pixel);font-size:.78rem;color:var(--text-dim);margin-left:.35rem;border:1px solid var(--line);padding:.18rem .45rem;border-radius:6px}
+.back{margin-left:auto;font-family:var(--font-pixel);font-size:.85rem;color:var(--text-dim);text-decoration:none;border:1px solid var(--line);padding:.55rem .9rem;border-radius:10px;transition:border-color .25s,color .25s;white-space:nowrap}
 .back:hover{border-color:var(--azure);color:var(--text)}
 
 .doc{padding:3.5rem 0 4rem}
-.doc__eyebrow{font-family:var(--font-pixel);font-size:.68rem;letter-spacing:.18em;color:var(--ice);text-transform:uppercase;display:inline-flex;align-items:center;gap:.55rem}
+.doc__eyebrow{font-family:var(--font-pixel);font-size:.9rem;letter-spacing:.18em;color:var(--ice);text-transform:uppercase;display:inline-flex;align-items:center;gap:.55rem}
 .doc__eyebrow::before{content:"";width:9px;height:9px;background:var(--ice);border-radius:3px}
 .doc h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,4vw,2.9rem);letter-spacing:-.02em;margin:.7rem 0 .5rem}
 .doc__meta{color:var(--text-dim);font-size:.9rem}
@@ -53,17 +53,17 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(18px) saturate(1.6)
 .doc__intro strong{color:var(--text)}
 
 .toc{background:var(--void-2);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem 1.6rem;margin:2rem 0 2.5rem}
-.toc h2{font-family:var(--font-pixel);font-size:.6rem;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase;margin-bottom:.9rem}
+.toc h2{font-family:var(--font-pixel);font-size:.82rem;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase;margin-bottom:.9rem}
 .toc ol{list-style:none;counter-reset:toc;columns:2;column-gap:2rem}
 .toc li{counter-increment:toc;margin-bottom:.5rem;break-inside:avoid}
 .toc a{color:var(--text-dim);text-decoration:none;font-size:.92rem;transition:color .2s;display:flex;gap:.6rem}
-.toc a::before{content:counter(toc,decimal-leading-zero);font-family:var(--font-pixel);font-size:.58rem;color:var(--azure-deep);flex:none;padding-top:.18rem}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-family:var(--font-pixel);font-size:.8rem;color:var(--azure-deep);flex:none;padding-top:.18rem}
 .toc a:hover{color:var(--azure)}
 @media(max-width:640px){.toc ol{columns:1}}
 
 .doc section{margin-bottom:2.5rem;scroll-margin-top:80px}
 .doc h2.s{font-family:var(--font-display);font-weight:700;font-size:1.35rem;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:.75rem}
-.doc h2.s span{font-family:var(--font-pixel);font-size:.6rem;color:var(--azure-deep);flex:none}
+.doc h2.s span{font-family:var(--font-pixel);font-size:.82rem;color:var(--azure-deep);flex:none}
 .doc p{color:var(--text-dim);line-height:1.7;margin-bottom:.9rem}
 .doc p:last-child{margin-bottom:0}
 .doc strong{color:var(--text);font-weight:600}
