@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges" role="img" aria-label="Insignia arcus">
+<defs><linearGradient id="garcus" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#3BA9DC"/><stop offset=".55" stop-color="#0081B9"/><stop offset="1" stop-color="#0A4E70"/>
+</linearGradient></defs>
+<path fill="#12203a" d="M15 1h2v1h2v1h2v1h2v1h2v1h1v2h1v2h1v2h1v10h-1v2h-1v2h-1v2h-1v1h-2v1h-2v1h-2v1h-2v1h-2v-1h-2v-1h-2v-1H7v-1H5v-1H4v-2H3v-2H2v-2H1V11h1V9h1V7h1V5h1V4h2V3h2V2h2V1h2Z"/>
+<path fill="url(#garcus)" d="M15 3h2v1h2v1h2v1h2v1h1v1h1v2h1v2h1v8h-1v2h-1v2h-1v2h-1v1h-2v1h-2v1h-2v1h-2v-1h-2v-1H9v-1H7v-1H6v-2H5v-2H4v-2H3v-8h1V9h1V7h1V6h2V5h2V4h2V3Z"/>
+<path fill="#ffffff" opacity=".38" d="M15 4h2v1h2v1h2v1h1v1h-2V7h-2V6h-2V5h-2v1h-2v1H8v1H6V7h1V6h2V5h2V4h2Z"/>
+<path fill="#0a1428" opacity=".32" d="M25 20h1v2h-1v2h-1v2h-2v1h-2v1h-2v1h-2v1h-2v-1h2v-1h2v-1h2v-1h2v-2h1v-2h1v-2Z"/>
+<path fill="#12203a" d="M15 10h2v1h1v1h1v1h1v2h-1v1h-1v1h-1v1h1v3h-1v1h-2v1h-2v-1h-1v-3h1v-1h1v-1h-1v-1h-1v-2h1v-1h1v-1h1v-1Z"/>
+<path fill="#ffffff" opacity=".9" d="M15 11h2v1h1v1h1v1h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1h1v-1h1v-1Z"/>
+<path fill="#ffffff" opacity=".55" d="M15 19h2v1h1v2h-1v1h-2v-1h-1v-2h1Z"/>
+</svg>
