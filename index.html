@@ -117,7 +117,7 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px) saturate(1.5)
 .hud-chip strong{color:var(--text)}
 .cart-btn{background:var(--azure);color:#04121c;border:none;font-family:var(--font-display);font-weight:700;font-size:.74rem;letter-spacing:.05em;padding:.6rem 1.1rem;border-radius:999px;cursor:pointer;display:flex;gap:.55rem;align-items:center;transition:transform .2s,background .25s;white-space:nowrap;text-transform:uppercase}
 .cart-btn:hover{transform:translateY(-2px);background:var(--azure-soft)}
-.cart-count{background:#04121c;color:var(--gold);padding:.12rem .42rem;font-size:.66rem;border-radius:6px;font-family:var(--font-body)}
+.cart-count{background:#04121c;color:var(--gold);min-width:20px;height:20px;padding:0 .3rem;font-size:.64rem;border-radius:999px;font-family:var(--font-body);display:inline-grid;place-items:center;line-height:1}
 
 /* ═══ Hero ═══ */
 .hero{position:relative;padding:5rem 0 4rem;display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;min-height:min(80vh,740px)}
@@ -304,14 +304,7 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px) saturate(1.5)
 @keyframes supremeTagPulse{0%,100%{box-shadow:0 0 0 0 rgba(161,216,255,.5)}50%{box-shadow:0 0 0 6px rgba(161,216,255,0)}}
 .card--supreme .add-btn{background:linear-gradient(180deg,var(--frost),var(--frost-deep));color:#0a2136;border:none}
 .card--supreme .add-btn:hover{filter:brightness(1.08);box-shadow:0 6px 20px rgba(161,216,255,.35)}
-.supreme-spark{position:absolute;width:4px;height:4px;background:var(--frost);border-radius:1px;pointer-events:none;opacity:0;box-shadow:0 0 6px var(--frost)}
-.card--supreme .supreme-spark{animation:sparkFloat 3s ease-in-out infinite}
-.card--supreme .supreme-spark:nth-child(1){left:15%;animation-delay:0s}
-.card--supreme .supreme-spark:nth-child(2){left:45%;animation-delay:1s}
-.card--supreme .supreme-spark:nth-child(3){left:75%;animation-delay:.5s}
-.card--supreme .supreme-spark:nth-child(4){left:88%;animation-delay:1.8s}
-@keyframes sparkFloat{0%{opacity:0;transform:translateY(100%) scale(0)}20%{opacity:1;transform:translateY(70%) scale(1)}80%{opacity:1;transform:translateY(10%) scale(1)}100%{opacity:0;transform:translateY(-10%) scale(0)}}
-@media(prefers-reduced-motion:reduce){.card--supreme,.card--supreme.tick::before,.card--supreme.tick::after,.card--supreme h3,.supreme-spark{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.card--supreme,.card--supreme.tick::before,.card--supreme.tick::after,.card--supreme h3{animation:none!important}}
 
 /* ═══ Modal beneficios ═══ */
 .perks-modal{position:fixed;inset:0;z-index:96;display:grid;place-items:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .4s}
@@ -521,7 +514,7 @@ footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--text-dim);f
         <span id="user-chip-content">INICIAR SESIÓN</span>
       </div>
       <button class="cart-btn" id="open-cart" aria-label="Abrir carrito">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="flex:none" aria-hidden="true"><path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"/></svg>
         CARRITO <span class="cart-count" id="cart-count">0</span>
       </button>
     </div>
@@ -533,7 +526,7 @@ footer{border-top:1px solid var(--line);padding:2.4rem 0;color:var(--text-dim);f
   <div class="hero__text">
     <span class="hero__meta" data-aos="fade-up">Tienda oficial — entrega automática</span>
     <h1 data-aos="fade-up" data-aos-delay="80">Forja tu leyenda en <span class="glow">EDERUS</span>.</h1>
-    <p class="lead" data-aos="fade-up" data-aos-delay="140">Un survival clásico de mazmorras, botín y aventura. Hazte con un rango con ventajas reales, entregado al instante — tu apoyo mantiene el reino en pie.</p>
+    <p class="lead" data-aos="fade-up" data-aos-delay="140">La nueva era de Minecraft comienza pronto.</p>
     <div class="hero-cta" data-aos="fade-up" data-aos-delay="200">
       <a href="#catalogo" class="btn btn-gold">EXPLORAR RANGOS ▸</a>
       <a href="#como-funciona" class="btn btn-ghost">¿CÓMO FUNCIONA?</a>
@@ -1150,11 +1143,9 @@ function renderCards(){
     const isSupreme=p.tag==="MÁXIMO";
     const isPopular=p.tag==="POPULAR";
     const extraClass=isSupreme?" card--supreme":(isPopular?" card--popular":"");
-    const sparks=isSupreme?'<span class="supreme-spark"></span><span class="supreme-spark"></span><span class="supreme-spark"></span><span class="supreme-spark"></span>':"";
     const total=p.full.reduce((s,g)=>s+g.items.length,0);
     return `
     <article class="card tick${extraClass}" style="--card-accent:${p.accent}" data-id="${p.id}" data-aos="fade-up" data-aos-delay="${i*90}">
-      ${sparks}
       <div class="card__top">
         <span class="card__idx">0${i+1}</span>
         ${p.tag?`<span class="card__tag">${p.tag}</span>`:""}
