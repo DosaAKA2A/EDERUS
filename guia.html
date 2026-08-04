@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía del servidor | EDERUS</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="Guía de Ederus: recompensas de /playtime, cofres y su contenido, libros de encantamientos, God Kits y tiendas del servidor.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#091118;--void-2:#0d1824;--dusk:#132231;--dusk-2:#192c41;--line:#243c55;
+  --azure:#00B2FF;--azure-soft:#5FC8FF;--azure-deep:#0081B9;--ice:#A1D8FF;--gold:#ffc94a;
+  --font-display:"Sora",sans-serif;--font-body:"Instrument Sans",sans-serif;
+  --font:"Instrument Sans",sans-serif;
+  --paper:#0d1824;--panel:#132231;--ink:#e8f2fa;--muted:#8fa6bd;
+  --rule:#243c55;--rule-strong:#2f4c6b;--accent:#00B2FF;--accent-soft:#17273a;--bronze:#ffc94a;
+  --q-comun:#8fa6bd;--q-poco:#4ade80;--q-raro:#5FC8FF;--q-legend:#ffc94a;--q-inmortal:#c58cff;
+  --pos:#4ade80;--warn:#ffb454;--warn-soft:#2a2113;--mc:#ffc94a;
+}
+*{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--font);padding:clamp(18px,4vw,44px)}
+  .doc{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+  h1{margin:0;font-weight:700;font-size:clamp(22px,4vw,29px);line-height:1.1;letter-spacing:-.02em}
+  .subtitle{color:var(--muted);font-size:14px;margin-top:-14px}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:2px solid var(--rule-strong);position:sticky;top:0;background:var(--paper);z-index:5;padding-top:2px}
+  .tab{appearance:none;border:none;background:none;font:600 13.5px var(--font);color:var(--muted);padding:10px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+  .panel[hidden]{display:none}
+  .panel{display:flex;flex-direction:column;gap:20px;animation:fade .18s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){.panel{animation:none}}
+
+  section{display:flex;flex-direction:column;gap:12px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule-strong);padding-bottom:6px}
+  .sec-n{font-weight:700;font-size:12px;color:var(--accent)}
+  h2{margin:0;font-weight:700;font-size:19px;letter-spacing:-.01em}
+  h3{margin:8px 0 2px;font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--accent);text-transform:uppercase}
+  p{margin:0}
+  ul{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:5px}
+  li{padding-left:2px}
+  strong{font-weight:600}
+  code{font-family:var(--font);font-weight:600;font-size:.92em;background:var(--panel);padding:1px 5px;border-radius:4px}
+  .fine{font-size:12.5px;color:var(--muted)}
+
+  /* Playtime */
+  .scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:8px}
+  table.data{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+  table.data thead th{background:var(--accent-soft);text-align:left;font-weight:700;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);padding:9px 11px;border-bottom:2px solid var(--rule-strong);white-space:nowrap;position:sticky;top:0}
+  table.data td{padding:7px 11px;border-bottom:1px solid var(--rule);vertical-align:top}
+  table.data tr:last-child td{border-bottom:none}
+  .lvl,.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .num{text-align:right}
+  .lvl{font-weight:700}
+  .hrs{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .dash{color:var(--muted)}
+  .items{display:flex;flex-wrap:wrap;gap:4px 5px}
+  .it{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:1px 7px;border-radius:4px;border:1px solid var(--rule-strong);background:var(--paper);white-space:nowrap;line-height:1.65}
+  .it.key{border-color:color-mix(in srgb,var(--bronze) 45%,var(--rule-strong))}
+  .it.gkit{font-weight:600;border-color:color-mix(in srgb,var(--q-inmortal) 45%,transparent);background:color-mix(in srgb,var(--q-inmortal) 9%,var(--paper))}
+  .it.book{font-weight:600;border-color:color-mix(in srgb,var(--q-legend) 55%,transparent);background:color-mix(in srgb,var(--q-legend) 12%,var(--paper))}
+  .it.tag{border-style:dashed}
+  .qd{width:8px;height:8px;border-radius:50%;flex:none}
+  tr.mile td{background:color-mix(in srgb,var(--bronze) 6%,transparent)}
+  tr.mile-major td{background:color-mix(in srgb,var(--bronze) 12%,transparent)}
+  tr.s67 td{background:color-mix(in srgb,var(--q-inmortal) 9%,transparent)}
+  tr.mile .lvl,tr.mile-major .lvl{color:var(--bronze)}
+  tr.s67 .lvl{color:var(--q-inmortal)}
+  .qkey{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
+  .qkey .q{display:inline-flex;align-items:center;gap:6px}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .tile{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:3px}
+  .tile .k{font-weight:700;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .tile .v{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+  .tile .v small{font-size:12px;color:var(--muted);font-weight:400}
+
+  /* Crates enriquecidas (desplegables al clic) */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px;align-items:start}
+  details.ccard{--tier:var(--accent);background:var(--panel);border:1px solid var(--rule);border-top:3px solid var(--tier);border-radius:10px;overflow:hidden}
+  details.ccard.dead{opacity:.66}
+  details.ccard>summary{list-style:none;cursor:pointer}
+  details.ccard>summary::-webkit-details-marker{display:none}
+  details.ccard>summary:focus-visible{outline:2px solid var(--tier);outline-offset:-2px}
+  .ccard-top{padding:13px 15px 12px;display:flex;flex-direction:column;gap:9px}
+  .ccard-title{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .ccard-title .nm{font-weight:700;font-size:16px;line-height:1.1}
+  .rcount{display:flex;flex-direction:column;align-items:center;line-height:1;flex:none;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:5px 9px}
+  .rcount b{font-size:16px;font-variant-numeric:tabular-nums;color:var(--tier)}
+  .rcount span{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .ccard-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .badge{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--tier) 15%,var(--paper));color:var(--tier);border:1px solid color-mix(in srgb,var(--tier) 35%,transparent)}
+  .keychip{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px dashed var(--rule-strong);color:var(--muted)}
+  .keychip.has{border-style:solid;border-color:color-mix(in srgb,var(--bronze) 45%,transparent);color:var(--bronze);background:color-mix(in srgb,var(--bronze) 10%,var(--paper))}
+  .expand{margin-left:auto;font-size:11px;font-weight:600;color:var(--tier);white-space:nowrap}
+  .expand::before{content:"+ "}
+  details.ccard[open] .expand::before{content:"– "}
+  .expand::after{content:"Ver contenido"}
+  details.ccard[open] .expand::after{content:"Ocultar"}
+  .ccard-body{padding:11px 15px 14px;display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--rule)}
+  .ccard-body ul{padding-left:16px;font-size:12.5px;gap:5px;color:var(--ink)}
+  .ccard-body ul li::marker{color:var(--tier)}
+  .ccard-body .inline{font-size:12.5px;color:var(--ink);line-height:1.7}
+  .myth{font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--q-inmortal);border:1px solid color-mix(in srgb,var(--q-inmortal) 40%,transparent);border-radius:4px;padding:0 4px;margin-left:6px;vertical-align:1px}
+  .flag{font-size:11.5px;color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:7px 10px;border:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
+
+  /* Libros enriquecidos */
+  details{background:var(--panel);border:1px solid var(--rule);border-radius:9px;padding:0 14px;overflow:hidden}
+  summary{cursor:pointer;padding:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";font-weight:700;color:var(--accent);font-size:15px;width:14px;display:inline-block}
+  details[open] summary::before{content:"–"}
+  .cl{font-weight:700;font-size:15px}
+  .clc{font-size:11.5px;color:var(--muted)}
+  .price{margin-left:auto;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid color-mix(in srgb,var(--pos) 40%,transparent);color:var(--pos);background:color-mix(in srgb,var(--pos) 10%,var(--paper))}
+  .price.locked{border-color:color-mix(in srgb,var(--warn) 45%,transparent);color:var(--warn);background:var(--warn-soft)}
+  .enchgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:8px;padding:2px 0 14px}
+  .ench{background:var(--paper);border:1px solid var(--rule);border-radius:7px;padding:8px 11px}
+  .ench .en{font-weight:600;font-size:12.5px}
+  .ench .ed{font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .booknote{display:flex;flex-direction:column;gap:8px}
+
+  /* Kits */
+  .callout{border-left:3px solid var(--warn);background:var(--warn-soft);padding:11px 15px;border-radius:0 6px 6px 0;font-size:13px}
+
+  /* Tiendas: filas de precio, sin scroll */
+  .shopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px}
+  .shopcard{background:var(--panel);border:1px solid var(--rule);border-radius:9px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+  .shopcard h4{margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between}
+  .shopcard h4 span{color:var(--muted);font-weight:600}
+  .prow{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid var(--rule)}
+  .prow:last-child{border-bottom:none}
+  .prow .pn{flex:1;font-size:12.5px}
+  .prow .pp{font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink)}
+  .prow.sink .pp{color:var(--warn)}
+  .mobcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 18px}
+  .mobcgrid .prow .pp{color:var(--mc,var(--bronze))}
+
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{padding:0;font-size:10.5pt}
+    .tabs{display:none}
+    .panel[hidden]{display:flex!important}
+    .panel{break-before:page;gap:16px}
+    .panel:first-of-type{break-before:auto}
+    section{break-inside:avoid}
+    .scroll{overflow:visible;border:none}
+    table.data{min-width:0}
+    thead{display:table-header-group}
+    tr,.ccard,.ench,.shopcard{break-inside:avoid}
+    details{border:none;padding:0}
+    details>*:not(summary){display:revert!important}
+    summary::before{content:""}
+    .expand{display:none}
+    details.ccard{border:1px solid var(--rule);border-top:3px solid var(--tier)}
+  }
+
+
+  html{background:var(--void);font-size:16px}
+  @media(min-width:1800px){html{font-size:18px}}
+  body{background:transparent!important;color:var(--text,#e8f2fa)!important;padding:0!important;font-family:var(--font-body)}
+  ::selection{background:var(--azure);color:#04121c}
+  .sky{position:fixed;inset:0;z-index:-2;background:var(--void)}
+  .sky::before{content:"";position:absolute;width:70vw;height:70vw;border-radius:50%;filter:blur(130px);opacity:.2;background:radial-gradient(circle,rgba(0,178,255,.4),transparent 65%);top:-30%;right:-20%}
+  header.site{position:sticky;top:0;z-index:60;backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);background:rgba(9,17,24,.66);border-bottom:1px solid rgba(36,60,85,.5)}
+  .topbar{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;width:min(1080px,92%);margin-inline:auto}
+  .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink)}
+  .brand__mark{height:36px;width:auto;flex:none}
+  .brand__name{font-family:var(--font-display);font-weight:800;font-size:1.2rem}
+  .brand__tag{font-family:var(--font-body);font-weight:600;font-size:.62rem;color:var(--azure);letter-spacing:.2em;margin-left:.25rem;border:1px solid var(--line);padding:.2rem .5rem;border-radius:6px;text-transform:uppercase}
+  .back{margin-left:auto;font-family:var(--font-body);font-weight:600;font-size:.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:.5rem .85rem;border-radius:10px;transition:border-color .25s,color .25s;white-space:nowrap}
+  .back:hover{border-color:var(--azure);color:var(--ink)}
+  .doc{max-width:min(1080px,92%)!important;margin:0 auto!important;padding:2.6rem 0 0!important}
+  .doc__eyebrow{font-family:var(--font-body);font-weight:600;font-size:.78rem;letter-spacing:.2em;color:var(--ice);text-transform:uppercase;display:inline-flex;align-items:center;gap:.55rem}
+  .doc__eyebrow::before{content:"";width:9px;height:9px;background:var(--ice);border-radius:3px}
+  .doc>h1.title{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4vw,2.7rem);letter-spacing:-.02em;line-height:1.05;margin:.7rem 0 .5rem;color:var(--ink);border:none;padding:0}
+  .doc__intro{color:var(--muted);line-height:1.7;font-size:1rem;padding:1.1rem 1.4rem;background:var(--dusk);border:1px solid var(--line);border-left:3px solid var(--azure);border-radius:14px;margin-bottom:1.8rem}
+  .doc__intro strong{color:var(--ink);font-weight:600}
+  .tabs{position:static!important;background:transparent!important;border-bottom:2px solid var(--rule-strong)}
+  .sec-h h2,.doc h2,.cl,.tile .v,.rcount b{font-family:var(--font-display)}
+  .subtitle{display:none}
+  footer.site{border-top:1px solid var(--line);padding:2.2rem 0;margin-top:2.6rem;color:var(--muted);font-size:.86rem}
+  .foot{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;width:min(1080px,92%);margin-inline:auto}
+  .foot a{color:var(--azure-soft);text-decoration:none}
+  .foot a:hover{color:var(--azure);text-decoration:underline}
+  @media print{header.site,footer.site,.back{display:none}}
+
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<header class="site"><div class="topbar">
+  <a class="brand" href="index.html"><img class="brand__mark" src="assets/mark-ederus.webp" alt="Ederus" width="50" height="36"><span class="brand__name">EDERUS</span><span class="brand__tag">Guía</span></a>
+  <a class="back" href="index.html">◂ Volver a la tienda</a>
+</div></header>
+<div class="doc">
+  <span class="doc__eyebrow">Guía del servidor</span>
+  <h1 class="title">Cómo funciona Ederus</h1>
+  <div class="doc__intro"><strong>Todo lo que hay dentro del servidor</strong>, leído de la configuración real: recompensas por horas jugadas, cofres y su contenido completo, libros de encantamientos, God Kits y las dos tiendas. Sirve para saber qué consigues jugando y qué aportan las compras.</div>
+
+  <div class="tabs" role="tablist" aria-label="Secciones">
+    <button class="tab" role="tab" aria-selected="true" data-panel="p-play">Recompensas Playtime</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-crates">Crates</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-books">Libros</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-kits">Kits</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-shops">Tiendas</button>
+  </div>
+
+  <div class="panel" id="p-play" role="tabpanel">
+    <section>
+      <div class="sec-h"><span class="sec-n">/playtime</span><h2>Recompensas por nivel</h2></div>
+      <div id="tiles" class="tiles"></div>
+      <div class="qkey">
+        <span class="q"><span class="qd" style="background:var(--q-comun)"></span>RIP Común</span>
+        <span class="q"><span class="qd" style="background:var(--q-poco)"></span>Poco común</span>
+        <span class="q"><span class="qd" style="background:var(--q-raro)"></span>Raro</span>
+        <span class="q"><span class="qd" style="background:var(--q-legend)"></span>Legendario</span>
+        <span class="q"><span class="qd" style="background:var(--q-inmortal)"></span>Inmortal</span>
+      </div>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Niv.</th><th>Horas</th><th class="num">Dinero</th><th class="num">EXP</th><th class="num">MobCoins</th><th>Llaves</th><th>Premios especiales</th></tr></thead>
+          <tbody id="rows-play"></tbody>
+        </table>
+      </div>
+      <p class="fine">Base: dinero = 750 × nivel; EXP = 5 + nivel/2. Hito cada 5 niveles. El nivel 28 no existe. Niveles 67 y 100, los de mayor valor.</p>
+    </section>
+  </div>
+
+  <div class="panel" id="p-crates" role="tabpanel" hidden>
+    <section>
+      <div class="sec-h"><span class="sec-n">ExcellentCrates</span><h2>Crates actuales</h2></div>
+      <p class="fine">Ocho cofres, ordenados de entrada a endgame. El número es cuántas recompensas contiene. Haz clic en un cofre para ver todo su contenido.</p>
+      <div class="cards" id="cards-crates"></div>
+    </section>
+  </div>
+
+  <div class="panel" id="p-books" role="tabpanel" hidden>
+    <section>
+      <div class="sec-h"><span class="sec-n">AdvancedEnchantments</span><h2>Libros de encantamientos</h2></div>
+      <p class="fine">182 encantamientos custom en 6 clases. Despliega una clase para ver cada encantamiento y qué hace.</p>
+      <h3>Se compran en el encantador (con EXP)</h3>
+      <div class="booknote" id="books-buy"></div>
+      <h3>No se compran — solo cofres, kits o /playtime</h3>
+      <div class="booknote" id="books-nobuy"></div>
+      <div class="callout">Legendary y Fabled estaban antes a la venta (25.000 y 40.000 EXP). Se retiraron para que las clases cumbre solo se ganen jugando; en el encantador aparecen como "Bloqueado".</div>
+    </section>
+  </div>
+
+  <div class="panel" id="p-kits" role="tabpanel" hidden>
+    <section>
+      <div class="sec-h"><span class="sec-n">God Kits</span><h2>Kits</h2></div>
+      <p class="fine">27 God Kits con cooldown, desbloqueados por permiso. Los cuatro que reparte /playtime están marcados.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Kit</th><th>Permiso</th><th>Nodo</th><th>En /playtime</th></tr></thead>
+          <tbody id="rows-kits"></tbody>
+        </table>
+      </div>
+      <div class="callout">Seis kits usan el nodo en <strong>plural</strong> (<code>gkits.</code>) en vez de <code>gkit.</code>: Arcane, Diablo, Gladiator, Guardian, Templar y Trickster. Si se regala uno de ellos hay que conceder el nodo exacto o el kit no se desbloquea. (Diablo, del nivel 100, ya está corregido.)</div>
+    </section>
+  </div>
+
+  <div class="panel" id="p-shops" role="tabpanel" hidden>
+    <section>
+      <div class="sec-h"><span class="sec-n">EconomyShopGUI</span><h2>Tienda de economía (dinero)</h2></div>
+      <p class="fine">Precios de <strong>venta</strong> por unidad. Las minas y granjas son solo venta; no se compran.</p>
+      <div class="shopgrid" id="econ-shop"></div>
+      <h3>Compra (sumideros de dinero)</h3>
+      <div class="shopcard" id="sinks-shop" style="max-width:420px"></div>
+    </section>
+    <section>
+      <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>Tienda de MobCoins</h2></div>
+      <p class="fine">Tienda rotativa. Precios en MobCoins (moneda premium), de menor a mayor.</p>
+      <div class="shopcard"><div class="mobcgrid" id="mobc-shop"></div></div>
+    </section>
+  </div>
+</div>
+<footer class="site"><div class="foot">
+  <span>© 2026 Ederus · mc.ederus.com</span>
+  <span><a href="index.html#catalogo">Tienda</a> · <a href="index.html#contacto">Soporte</a> · <a href="terminos.html">Términos</a> · <a href="guia.html">Guía</a></span>
+</div></footer>
+<script>
+
+const ENCH = {"SIMPLE":[["Relampago","Posibilidad de lanzarle rayos a tu oponente."],["Acuático","Te permite respirar bajo el agua."],["Fundición","Posibilidad de fundir bloques minados."],["Experiencia","Obtienes más experiencia de todos los minerales."],["Minero Veloz","Posibilidad de ganar Prisa después de romper bloques."],["Minero Acuático","Posible recuperación de aire al minar en agua."],["Murciélago","Proporciona visión nocturna permanente."],["Decapitación","Tus rivales pueden dejar caer su cabeza."],["Campo de Fuerza","Posibilidad de alejar a tu oponente."],["Efectos Especiales","Proporciona efectos de sonidos y partículas."],["Deterioro","Aumenta el daño infligido a los Zombis."],["Estropicio","Aumenta el daño infligido a los esqueletos."]],"UNIQUE":[["Replantador","Replanta semillas automáticamente."],["Hambreado","Una oportunidad de dar a tu oponente el efecto de hambre."],["Berserker","Probabilidad de Fuerza y Fatiga Minera."],["Reflejo","Absorbe el daño del enemigo y lo refleja."],["Ward","Posibilidad de absorber el daño del enemigo"],["Explosivo","Posibilidad de que las flechas exploten."],["Frenesí","Posibilidad de que las flechas exploten."],["Peso Pluma","Posibilidad de obtener una ráfaga de prisa."],["Carnífice","Posibilidad de incendiar a tu atacante."],["Gula","Recuperas el hambre mientras peleas."],["Telepatía","Coloca automáticamente los bloques rotos por las herramientas en tu inventario."],["Invocador Explosivo","Invoca creepers como tus guardianes."],["Depredador","Aumenta el daño infligido a los mobs pasivos."],["Depredador","Aumenta el daño infligido a los mobs pasivos."],["Sin Alma","Aumenta el daño infligido a los mobs hostiles."],["Virus","Una posibilidad de dar efecto de veneno."],["Perdida","Una oportunidad para dar el efecto de Whiter."],["Devorador de Almas","Posibilidad de restaurar la comida al matar a los mobs."]],"ELITE":[["Impacto","Probabilidad de duplicar el daño hecho."],["Tósigo","Posibilidad de causar envenenamiento con la Caña."],["Caña Volcánica","Posibilidad de causar quemadura al rival."],["Minero de Experimentado","Extrae toda una veta de minerales"],["Ender Slayer","Aumenta el daño infligido a Endermans y a los Dragones del END."],["Daño Arácnido","Aumenta el daño infligido a las arañas."],["Pescador","Obtienes más experiencia al pescar."],["Snap","Tira de la entidad golpeada hacia ti."],["Segador","Al causar daño puedes dar efectos como marchitez y ceguera"],["Cazador Demoníaco","Aumenta el daño infligido a las criaturas del Nether."],["Ceguera","Probabilidad de causar ceguera al atacar."],["Allure","Tu ataque atrae a los mobs hacia ti."],["Congelamiento","Puede causar lentitud al atacante cuando se defiende."],["Paralizador","Da un efecto de rayo y una posibilidad de lentitud y balanceo."],["Veneno","Una posibilidad de dar efecto de veneno."],["Envenenado","Posibilidad de darle veneno a tu atacante."],["Reforzado","Probabilidad de que los ítems duren más."],["Trampa","Posibilidad de fatigar y relentizar tus enemigos."],["Salto Aeróbico","Saltas mucho más alto."],["Nigromante","Al ser golpeado tienes una Probabilidad de invocar zombies."],["Voodoo","Da la oportunidad de tratar la debilidad."],["Wither","Una oportunidad para dar el efecto de Whiter."],["Bomba de Humo","Lanzarás una bomba de humo para distraer a tus enemigos."],["Infernal","Efecto de fuego explosivo."],["Extinción","Posibilidad de extinguir el fuego cuando está en llamas."],["Onda de choque","Posibilidad de alejar a tu rival cuando tu salud esté baja."],["Vampiro","Una posibilidad de curarte hasta 3hp unos segundos después de golpear."],["Espada de la grandeza","Multiplica el daño contra los ugadores que están usando Arcos."],["Bowmaster","Multiplica el daño contra los jugadores que usan espadas."],["Escape Explosivo","Sales disparado por los aires."],["Arlequín","Al ser golpeado puedes aparecer detrás de tu rival."],["Maldición","Posibilidad de dar fatiga minera."],["Impulso","Posibilidad de aumentar la velocidad con los fuegos artificiales."],["Ballestero","Aumenta el daño infligido con las ballestas."],["Poseidón","Aumenta el daño causado por los Tridentes."],["Reponer","Posibilidad de restaurar la comida mientras se mina."],["Misil","Las flechas se convierten en bolas de fuego."],["Crítico","Aumenta el daño hecho con el golpe crítico."],["Demonio","Prende fuego a los oponentes."],["Fuerza bruta","Posibilidad de golpear con gran fuerza."],["Suspender","Probabilidad de no causar ningún retroceso a las mobs."],["Caminante de la noche","Congela a los mobs por la noche."],["Imán","Tu ataque atrae a los jugadores hacia ti."]],"ULTIMATE":[["Granjero","Rompe cultivos en un área de 3x3."],["Pesca Automática","Automáticamente pesca por ti ti al atraer un pez."],["Cultivador","Planta semillas en un área de 3x3 haciendo shift + clic derecho."],["Papater","Planta papas en un área de 3x3 haciendo shift + clic derecho."],["Zanahoter","Planta zanahorias en un área de 3x3 haciendo shift + clic derecho."],["Piernas de gelatina","Posibilidad de anular el daño por caída."],["Espadaña","Pisibilidad de causar más daño con las Cañas."],["Suerte Del Pescador","Posibilidad de aumentar la suerte durante la pesca."],["Permafrost","La posibilidad de ralentizar y desangrar a los oponentes."],["Leñador","Posibilidad de romper un árbol de un solo golpe"],["Distancia","Posibilidad de distanciarse de los enemigos y ganar regeneración."],["Cleave","Daña a jugadores en un radio que aumenta con el nivel del encantamiento."],["Ambit","Daña a los mobs en un radio que aumenta con el nivel del encantamiento."],["Angélica","Cura la salud cuando es dañado."],["Flecha de Perdida","Chance to prevent enemy arrow from dealing damage."],["Rotura de flecha","Las flechas rebotan en ti mientras sostienes un objeto con este encantamiento."],["Disminuir","Posibilidad de dar a tu enemigo fatiga minera."],["Interrupción","Posibilidad de dar fatiga minera."],["Exalted","Posibilidad de eliminar efectos de pociones negativas."],["Ragdoll","Posibilidad de ser empujado hacia atrás al ser golpeado."],["Block","Posibilidad de anular un ataque y devolver hasta 4 de daño."],["Trench","Oportunidad de romper bloques en un área 3x3."],["Túnel","Posibilidad de cavar túneles y escaleras en la dirección que mires."],["Esquivar","Probabilidad de esquivar a tus enemigos."],["Guardianes","Posibilidad de engendrar gólems de hierro para que te ayuden y te vigilen."],["Aspecto del hielo","Probabilidad de causar el efecto de lentitud en tu enemigo."],["Reforzado","Reduce el daño que te infligen."],["Implantes","Posibilidad de restaurar la comida cada pocos segundos."],["Protección Obsidianica","Obtienes resistencia permanente al fuego."],["Perforación","Tus flechas infligen más daño."],["Arquero","Aumenta el daño infligido con los arcos."],["Salvaguardia","Probabilidad de obtener Resistencia al daño al defender."],["Desaparecer","Posibilidad de volverse invisible cuando tienes poca salud."],["Confundir","Posibilidad de dar efecto de náuseas."],["Desintegrar","Probabilidad de infligir daño de rotura a las armaduras enemigas."],["Destrozar","Probabilidad de infligir daño de rotura a las armaduras enemigas."],["Pesado","Reduce el daño de los arcos enemigos un 2% por nivel."],["Hellfire","Las flechas se convierten en bolas de fuego."],["Arco largo","Aumenta enormemente el daño infligido a jugadores enemigos que posean arcos."],["Tanque","Probabilidad de disminuir el daño de las hachas enemigas en un 2% por nivel."],["Espadachín","Reducción al daño recibido mientras se blande una espada hasta un 22% al nivel máximo."],["Netherling","Dobla el daño a los mobs en el Nether."],["Endmaster","Dobla el daño a las mobs en el final."],["Armadura Creeper","Probabilidad de ser inmune al daño explosivo y a niveles superiores puedes curarte."],["Invocador Demoníaco","Posibilidad de invocar Blazes."],["Sangrado","Haz sangrar a tu oponente."],["Inmolación","Prende fuego a todas las mobs en su radio."],["Golpeador","Lanza flechas sobre el oponente."],["Francotirador","Los disparos a la cabeza con arcos infligen el doble de daño."],["Aegis","Posibilidad de ganar velocidad al recibir daño por caída."],["Caída en picado","Inflige daño a los enemigos cercanos cuando recibe daño por caída."],["Búho nocturno","Inflige más daño a las mobs por la noche."],["Fuddle","Desorganizar la barra caliente del oponente."],["Llamado a los aliados","Llama a tus aliados en tu ayuda si estás en peligro."]],"LEGENDARY":[["Pellizco","Posibilidad de causarle sangrado a tu oponente."],["Alas","Permite el vuelo cuando lo equipas."],["Cazador","Aumenta el daño infligido a los mobs hostiles."],["Cebo","Posibilidad de recibir drops de pesca dobles"],["Endurecido","Posibilidad de recuperar durabilidad cuando es dañado por jugadores."],["Parche","Posibilidad de recuperar durabilidad cuando es dañado por mobs"],["Flecha Explosiva","Posibilidad de hacer explotar a los enemigos cuando son alcanzados por sus flechas."],["Turbulencia","Posibilidad de evitar la aparición de guardias de los oponentes."],["Rebote","Recupera algo de salud después de las muertes."],["Thunderlord","Golpea a los monstruos con un rayo cada 3 golpes consecutivos."],["Caminante de lava","Caminar sobre la lava."],["Caminante del agua","Caminar sobre el agua."],["Aqua","Infliges el doble de daño mientras estás en el agua."],["Juicio","Probabilidad de envenenar al oponente y ganar regeneración."],["Desviar","Probabilidad de envenenar al oponente y ganar regeneración."],["Unholy","Defiende con efectos de debilidad y marchitamiento."],["Caos","Reparte los efectos de debilidad y marchitez."],["Convulsión","Posibilidad de lanzar al aire a tus atacantes."],["Piel de Hierro","Posibilidad de recibir menos daño."],["Bárbaro","Probabilidad de infligir más daño de hacha."],["Lúcido","Probabilidad de curar la ceguera y ganar visión nocturna al ser golpeado."],["Golpe doble","Una oportunidad para golpear dos veces."],["Flash","Ganas velocidad al ser equipado."],["Inflamar","Prende fuego a todos los jugadores del radio."],["Asesinatos","Posibilidad de matar a varios monstruos en un radio."],["Inquisitivo","Aumenta los drops de EXP de los mobs."],["Vida útil","Posibilidad de robar salud al atacar."],["Sobrecarga","Desbloquea corazones adicionales."],["Blindado","Reduce el daño de las espadas enemigas un 2% por nivel."],["Herrero","Repara tu arma a cambio de causar menos daño"],["Irrompibles","Las armas con este encantamiento son irrompibles"],["Desarme","Probabilidad de desequipar una pieza de armadura aleatoria de tu oponente."],["Deadshot","Los disparos a la cabeza con tridentes infligen el doble de daño."],["Lucha","Aumenta el daño cuerpo a cuerpo del Tridente."],["Lanzamiento","Lánzate haciendo clic con el botón derecho del ratón."],["Tirachinas","Impúlsate a volar haciendo clic con el botón derecho."],["Desordenado","Lanza un rayo a los jugadores cercanos."]],"FABLED":[["Gemalogo","Posibilidad de que un mineral se convierta en su bloque."],["Herramienta Veloz","Posibilidad de ganar Prisa después de romper bloques."],["Restaurar","Al romperse, pierdes el encatamiento pero recuperas la durabilidad."],["Inmortal","Probabilidad de evitar que tu armadura reciba daño."],["Irrompible","Las herramientas con este encantamiento se vuelven irrompibles."],["Soulbound","Una oportunidad para mantener ítems al morir."],["Neutralizar","Posibilidad de desarmar al oponente."],["Desarmar","Posibilidad de desarmar al oponente."],["Félix","Posibilidad de revivir al morir."],["Susto","Puedes reemplazar el casco de tu oponente por una calabaza durante un tiempo."],["Nulificar","Puedes infligir el doble de daño mientras se deja al enemigo ciego. Cuesta 40 almas."],["Rush","Posibilidad de aumentar la velocidad al despegar con elytra. Cuesta 10 almas."],["Diploid","Posibilidad de multiplicar los drops de los mobs. Cuesta 5 almas."],["Multiplicación","Posibilidad de multiplicar los drops de los minerales. Cuesta 5 almas."],["Spiritmaster","Posibilidad de obtener más almas al matar jugadores"],["Hacha de los Espíritus","Posibilidad de obtener más almas al matar jugadores."],["Soulminer","Posibilidad de conseguir almas mediante la minería."],["Soulgrind","Posibilidad de conseguir almas matando mobs."]]};
+
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.setAttribute('aria-selected', x===t?'true':'false'));
+  document.querySelectorAll('.panel').forEach(p=>p.hidden = p.id!==t.dataset.panel);
+}));
+
+/* PLAYTIME */
+const HOURS={1:2,2:4,3:6,4:8,5:10,6:12,7:14,8:16,9:18,10:20,11:22,12:24,13:26,14:28,15:30,16:32,17:34,18:36,19:38,20:40,21:44,22:48,23:52,24:56,25:60,26:64,27:68,29:76,30:80,31:84,32:88,33:92,34:96,35:100,36:104,37:108,38:112,39:116,40:120,41:126,42:132,43:138,44:144,45:150,46:156,47:162,48:168,49:174,50:180,51:186,52:192,53:198,54:204,55:210,56:216,57:222,58:228,59:234,60:240,61:246,62:258,63:270,64:282,65:294,66:306,67:318,68:330,69:342,70:354,71:366,72:378,73:390,74:402,75:414,76:426,77:438,78:450,79:462,80:486,81:498,82:510,83:522,84:534,85:546,86:558,87:570,88:582,89:594,90:606,91:618,92:630,93:642,94:654,95:666,96:678,97:690,98:702,99:714,100:738};
+const Q={comun:'q-comun',poco:'q-poco',raro:'q-raro',legend:'q-legend',inmortal:'q-inmortal'};
+const rip=(name,q,kind)=>({t:'rip',name,q,kind});
+const EX={
+  5:{mc:80,keys:[['Vote',1]],x:[rip('Hearts','comun','kill')]},
+  10:{mc:35,keys:[['Vote',1],['Mascotas',1]],x:[rip('Blood','comun','kill'),rip('Smoke','comun','death')]},
+  15:{mc:115,keys:[['Vote',1],['Mascotas',1]],x:[rip('Firework','poco','kill')]},
+  20:{mc:45,keys:[['Vote',1]],x:[rip('Slash','poco','kill'),rip('Rain','poco','death')]},
+  25:{mc:50,keys:[['Spawner',1],['Koth',1]],x:[{t:'tag',name:'Star'}]},
+  30:{mc:55,keys:[['Spawner',1],['Mascotas',1]],x:[rip('Explosion','raro','kill')]},
+  35:{mc:210,keys:[['Spawner',1]],x:[rip('Frost','raro','kill')]},
+  40:{mc:65,keys:[['Spawner',1]],x:[rip('Shatter','raro','death')]},
+  45:{mc:270,keys:[['Koth',1],['Mascotas',1]],x:[rip('Void','raro','death')]},
+  50:{mc:75,keys:[['Koth',1],['Legendaria',1]],x:[{t:'gkit',name:'Butcher'},rip('Meteor','raro','kill'),rip('Grave','raro','death')]},
+  55:{mc:330,keys:[['Koth',1]],x:[rip('Geyser','raro','kill')]},
+  60:{mc:85,keys:[['Koth',1],['Mascotas',1]],x:[rip('Shockwave','raro','kill'),{t:'tag',name:'Dios Dragón'}]},
+  65:{mc:390,keys:[['Legendaria',1]],x:[rip('Inferno','raro','kill')]},
+  67:{x:[rip('Six Seven','inmortal','death')]},
+  70:{mc:595,keys:[['Legendaria',1]],x:[{t:'book',name:'Libro LEGENDARY'}]},
+  75:{mc:100,keys:[['Legendaria',2],['Mascotas',1]],x:[{t:'gkit',name:'Destroyer'},rip('Swordfall','legend','kill')]},
+  80:{mc:105,keys:[['Legendaria',1],['Épica',1]],x:[{t:'book',name:'Libro LEGENDARY'}]},
+  85:{mc:110,keys:[['Legendaria',1]],x:[rip('Statue','raro','death')]},
+  90:{mc:115,keys:[['Legendaria',1],['Mascotas',1],['Épica',1]],x:[{t:'gkit',name:'Cosmonaut'},{t:'book',name:'Libro LEGENDARY'}]},
+  95:{mc:620,keys:[['Legendaria',1]],x:[rip('Requiem','legend','death')]},
+  100:{mc:2625,money:225000,keys:[['Legendaria',2],['Épica',1]],x:[{t:'gkit',name:'Diablo'},{t:'book',name:'Libro FABLED'},{t:'tag',name:'Legend'}]},
+};
+const MAJOR=new Set([50,75,90,100]);
+const money=l=>(EX[l]&&EX[l].money)?EX[l].money:l*750;
+const exp=l=>5+Math.floor(l/2);
+const fmt=n=>n.toLocaleString('es-ES');
+(function(){
+  const rows=document.getElementById('rows-play');
+  const levels=Object.keys(HOURS).map(Number).sort((a,b)=>a-b);
+  let tM=0,tC=0,kc=0;
+  for(const l of levels){
+    const e=EX[l],mile=!!e;
+    const cls=l===67?'s67':(mile?(MAJOR.has(l)?'mile-major':'mile'):'');
+    const tr=document.createElement('tr'); if(cls)tr.className=cls;
+    tM+=money(l);
+    let mc='<span class="dash">—</span>'; if(e&&e.mc){tC+=e.mc;mc='<span class="num">'+fmt(e.mc)+'</span>';}
+    let keys='<span class="dash">—</span>';
+    if(e&&e.keys)keys='<div class="items">'+e.keys.map(([n,q])=>{kc+=q;return '<span class="it key">'+(q>1?q+'x ':'')+'Llave '+n+'</span>';}).join('')+'</div>';
+    let xc='<span class="dash">—</span>';
+    if(e&&e.x)xc='<div class="items">'+e.x.map(it=>{
+      if(it.t==='rip')return '<span class="it"><span class="qd" style="background:var(--'+Q[it.q]+')"></span>RIP '+it.name+' ('+(it.kind==='kill'?'kill':'muerte')+')</span>';
+      if(it.t==='gkit')return '<span class="it gkit">God Kit '+it.name+'</span>';
+      if(it.t==='book')return '<span class="it book">'+it.name+'</span>';
+      if(it.t==='tag')return '<span class="it tag">Tag '+it.name+'</span>';
+      return '';
+    }).join('')+'</div>';
+    tr.innerHTML='<td class="lvl">'+l+'</td><td class="hrs">'+HOURS[l]+'</td><td class="num">'+fmt(money(l))+'</td><td class="num">'+exp(l)+'</td><td>'+mc+'</td><td>'+keys+'</td><td>'+xc+'</td>';
+    rows.appendChild(tr);
+  }
+  const tiles=[['Niveles','99',' (sin 28)'],['Tope','738',' horas'],['Dinero total','~'+fmt(tM),' monedas'],['MobCoins total',fmt(tC),''],['Llaves',String(kc),''],['God Kits','4','']];
+  document.getElementById('tiles').innerHTML=tiles.map(([k,v,s])=>'<div class="tile"><span class="k">'+k+'</span><span class="v">'+v+'<small>'+s+'</small></span></div>').join('');
+})();
+
+/* CRATES */
+const CRATES=[
+  {nm:'Vote',key:'vote',n:12,tier:'--accent',badge:'Entrada',sub:'6 comunes · 6 míticos',items:['Manzana dorada','*Azada del Votante','*Pala del Votante','*Pico del Votante','*Arco del Votante','Lingote de hierro','Lingote de netherita','Diamante','Casco del Custodio','*Coraza del Custodio','*Grebas del Custodio','Botas del Custodio']},
+  {nm:'Mascotas',key:'pets',n:79,tier:'--q-poco',badge:'Cosmético',inline:true,items:['Allay','Armadillo','Axolotl','Murciélago','Abeja','Blaze','Bogged','Breeze','Camello','Gato','Araña de cueva','Gallina','Bacalao','Vaca','Creaking','Creeper','Delfín','Burro','Ahogado','Guardián anciano','Enderman','Endermite','Evocador','Zorro','Rana','Ghast','Calamar luminoso','Cabra','Guardián','Happy ghast','Hoglin','Caballo','Husk','Gólem de hierro','Llama','Cubo de magma','Mooshroom','Mula','Ocelote','Panda','Loro','Fantasma','Cerdo','Piglin','Piglin bruto','Saqueador','Oso polar','Pez globo','Conejo','Ravager','Salmón','Oveja','Lepisma','Esqueleto','Caballo esqueleto','Slime','Sniffer','Gólem de nieve','Araña','Calamar','Stray','Strider','Renacuajo','Llama comerciante','Pez tropical','Tortuga','Vex','Aldeano','Vindicador','Comerciante errante','Warden','Bruja','Wither esqueleto','Lobo','Zoglin','Zombi','Caballo zombi','Aldeano zombi','Piglin zombificado']},
+  {nm:'Spawners',key:'spawner',n:16,tier:'--q-poco',badge:'Utilidad',inline:true,items:['Blaze','Araña de cueva','Gallina','Vaca','Creeper','Enderman','Cubo de magma','Cerdo','Oveja','Esqueleto','Slime','Araña','Bruja','Wither esqueleto','Zombi','Piglin zombificado']},
+  {nm:'Dungeon',key:null,n:6,tier:'--q-raro',badge:'Gear',items:['Yelmo del Explorador','Coraza del Explorador','Grebas del Explorador','Botas del Explorador','Katana Sangre Viva','Pico Astral'],flag:'Sin llave asignada: el cofre no se puede abrir tal cual.'},
+  {nm:'KOTH',key:'koth',n:20,tier:'--bronze',badge:'PvP / Evento',items:['Elytra','Manzana dorada','Tótem de la inmortalidad','10.000 monedas','Ballesta del Dominio','Llave Legendaria','Poción de Dominio','Tag KOTH King','Vara Veloz','Vara Veloz II','Vara de la Suerte','Vara Corazón','Vara Corazón II','Comando /back','Yelmo del Conquistador','Pechera del Conquistador','Grebas del Conquistador','Botas del Conquistador','Devoradora de Soles','Pico de Geoda Profunda']},
+  {nm:'Legendaria',key:'legendary',n:20,tier:'--q-legend',badge:'Endgame',items:['Tótem de la inmortalidad','Arco','Elytra','Tag Legend','20.000 monedas','5.000 MobCoins','60 niveles de EXP','Manzana dorada encantada','Manzana dorada','Llave Legendaria','Llave Spawner','Llave Mascotas','Núcleo pesado','Espada Eterna','Yelmo Eterno','Pechera Eterna','Grebas Eterna','Botas Eterna','Pico de Aurora','Elixir del Titán']},
+  {nm:'Épica',key:'llave_epica',n:1,tier:'--q-inmortal',badge:'Top',items:['Excalibur Mística']},
+  {nm:'Rankup',key:null,n:0,tier:'--muted',badge:'Inactivo',items:['Sin configurar: no reparte nada'],flag:'Cofre vacío / sin usar.',dead:true},
+];
+(function(){
+  document.getElementById('cards-crates').innerHTML=CRATES.map(c=>{
+    const keyChip=c.key?'<span class="keychip has">Llave: '+c.key+'</span>':'<span class="keychip">sin llave</span>';
+    const sub=c.sub?'<span class="fine">'+c.sub+'</span>':'';
+    let body;
+    if(c.inline){body='<p class="inline">'+c.items.join(' · ')+'</p>';}
+    else{body='<ul>'+c.items.map(i=>{const m=i.charAt(0)==='*';return '<li>'+(m?i.slice(1)+'<span class="myth">mítico</span>':i)+'</li>';}).join('')+'</ul>';}
+    const flag=c.flag?'<div class="flag">'+c.flag+'</div>':'';
+    return '<details class="ccard'+(c.dead?' dead':'')+'" style="--tier:var('+c.tier+')">'+
+      '<summary><div class="ccard-top">'+
+        '<div class="ccard-title"><span class="nm">'+c.nm+'</span>'+
+          '<span class="rcount"><b>'+c.n+'</b><span>premios</span></span></div>'+
+        '<div class="ccard-meta"><span class="badge">'+c.badge+'</span>'+keyChip+sub+'<span class="expand"></span></div>'+
+      '</div></summary>'+
+      '<div class="ccard-body">'+body+flag+'</div></details>';
+  }).join('');
+})();
+
+/* LIBROS */
+const CLASSES_BUY=[['SIMPLE','400 EXP'],['UNIQUE','800 EXP'],['ELITE','2.500 EXP'],['ULTIMATE','5.000 EXP']];
+const CLASSES_NOBUY=[['LEGENDARY','Bloqueado'],['FABLED','Bloqueado']];
+function classBlock(key,price,locked){
+  const items=ENCH[key]||[];
+  const cards=items.map(e=>'<div class="ench"><div class="en">'+e[0]+'</div><div class="ed">'+e[1]+'</div></div>').join('');
+  return '<details><summary><span class="cl">'+key+'</span><span class="clc">'+items.length+' encantamientos</span>'+
+    '<span class="price'+(locked?' locked':'')+'">'+price+'</span></summary>'+
+    '<div class="enchgrid">'+cards+'</div></details>';
+}
+document.getElementById('books-buy').innerHTML=CLASSES_BUY.map(([k,p])=>classBlock(k,p,false)).join('');
+document.getElementById('books-nobuy').innerHTML=CLASSES_NOBUY.map(([k,p])=>classBlock(k,p,true)).join('');
+
+/* KITS */
+const KITS=[['Admiral','gkit.admiral'],['Arcane','gkits.arcane'],['ArenaChampion','gkit.arenachampion'],['Butcher','gkit.butcher'],['Cannoner','gkit.cannoner'],['Cosmonaut','gkit.cosmonaut'],['Destroyer','gkit.destroyer'],['Diablo','gkits.diablo'],['Enchantment','gkit.enchantment'],['Gladiator','gkits.gladiator'],['Grandmaster','gkit.grandmaster'],['GrimReaper','gkit.grimreaper'],['Guardian','gkits.guardian'],['Hyperdrive','gkit.hyperdrive'],['Independence','gkit.independence'],['Loki','gkit.loki'],['MasterBuilder','gkit.masterbuilder'],['Paladin','gkit.paladin'],['PartyAnimal','gkit.partyanimal'],['Spooky','gkit.spooky'],['Templar','gkits.templar'],['Tinkermaster','gkit.tinkermaster'],['Trickster','gkits.trickster'],['Valentines','gkit.valentines'],['Viking','gkit.viking'],['Voidwalker','gkit.voidwalker'],['Warlock','gkit.warlock']];
+const PLAY_KITS={butcher:50,destroyer:75,cosmonaut:90,diablo:100};
+(function(){
+  document.getElementById('rows-kits').innerHTML=KITS.map(([nm,perm])=>{
+    const plural=perm.startsWith('gkits.');
+    const short=perm.split('.')[1];
+    const inPlay=PLAY_KITS[short];
+    const nodeCell=plural?'<span class="it book">plural</span>':'<span class="dash">singular</span>';
+    const playCell=inPlay?'<span class="it gkit">Nivel '+inPlay+'</span>':'<span class="dash">—</span>';
+    return '<tr><td style="font-weight:600">'+nm+'</td><td><code>'+perm+'</code></td><td>'+nodeCell+'</td><td>'+playCell+'</td></tr>';
+  }).join('');
+})();
+
+/* TIENDAS */
+const ECON={
+  'Minerales':[['Carbón',100],['Cuarzo',120],['Lapislázuli',150],['Hierro',200],['Oro',350],['Esmeralda',500],['Diamante',700],['Netherita',1000]],
+  'Mobs':[['Cráneo de wither skeleton',1000],['Lágrima de ghast',900],['Crema de magma',600],['Membrana de fantasma',550],['Bola de slime',500],['Vara de blaze',450],['Perla de ender',250],['Pólvora',200],['Azúcar',100],['Ojo de araña',100],['Cuerda',100],['Huevo',80],['Hueso',70],['Carne podrida',70],['Cuero',60],['Pluma',50]],
+  'Granja':[['Chorus',300],['Verruga del Nether',100],['Cactus',60],['Bambú',50],['Caña de azúcar',40],['Melón',40],['Cacao',30],['Calabaza',20],['Trigo',15],['Zanahoria',13],['Patata',12],['Remolacha',10]],
+  'Pesca':[['Salmón cocinado',260],['Bacalao cocinado',250],['Pez tropical',200],['Pez globo',180],['Salmón',160],['Bacalao',150],['Zanahoria dorada',60],['Manzana',50]],
+  'Madera':[['Retoños','20–120'],['Troncos','15–25']],
+};
+const SINKS=[['Plantilla de mejora a netherita',6000],['Adornos de armadura (trims)','6.000–30.000']];
+const MOBC=[['Cubeta de leche',30],['Redstone x16',50],['Linterna marina x3',100],['Campana',150],['Cohete x64',250],['Micelio x3',300],['Marco luminoso x5',400],['Libros x6',450],['Cristal del End',550],['Mesa de encantamientos',600],['Manzana dorada',650],['Fragmento de prismarina',700],['Ojo de ender x8',720],['Estrella del Nether',750],['Libro de reparación x6',900],['Tolva x6',900],['Tridente',950],['Tótem',1000],['Yunque x6',1080],['Elytra',1100],['Manzana dorada encantada',1400],['Bloque de césped x16',1440],['Faro',5000],['Núcleo pesado',5000]];
+(function(){
+  const numFmt=v=>typeof v==='number'?fmt(v):v;
+  const prow=(n,p,cls)=>'<div class="prow'+(cls||'')+'"><span class="pn">'+n+'</span><span class="pp">'+numFmt(p)+'</span></div>';
+  document.getElementById('econ-shop').innerHTML=Object.entries(ECON).map(([cat,rows])=>
+    '<div class="shopcard"><h4>'+cat+'<span>venta</span></h4>'+rows.map(([n,p])=>prow(n,p)).join('')+'</div>').join('');
+  document.getElementById('sinks-shop').innerHTML='<h4>Compra<span>coste</span></h4>'+SINKS.map(([n,p])=>prow(n,p,' sink')).join('');
+  const mobc=MOBC.slice().sort((a,b)=>a[1]-b[1]);
+  document.getElementById('mobc-shop').innerHTML=mobc.map(([n,p])=>prow(n,p)).join('');
+})();
+
+</script>
+</body>
+</html>
