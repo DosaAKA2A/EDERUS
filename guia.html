@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="Guía de Ederus: recompensas de /playtime, cofres y su contenido, libros de encantamientos, God Kits y tiendas del servidor.">
+<meta name="description" content="Guía de Ederus: recompensas de /playtime, cofres y su contenido, mazmorras, jefes y llaves, libros de encantamientos, God Kits y tiendas del servidor.">
 <meta name="robots" content="index,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -145,6 +145,21 @@
   .mobcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 18px}
   .mobcgrid .prow .pp{color:var(--mc,var(--bronze))}
 
+  /* Mazmorras */
+  .dgsplit{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;align-items:start}
+  .prow .rq{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:7px;vertical-align:-1px;flex:none}
+  ol.flow{margin:0;padding:0;list-style:none;counter-reset:st;display:flex;flex-direction:column;gap:0}
+  ol.flow li{counter-increment:st;position:relative;padding:0 0 14px 34px;font-size:13px}
+  ol.flow li::before{content:counter(st);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent);font:700 11px/20px var(--font);text-align:center}
+  ol.flow li::after{content:"";position:absolute;left:11px;top:23px;bottom:0;width:1px;background:var(--rule)}
+  ol.flow li:last-child{padding-bottom:0}
+  ol.flow li:last-child::after{display:none}
+  ol.flow b{color:var(--ink);font-weight:600}
+  .dgstat{display:flex;flex-wrap:wrap;gap:5px 6px;margin-top:2px}
+  .dgstat span{font-size:11px;padding:1px 7px;border-radius:4px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--muted);white-space:nowrap}
+  .dgstat span b{color:var(--ink);font-weight:600}
+  @media print{ol.flow li::after{display:none}}
+
   @media print{
     @page{size:A4;margin:14mm}
     body{padding:0;font-size:10.5pt}
@@ -205,11 +220,12 @@
 <div class="doc">
   <span class="doc__eyebrow">Guía del servidor</span>
   <h1 class="title">Cómo funciona Ederus</h1>
-  <div class="doc__intro"><strong>Todo lo que hay dentro del servidor</strong>, leído de la configuración real: recompensas por horas jugadas, cofres y su contenido completo, libros de encantamientos, God Kits y las dos tiendas. Sirve para saber qué consigues jugando y qué aportan las compras.</div>
+  <div class="doc__intro"><strong>Todo lo que hay dentro del servidor</strong>, leído de la configuración real: recompensas por horas jugadas, cofres y su contenido completo, las mazmorras con sus jefes y llaves, libros de encantamientos, God Kits y las dos tiendas. Sirve para saber qué consigues jugando y qué aportan las compras.</div>
 
   <div class="tabs" role="tablist" aria-label="Secciones">
     <button class="tab" role="tab" aria-selected="true" data-panel="p-play">Recompensas Playtime</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-crates">Crates</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-dungeons">Mazmorras</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-books">Libros</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-kits">Kits</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-shops">Tiendas</button>
@@ -241,6 +257,103 @@
       <div class="sec-h"><span class="sec-n">ExcellentCrates</span><h2>Crates actuales</h2></div>
       <p class="fine">Ocho cofres, ordenados de entrada a endgame. El número es cuántas recompensas contiene. Haz clic en un cofre para ver todo su contenido.</p>
       <div class="cards" id="cards-crates"></div>
+    </section>
+  </div>
+
+  <div class="panel" id="p-dungeons" role="tabpanel" hidden>
+    <section>
+      <div class="sec-h"><span class="sec-n">/dungeons</span><h2>Las zonas de mazmorra</h2></div>
+      <div id="dg-tiles" class="tiles"></div>
+      <p class="fine">Escribe <code>/dungeons</code> (también <code>/mazmorras</code>) para abrir el menú. Cada zona pide un rango de medallón; si no lo tienes, el menú te manda a <code>/rankups</code>.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Zona</th><th>Requisito</th><th>Entrada</th><th>Estado</th></tr></thead>
+          <tbody id="dg-zones"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">LootChest</span><h2>Cofres y llaves</h2></div>
+      <p class="fine">Diez cofres repartidos por el mundo de mazmorras. Reaparecen cada <strong>10 minutos</strong> y el primero que abre uno se lleva todo el contenido. La rareza <strong>se vuelve a sortear en cada reaparición</strong>: ningún cofre es siempre bueno ni siempre malo.</p>
+      <div class="dgsplit">
+        <div class="shopcard">
+          <h4>Probabilidad de rareza<span>por reaparición</span></h4>
+          <div id="dg-rar"></div>
+        </div>
+        <div class="shopcard">
+          <h4>Llave que exige cada cofre<span>virtual</span></h4>
+          <div id="dg-keyreq"></div>
+        </div>
+      </div>
+      <h3>De dónde salen las llaves</h3>
+      <p class="fine">Las llaves no son un objeto: son un contador tuyo. Míralas con <code>/lc keys</code> y se gastan solas al abrir el cofre. Caen al matar a los jefes de la mazmorra.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Jefe</th><th class="num">Llave Rara</th><th class="num">Llave Épica</th><th class="num">Llave Dracónica</th></tr></thead>
+          <tbody id="dg-keys"></tbody>
+        </table>
+      </div>
+      <p class="fine">La Llave Dracónica se anuncia a todo el servidor cuando cae. La otra forma de conseguirla es el evento Fiebre Dracónica.</p>
+      <h3>Qué hay dentro de cada cofre</h3>
+      <p class="fine">Contenido completo por rareza. Haz clic para desplegarlo.</p>
+      <div class="cards" id="dg-loot"></div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">MythicMobs</span><h2>Los jefes</h2></div>
+      <div class="cards" id="dg-bosses"></div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">EDungeons</span><h2>La raid del Dios Dragón</h2></div>
+      <p class="fine">El contenido cumbre. Se abre usando el <strong>Invocador del Dios Dragón</strong> dentro del altar; el resto del servidor recibe un aviso con un botón para unirse.</p>
+      <ol class="flow" id="dg-flow"></ol>
+      <div class="dgsplit">
+        <div class="shopcard">
+          <h4>Objetivos<span>suman probabilidad</span></h4>
+          <div id="dg-obj"></div>
+        </div>
+        <div class="shopcard">
+          <h4>Recompensas<span>probabilidad base</span></h4>
+          <div id="dg-rew"></div>
+        </div>
+      </div>
+      <p class="fine">Tienes <strong>120 segundos</strong> para reclamar el botín. Quien invocó recibe <strong>1,5×</strong> de cantidad, y el daño que aportas suma hasta <strong>+25</strong> de probabilidad en cada premio.</p>
+      <h3>Clasificaciones</h3>
+      <p class="fine">La mazmorra guarda tres tablas: Top 10 de tiempos, Top 5 de victorias y Top 5 de daño aportado. <strong>El primero en tiempo se lleva un título exclusivo</strong>.</p>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Eventos</span><h2>Furia y Fiebre</h2></div>
+      <div class="cards" id="dg-events"></div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">/warp trade</span><h2>Materiales y refinado</h2></div>
+      <p class="fine">Todo el botín de mazmorra converge en tres ingredientes. Se refinan con los NPCs del spawn hasta llegar al Invocador y al equipo draconiano.</p>
+      <div class="cards" id="dg-mats"></div>
+      <h3>Intercambios</h3>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>NPC</th><th>Entregas</th><th>Recibes</th></tr></thead>
+          <tbody id="dg-trades"></tbody>
+        </table>
+      </div>
+      <div class="callout">Llegar a un solo <strong>Invocador del Dios Dragón</strong> cuesta 160 Núcleos del Dragón y 160 Colmillos Congelados. Es el objetivo más caro del servidor: el equivalente a decenas de cofres y jefes.</div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Mobs</span><h2>Hordas de la mazmorra</h2></div>
+      <p class="fine">Los mobs no salen de spawners normales: la mazmorra tiene puntos de aparición propios que se rearman cuando el grupo acumula un número de bajas.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Zona</th><th class="num">Bajas para rearmar</th><th class="num">Mobs por oleada</th><th class="num">Espera</th><th class="num">Máx. a la vez</th></tr></thead>
+          <tbody id="dg-hordes"></tbody>
+        </table>
+      </div>
+      <p class="fine">En la Mazmorra del Dragón hay 25 puntos de aparición (zombis, esqueletos, arañas, brutos piglin, aldeanos zombis, embarrados, esqueleto wither y vindicador) y en la mina inicial otros 9.</p>
+      <div class="callout">La <strong>Mazmorra de las Fantasías</strong> se puede visitar, pero todavía se está poblando: aún no tiene puntos de aparición propios ni su propia tabla de botín, y los eventos de Furia y Fiebre solo ocurren en la Mazmorra del Dragón.</div>
     </section>
   </div>
 
@@ -397,6 +510,130 @@ const CRATES=[
       '</div></summary>'+
       '<div class="ccard-body">'+body+flag+'</div></details>';
   }).join('');
+})();
+
+/* MAZMORRAS */
+const DG_ZONES=[
+  {nm:'Mazmorra del Dragón',req:'Medallón 1',ent:'/warp dragon',st:'ok',note:'La primera mazmorra. Combate, mina de rankup y el Dios Dragón.'},
+  {nm:'Mazmorra de las Fantasías',req:'Vanguardia (medallón 6)',ent:'/warp fantasia',st:'ok',note:'Zona avanzada. Mobs más fuertes y recursos de rankup superiores.'},
+  {nm:'Santuario de Cristal',req:'—',ent:'—',st:'soon',note:'Un santuario con energía antigua y minerales raros.'},
+  {nm:'Abismo Profundo',req:'—',ent:'—',st:'soon',note:'Una zona oscura bajo tierra, para desafíos mayores.'},
+];
+const DG_RAR=[['COMMON','Común','--q-comun',52],['RARE','Raro','--q-raro',26],['EPIC','Épico','--q-inmortal',17],['LEGENDARY','Legendario','--q-legend',4]];
+const DG_KEYREQ=[['Común','--q-comun','Ninguna'],['Raro','--q-raro','Llave Rara'],['Épico','--q-inmortal','Llave Épica'],['Legendario','--q-legend','Llave Dracónica']];
+const DG_KEYDROPS=[
+  ['Dragón de Hielo','20 % · 1','15 % · 1','—'],
+  ['Dragón de Fuego','30 % · 1','20 % · 1','5 % · 1'],
+  ['Dios Dragón','50 % · 2','40 % · 2','10 % · 1'],
+];
+const DG_LOOT=[
+  {nm:'Cofre Común',tier:'--q-comun',n:11,badge:'Sin llave',trap:'Sin trampa',
+   items:['3x manzana dorada encantada','Libro: Filo III','8x diamante','8x fragmento de netherita','64x botella de experiencia','10x manzana dorada','5x obsidiana','32x chuleta asada','32x filete','*3x Núcleo del Dragón','*3x Colmillo Congelado']},
+  {nm:'Cofre Raro',tier:'--q-raro',n:12,badge:'Llave Rara',trap:'10 % de invocar un Dragón de Hielo',
+   items:['15x manzana dorada','5x manzana dorada encantada','Libro: Reparación','8x bloque de esmeralda','10x fragmento de netherita','28x zanahoria dorada','33x pollo asado','33x filete','6x diamante','Escudo Dracónico Primate','*11x Núcleo del Dragón','*8x Colmillo Congelado']},
+  {nm:'Cofre Épico',tier:'--q-inmortal',n:16,badge:'Llave Épica',trap:'15 % de invocar un Dragón de Hielo',
+   items:['25x manzana dorada','8x manzana dorada encantada','Libro: Filo III','Libro: Protección III','12x bloque de esmeralda','32x bloque de carbón','8x bloque de diamante','2x lingote de netherita','Escudo Dragón del Olvido — Irrompibilidad III','Hacha Cazadragones — Aspecto Ígneo II, Botín III, Filo IV','48x zanahoria dorada','64x chuleta asada','64x filete','4x Bloque Congelado','*20x Núcleo del Dragón','*16x Colmillo Congelado']},
+  {nm:'Cofre Legendario',tier:'--q-legend',n:18,badge:'Llave Dracónica',trap:'2 % de invocar un Dragón de Fuego',
+   items:['20x manzana dorada encantada','48x manzana dorada','64x zanahoria dorada','Coraza Ígnea — escudo con Reparación e Irrompibilidad III','Coraza Glacial — escudo con Reparación e Irrompibilidad III','Filo Eterno — espada de netherita: Filo V, Aspecto Ígneo II, Botín III + Devorador de Almas III','Ejecutor — hacha de netherita: Filo V, Eficiencia V, Fortuna III + Decapitación III','Cortaviento — maza: Castigo V, Ráfaga de Viento III, Irrompibilidad V','32x bloque de diamante','64x bloque de esmeralda','Bloque de netherita','Plantilla de mejora de netherita','16x cristal del End','32x escombros antiguos','Minion Leñador','64x carga de viento','*17x Núcleo del Dragón','*2x Sello del Guardián']},
+];
+const DG_BOSSES=[
+  {nm:'Dragón de Hielo',tier:'--q-raro',hp:150,dmg:10,badge:'Guardián',
+   stats:[['Vida','150'],['Daño','10'],['Aparece en','Trampas y oleadas']],
+   items:['Colmillo Congelado x2-5 (50 %)','Llave Rara (20 %)','Llave Épica (15 %)'],
+   flag:'Se limpia el fuego, la lava y el suelo caliente al recibir daño: quemarlo no sirve de nada.'},
+  {nm:'Dragón de Fuego',tier:'--bronze',hp:60,dmg:10,badge:'Guardián',
+   stats:[['Vida','60'],['Daño','10'],['Aparece en','Trampas y oleadas']],
+   items:['Núcleo del Dragón x2-5 (50 %)','Llave Rara (30 %)','Llave Épica (20 %)','Llave Dracónica (5 %)']},
+  {nm:'Dios Dragón',tier:'--q-inmortal',hp:520,dmg:16,badge:'Jefe final',
+   stats:[['Vida','520'],['Daño','16'],['Empuje','Inmune']],
+   items:['Sello del Guardián x5-10 (45 %)','Núcleo del Dragón x3-6 (50 %)','Colmillo Congelado x2-4 (50 %)','Llave Rara x2 (50 %)','Llave Épica x2 (40 %)','Llave Dracónica (10 %)','100-200 MobCoins garantizados'],
+   flag:'Inmune a flechas, fuego, lava, caída y ahogamiento: solo se le hace daño cuerpo a cuerpo. Se teletransporta nueve veces según va perdiendo vida.'},
+];
+const DG_FLOW=[
+  'Alguien usa el <b>Invocador del Dios Dragón</b> dentro del altar. Todo el servidor recibe el aviso con el botón para unirse.',
+  '<b>75 segundos</b> de reclutamiento, o menos si se llena. Caben de <b>1 a 6 jugadores</b>.',
+  '<b>20 segundos</b> de preparación en la sala de espera antes de abrir la arena.',
+  'Cada vez que el jefe pierde <b>200 de vida</b> entra una oleada: Dragón de Hielo, Dragón de Fuego y Dragón de Hielo, con 100 de vida cada uno. <b>Un mob más por cada jugador extra</b>, hasta cinco.',
+  'Durante el combate <b>no se pueden usar comandos</b> y la arena queda cerrada hasta derrotar al jefe.',
+  'Si a los <b>15 minutos</b> el jefe sigue vivo, la raid se cancela.',
+];
+const DG_OBJ=[['Sin recibir daño','+50'],['Terminar en menos de 4 min','+25'],['Que no muera nadie','+20'],['En solitario','+10']];
+const DG_REW=[['10.000 monedas','70 %'],['Corazón del Mar x1-10','50 %'],['Carga ígnea x1-10','50 %'],['Fragmento de amatista x1-10','50 %'],['Colmillo x1-10','50 %'],['Núcleo del Dragón x1-10','50 %']];
+const DG_EVENTS=[
+  {nm:'Furia de la Mazmorra',tier:'--bronze',n:'x2',badge:'Cada 90 min',sub:'Dura 5 minutos',
+   items:['Todos los minerales de la mazmorra sueltan el doble','Cuenta en carbón, cobre, hierro, oro, redstone, lapislázuli, diamante y esmeralda','También en su versión de pizarra profunda','Barra de evento con la cuenta atrás'],
+   inline:false},
+  {nm:'Fiebre Dracónica',tier:'--q-legend',n:'10 %',badge:'Tirada cada 2 h',sub:'20 % de que empiece · dura 5 minutos',
+   items:['Cada mineral que picas puede darte una Llave Dracónica','Solo cuenta en modo supervivencia','Es la única forma de conseguir llaves dracónicas sin matar jefes','Se entregan en tandas cada pocos segundos'],
+   inline:false},
+];
+const DG_MATS=[
+  {nm:'Núcleo del Dragón',tier:'--bronze',badge:'Ingrediente',n:'Fuego',
+   items:['Lo suelta el Dragón de Fuego y el Dios Dragón','Aparece en los cuatro cofres, hasta 20 por cofre épico','Se refina en Núcleo Dracónico Purificado'],inline:true},
+  {nm:'Colmillo Congelado',tier:'--q-raro',badge:'Ingrediente',n:'Hielo',
+   items:['Lo suelta el Dragón de Hielo y el Dios Dragón','Aparece en los cuatro cofres, hasta 16 por cofre épico','Se refina en Reliquia Colmillo Ancestral'],inline:true},
+  {nm:'Sello del Guardián',tier:'--q-inmortal',badge:'Ingrediente',n:'Jefe',
+   items:['Solo lo suelta el Dios Dragón (5 a 10 unidades)','También aparece de dos en dos en el cofre legendario','Hoy no tiene ningún intercambio asignado'],inline:true},
+];
+const DG_TRADES=[
+  ['/warp trade','16x Núcleo del Dragón','Núcleo Dracónico Purificado'],
+  ['/warp trade','16x Colmillo Congelado','Reliquia Colmillo Ancestral'],
+  ['/warp trade','10x Reliquia + 10x Núcleo Purificado','<strong>Invocador del Dios Dragón</strong>'],
+  ['/warp trade','16x Núcleo Purificado + 16x Núcleo del Dragón','Casco del Dragón de Fuego'],
+  ['NPC Dungeon','64x Núcleo del Dragón','Bloque de Núcleo Fundido'],
+  ['NPC Dungeon','64x Colmillo Congelado','Bloque Congelado'],
+  ['NPC Dungeon','64x Esencia Espectral','Bloque de Esencia'],
+  ['NPC Herramientas','32x Núcleo del Dragón + pico de diamante','Pico Fundidor'],
+];
+const DG_HORDES=[
+  ['Mazmorra del Dragón','10','10 a 13','3 min','24'],
+  ['Mazmorra de las Fantasías','10','5 a 6','3 min','24'],
+  ['Mina inicial','20','5 a 8','1 min','10'],
+];
+(function(){
+  const tiles=[['Zonas abiertas','2',' de 4'],['Cofres','10',''],['Jefes','3',''],['Rarezas','4',''],['Reaparición','10',' min'],['Jugadores por raid','6',' máx.']];
+  document.getElementById('dg-tiles').innerHTML=tiles.map(([k,v,s])=>'<div class="tile"><span class="k">'+k+'</span><span class="v">'+v+'<small>'+s+'</small></span></div>').join('');
+
+  document.getElementById('dg-zones').innerHTML=DG_ZONES.map(z=>
+    '<tr><td><strong>'+z.nm+'</strong><br><span class="fine">'+z.note+'</span></td>'+
+    '<td>'+z.req+'</td><td>'+(z.ent==='—'?'<span class="dash">—</span>':'<code>'+z.ent+'</code>')+'</td>'+
+    '<td>'+(z.st==='ok'?'<span class="it" style="border-color:color-mix(in srgb,var(--pos) 45%,transparent);color:var(--pos)">Abierta</span>':'<span class="it tag">Próximamente</span>')+'</td></tr>').join('');
+
+  document.getElementById('dg-rar').innerHTML=DG_RAR.map(([,nm,c,p])=>
+    '<div class="prow"><span class="pn"><span class="rq" style="background:var('+c+')"></span>'+nm+'</span><span class="pp">'+p+' %</span></div>').join('');
+  document.getElementById('dg-keyreq').innerHTML=DG_KEYREQ.map(([nm,c,k])=>
+    '<div class="prow"><span class="pn"><span class="rq" style="background:var('+c+')"></span>'+nm+'</span><span class="pp">'+k+'</span></div>').join('');
+  document.getElementById('dg-keys').innerHTML=DG_KEYDROPS.map(r=>
+    '<tr><td><strong>'+r[0]+'</strong></td><td class="num">'+r[1]+'</td><td class="num">'+r[2]+'</td><td class="num">'+r[3]+'</td></tr>').join('');
+
+  const ccard=(c)=>{
+    const body=c.inline
+      ? '<p class="inline">'+c.items.join(' · ')+'</p>'
+      : '<ul>'+c.items.map(i=>{const m=i.charAt(0)==='*';return '<li>'+(m?i.slice(1)+'<span class="myth">material</span>':i)+'</li>';}).join('')+'</ul>';
+    const stats=c.stats?'<div class="dgstat">'+c.stats.map(([k,v])=>'<span>'+k+': <b>'+v+'</b></span>').join('')+'</div>':'';
+    const flag=c.flag?'<div class="flag">'+c.flag+'</div>':'';
+    const sub=c.sub?'<span class="fine">'+c.sub+'</span>':'';
+    const chip=c.trap?'<span class="keychip">'+c.trap+'</span>':'';
+    return '<details class="ccard" style="--tier:var('+c.tier+')">'+
+      '<summary><div class="ccard-top">'+
+        '<div class="ccard-title"><span class="nm">'+c.nm+'</span>'+
+          '<span class="rcount"><b>'+(c.n!==undefined?c.n:c.items.length)+'</b><span>'+(c.lbl||'premios')+'</span></span></div>'+
+        '<div class="ccard-meta"><span class="badge">'+c.badge+'</span>'+chip+sub+'<span class="expand"></span></div>'+
+      '</div></summary>'+
+      '<div class="ccard-body">'+stats+body+flag+'</div></details>';
+  };
+  document.getElementById('dg-loot').innerHTML=DG_LOOT.map(ccard).join('');
+  document.getElementById('dg-bosses').innerHTML=DG_BOSSES.map(b=>ccard(Object.assign({},b,{n:b.hp,lbl:'de vida'}))).join('');
+  document.getElementById('dg-events').innerHTML=DG_EVENTS.map(e=>ccard(Object.assign({},e,{lbl:'efecto'}))).join('');
+  document.getElementById('dg-mats').innerHTML=DG_MATS.map(m=>ccard(Object.assign({},m,{lbl:'origen'}))).join('');
+
+  document.getElementById('dg-flow').innerHTML=DG_FLOW.map(s=>'<li>'+s+'</li>').join('');
+  document.getElementById('dg-obj').innerHTML=DG_OBJ.map(([n,v])=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+v+'</span></div>').join('');
+  document.getElementById('dg-rew').innerHTML=DG_REW.map(([n,v])=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+v+'</span></div>').join('');
+  document.getElementById('dg-trades').innerHTML=DG_TRADES.map(([npc,inp,out])=>
+    '<tr><td><code>'+npc+'</code></td><td>'+inp+'</td><td>'+out+'</td></tr>').join('');
+  document.getElementById('dg-hordes').innerHTML=DG_HORDES.map(r=>
+    '<tr><td><strong>'+r[0]+'</strong></td><td class="num">'+r[1]+'</td><td class="num">'+r[2]+'</td><td class="num">'+r[3]+'</td><td class="num">'+r[4]+'</td></tr>').join('');
 })();
 
 /* LIBROS */
