@@ -279,9 +279,22 @@
       <div class="shopcard" id="sinks-shop" style="max-width:420px"></div>
     </section>
     <section>
-      <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>Tienda de MobCoins</h2></div>
-      <p class="fine">Tienda rotativa. Precios en MobCoins (moneda premium), de menor a mayor.</p>
-      <div class="shopcard"><div class="mobcgrid" id="mobc-shop"></div></div>
+      <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>Tiendas de MobCoins</h2></div>
+      <p class="fine">Hay dos tiendas y funcionan distinto: una cambia cada día y es barata, la otra dura un mes y guarda lo mejor. Las dos tienen <strong>stock limitado para todo el servidor</strong>: cuando se agota una unidad, ya no está disponible para nadie hasta el siguiente refresco.</p>
+
+      <h3>Cuánto se tarda en ganar MobCoins</h3>
+      <p class="fine">Los precios están calculados sobre lo que rinde matar mobs. Estas son las cifras reales de la configuración:</p>
+      <div class="shopgrid" id="rates-shop"></div>
+      <p class="fine">Referencia usada para fijar precios: <strong>unos 150 MobCoins por hora</strong> con una granja de spawners decente. Un jugador sin granja hace 30-50 por hora; uno con granja de blazes o matando jefes, bastante más.</p>
+
+      <h3>Mercado del Día — rota cada 24 horas</h3>
+      <p class="fine">Un catálogo de <strong id="daily-count">26</strong> artículos comunes del que se muestran <strong>10 cada día</strong>, elegidos al azar. Consumibles, materiales, utilidad y objetos de encantamiento baratos. Precios de 25 a 900 MobCoins: de diez minutos a seis horas de juego.</p>
+      <div class="shopgrid" id="daily-shop"></div>
+
+      <h3>La Bóveda — cambia cada 30 días</h3>
+      <p class="fine">Diez artículos fijos y visibles todo el mes, para tener una meta a la que ahorrar. Aquí viven las llaves top, los libros de clase cumbre y los objetos que no se compran en ningún otro sitio. Precios de 3.500 a 25.000 MobCoins: de un día a una semana larga de juego.</p>
+      <div class="shopgrid" id="vault-shop"></div>
+      <p class="fine">El stock mensual es deliberadamente corto: si todo se vendiera, la bóveda retiraría unos <strong>331.000 MobCoins</strong> de la economía cada mes. Los artículos estrella (el libro Fabled, con dos unidades) se agotarán pronto y volverán el mes siguiente.</p>
     </section>
   </div>
 </div>
@@ -422,15 +435,32 @@ const ECON={
   'Madera':[['Retoños','20–120'],['Troncos','15–25']],
 };
 const SINKS=[['Plantilla de mejora a netherita',6000],['Adornos de armadura (trims)','6.000–30.000']];
-const MOBC=[['Cubeta de leche',30],['Redstone x16',50],['Linterna marina x3',100],['Campana',150],['Cohete x64',250],['Micelio x3',300],['Marco luminoso x5',400],['Libros x6',450],['Cristal del End',550],['Mesa de encantamientos',600],['Manzana dorada',650],['Fragmento de prismarina',700],['Ojo de ender x8',720],['Estrella del Nether',750],['Libro de reparación x6',900],['Tolva x6',900],['Tridente',950],['Tótem',1000],['Yunque x6',1080],['Elytra',1100],['Manzana dorada encantada',1400],['Bloque de césped x16',1440],['Faro',5000],['Núcleo pesado',5000]];
+// Lo que rinde matar cada mob (probabilidad x cantidad media, de mobcoins.yml)
+const RATES={
+  'Jefes':[['Dragón del End',275],['Guardián de la Mazmorra',150],['Wither',112],['Warden',45],['Guardián anciano',12]],
+  'Mobs fuertes':[['Ravager',9],['Evocador',5.4],['Shulker',3],['Wither esqueleto',1.8],['Piglin bruto',1.8]],
+  'Mobs corrientes':[['Blaze / Enderman / Ghast',0.84],['Magma cube',0.6],['Araña de cueva / Ahogado',0.5],['Zombi / Esqueleto / Creeper',0.32],['Slime / Araña / Bruja',0.18]],
+};
+// Mercado del Día: [nombre, precio, stock diario]
+const DAILY=[['Cubeta de leche',25,24],['Redstone x32',90,20],['Libros x8',120,20],['Campana',150,12],['Linterna marina x6',170,16],['Cohetes x64',220,16],['Marco luminoso x8',230,12],['Micelio x8',250,10],['Ojo de ender x8',300,12],['Tolva x6',350,12],['Libro SIMPLE aleatorio',350,8],['Manzana dorada x4',380,12],['Yunque x3',420,10],['Cristal del End x4',450,8],['Gema de 32 Almas',480,8],['Llave Vote',500,10],['Mesa de encantamientos',520,8],['Polvo Estelar (Ultimate)',550,6],['Llave Mascotas',600,8],['Pergamino Negro',650,5],['Tridente',700,3],['Libro UNIQUE aleatorio',720,5],['Libro de Reparación',780,4],['Estrella del Nether',800,3],['Tótem de la inmortalidad',850,4],['Manzana dorada encantada',900,2]];
+// La Bóveda: [nombre, precio, stock mensual]
+const VAULT=[['Elytra',3500,4],['Llave Spawner',4000,6],['Llave KOTH',5000,5],['Invocador de Mazmorra',6500,4],['Bendición de Dios',8000,3],['Llave Legendaria',9000,5],['Ampliador de Slots',10000,3],['Libro LEGENDARY aleatorio',12000,4],['Llave Épica',15000,3],['Libro FABLED aleatorio',25000,2]];
 (function(){
   const numFmt=v=>typeof v==='number'?fmt(v):v;
   const prow=(n,p,cls)=>'<div class="prow'+(cls||'')+'"><span class="pn">'+n+'</span><span class="pp">'+numFmt(p)+'</span></div>';
+  const srow=(n,p,s)=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+fmt(p)+' <span style="color:var(--muted);font-weight:400">· '+s+'</span></span></div>';
   document.getElementById('econ-shop').innerHTML=Object.entries(ECON).map(([cat,rows])=>
     '<div class="shopcard"><h4>'+cat+'<span>venta</span></h4>'+rows.map(([n,p])=>prow(n,p)).join('')+'</div>').join('');
   document.getElementById('sinks-shop').innerHTML='<h4>Compra<span>coste</span></h4>'+SINKS.map(([n,p])=>prow(n,p,' sink')).join('');
-  const mobc=MOBC.slice().sort((a,b)=>a[1]-b[1]);
-  document.getElementById('mobc-shop').innerHTML=mobc.map(([n,p])=>prow(n,p)).join('');
+  document.getElementById('rates-shop').innerHTML=Object.entries(RATES).map(([cat,rows])=>
+    '<div class="shopcard"><h4>'+cat+'<span>por muerte</span></h4>'+rows.map(([n,p])=>prow(n,p)).join('')+'</div>').join('');
+  const half=Math.ceil(DAILY.length/2);
+  document.getElementById('daily-shop').innerHTML=
+    '<div class="shopcard"><h4>Mercado del Día<span>precio · stock</span></h4>'+DAILY.slice(0,half).map(x=>srow(...x)).join('')+'</div>'+
+    '<div class="shopcard"><h4>&nbsp;<span>precio · stock</span></h4>'+DAILY.slice(half).map(x=>srow(...x)).join('')+'</div>';
+  document.getElementById('vault-shop').innerHTML=
+    '<div class="shopcard"><h4>La Bóveda<span>precio · stock/mes</span></h4>'+VAULT.map(x=>srow(...x)).join('')+'</div>';
+  document.getElementById('daily-count').textContent=DAILY.length;
 })();
 
 </script>
