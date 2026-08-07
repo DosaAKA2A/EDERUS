@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="Guía de Ederus: recompensas de /playtime, cofres y su contenido, mazmorras, las ocho anomalías y sus jefes, libros de encantamientos, God Kits y tiendas del servidor.">
+<meta name="description" content="Guía de Ederus: recompensas de /playtime, cofres y su contenido, mazmorras, las quince anomalías y sus jefes, libros de encantamientos, God Kits y tiendas del servidor.">
 <meta name="robots" content="index,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,7 +234,7 @@
 <div class="doc">
   <span class="doc__eyebrow">Guía del servidor</span>
   <h1 class="title">Cómo funciona Ederus</h1>
-  <div class="doc__intro"><strong>Todo lo que hay dentro del servidor</strong>, leído de la configuración real: recompensas por horas jugadas, cofres y su contenido completo, las mazmorras con sus jefes y llaves, las ocho anomalías que se abren solas en el mapa, libros de encantamientos, God Kits y las dos tiendas. Sirve para saber qué consigues jugando y qué aportan las compras.</div>
+  <div class="doc__intro"><strong>Todo lo que hay dentro del servidor</strong>, leído de la configuración real: recompensas por horas jugadas, cofres y su contenido completo, las mazmorras con sus jefes y llaves, las quince anomalías que se abren solas en el mapa, libros de encantamientos, God Kits y las dos tiendas. Sirve para saber qué consigues jugando y qué aportan las compras.</div>
 
   <div class="tabs" role="tablist" aria-label="Secciones">
     <button class="tab" role="tab" aria-selected="true" data-panel="p-play">Recompensas Playtime</button>
@@ -397,8 +397,9 @@
         desde mucho más lejos que cualquier partícula.</li>
         <li>Sobre el jefe se levanta un <strong>pilar de luz</strong> del mismo color, visible desde cientos
         de bloques.</li>
-        <li>La excepción es el <strong>Conejo Asesino</strong>, que no brilla ni levanta pilar: solo tienes
-        las coordenadas, y cuando llegas ya lo tienes encima.</li>
+        <li>Las excepciones son el <strong>Conejo Asesino</strong>, el <strong>Mimic</strong> y
+        <strong>Rabby</strong>: no brillan ni levantan pilar, así que solo tienes las coordenadas y hay
+        que dar con el jefe a ojo.</li>
       </ul>
 
       <h3>Las barras de vida</h3>
@@ -418,7 +419,7 @@
     </section>
 
     <section>
-      <div class="sec-h"><span class="sec-n">Catálogo</span><h2>Las ocho anomalías</h2></div>
+      <div class="sec-h"><span class="sec-n">Catálogo</span><h2>Las quince anomalías</h2></div>
       <p class="fine">Ordenadas de menos a más dura. Haz clic en cualquiera para ver sus tres fases y todo
       lo que sabe hacer.</p>
       <div class="cards" id="cards-anomalies"></div>
@@ -429,7 +430,9 @@
       </div>
       <p class="fine">El <strong>elemento</strong> no es un adorno: decide dónde puede aparecer. Las de tierra
       exigen suelo firme y seco, las de agua se pelean <em>en el fondo del mar</em> y las de viento solo
-      salen en cumbres a cielo abierto.</p>
+      salen en cumbres a cielo abierto. Solo hay dos de agua y dos de viento; las once restantes son de tierra.</p>
+      <p class="fine">Tres jefes <strong>no brillan a propósito</strong> —el Conejo Asesino, el Mimic y Rabby—:
+      son los que aparecen por sorpresa, y el camuflaje forma parte del jefe tanto como sus habilidades.</p>
     </section>
   </div>
 
@@ -845,6 +848,16 @@ const AN=[
       ['III — heraldo','Sismo del Páramo · Salto Demoledor · Última Carga · Grito del Páramo'],
       ['Siempre','Cacería · Leva de Huesos']]},
 
+ {id:'bruja',n:'La Bruja',c:'#B07BD6',el:'Tierra',glow:'Dorado',hp:1500,ab:17,
+  tag:'Bruja con caldero y un sapo que crece',
+  hook:'Matarle el sapo quita un peligro y le regala un 20 % más de daño.',
+  desc:'Está construida sobre una bruja de verdad, con una rana cálida haciendo de <b>Sapo Blanco</b> que la acompaña <b>andando</b> a su lado, no montada encima. El caldero va plantado en el <b>suelo</b> donde cocina, nunca en la cabeza: hierve, rebosa y de él sale la mitad de lo que te tira. En la segunda fase le suelta la correa al sapo, que crece y entra a pelear. Matarlo te quita un peligro de encima, pero <b>la desata</b>: pega un 20&nbsp;% más y corre más.',
+  ph:[['I — el aquelarre','Pócima Virulenta · Caldero Hirviente · Maleficio · Canto del Sapo · Risa de Bruja · Hervor Súbito · Rayo Arcano'],
+      ['II — el sapo baja','Salto del Sapo · Lengua Látigo · Lluvia de Sapos · Brebaje Oscuro · Círculo de Runas'],
+      ['III — el caldero rebosa','El Gran Hechizo · Nube de Murciélagos · Pócima Final · Mano de Bruja'],
+      ['Siempre','Trago Amargo']],
+  warn:'<b>El Gran Hechizo</b> marca un círculo enorme y da <b>diez segundos</b> de cuenta atrás. Cuando se acaban, ahí dentro no puede quedar nadie.'},
+
  {id:'conejo_asesino',n:'Conejo Asesino',c:'#E8DCD2',el:'Tierra',glow:'Ninguno',hp:1500,ab:16,
   tag:'Muerde y se multiplica; no brilla, no avisa',
   hook:'Es indistinguible de sus copias. La barra es tu única pista.',
@@ -890,6 +903,58 @@ const AN=[
       ['II — la corriente','Haces Encadenados · Tinta del Abismo · Presión · Látigo de Marea · Torbellino de Espinas'],
       ['III — el leviatán','Rayo del Abismo · Implosión · Maelstrom · Mordida Abisal'],
       ['Siempre','Canto de Sal']]},
+
+ {id:'piromante',n:'El Piromante',c:'#E2703A',el:'Tierra',glow:'Rojo',hp:1900,ab:12,
+  tag:'Aldeano mago de fuego puro, todo a distancia',
+  hook:'Quedarse lejos no sirve de nada: además te persigue.',
+  desc:'Un aldeano del desierto con armadura de cuero teñida de rojo y una vara de blaze. Es el <b>único jefe puramente mágico y a distancia</b>: no tiene ni un solo golpe cuerpo a cuerpo, todo lo suyo sale ardiendo y viaja. Y no se planta: <b>persigue</b>, así que la distancia no es refugio. <b>Quema el suelo de verdad</b>, con muy buen radio, pero nunca prende dentro de terreno protegido y lo apaga todo al terminar.',
+  ph:[['I — la chispa','Bola de Fuego · Andanada de Brasas · Aliento de Fuego · Rastro de Brasas'],
+      ['II — la hoguera','Mar de Llamas · Meteoros · Muro de Fuego · Guardia de Brasas'],
+      ['III — el infierno','Nova Ígnea · Columna de Lava · Anillo de Cenizas'],
+      ['Siempre','Marca Ardiente']]},
+
+ {id:'quimera',n:'La Quimera',c:'#C08A4A',el:'Tierra',glow:'Dorado',hp:1900,ab:13,
+  tag:'Ravager con cabra y cola de serpiente',
+  hook:'Es intocable hasta que caigan sus cinco pilares.',
+  desc:'No es un truco visual: son <b>tres entidades de verdad</b> montadas una encima de otra. No se le puede hacer daño mientras quede en pie uno de sus <b>cinco pilares</b>, y solo cede el ladrillo cincelado —el resto del pilar se derrumba solo. La cola <b>petrifica</b> a quien la mire cuando avisa; el escudo levantado aguanta la mirada, como Perseo, y esos mismos pilares son la única cobertura que hay. Cada pilar que tiras es un pilar menos donde esconderse.',
+  ph:[['I — la fiera','Mirada de la Cola · Embestida de la Fiera · Berrido de la Cabra · Nido de Víboras · Escupitajo Venenoso'],
+      ['II — la cabra rabiosa','Mirada en Barrido · Zarpazo Triple · Cornada Ascendente · Lluvia de Colmillos · Veneno Ancestral'],
+      ['III — la serpiente','La Mirada Entera · Pisotón de la Fiera'],
+      ['Siempre','Siseo']]},
+
+ {id:'mimic',n:'El Mimic',c:'#D08A3E',el:'Tierra',glow:'Ninguno',hp:2000,ab:12,
+  tag:'Uno de esos animales no es un animal',
+  hook:'El camuflaje no es un extra del jefe: es el jefe entero.',
+  desc:'Sin brillo, sin pilar de luz y sin nombre encima: hay que pegarle para saber cuál es. En la <b>fase I</b> se esconde dentro de un rebaño de la fauna del bioma. En la <b>fase II</b> se mete en uno de <b>cinco cofres</b> idénticos y los falsos muerden, mientras <b>La Codicia</b> os roe a todos y duele más cuanto más tardáis en acertar. En la <b>fase III</b> copia la cara, la armadura y el nombre de un jugador real, y a mitad de fase se desata en berserker puro.',
+  ph:[['I — el rebaño','Camuflaje · Embestida Salvaje · Pisotón Creciente · Chillido Bestial · Estampida de Señuelos'],
+      ['II — los cofres','Ronda de Cofres · Dentellada'],
+      ['III — el robo de rostro','Tajo Ladrón · Sombra del Otro · Frenesí Carnicero · Salto Carnicero · Torbellino de Acero']]},
+
+ {id:'cazador',n:'El Cazador',c:'#B98455',el:'Tierra',glow:'Rojo oscuro',hp:2100,ab:12,
+  tag:'Piglin brute de cuero negro y sombrero',
+  hook:'Mira lo que lleva en la mano: el arma anuncia lo que va a hacer.',
+  desc:'Cambia de arma constantemente y esa es toda la pista que necesitas. En la <b>fase I</b> acecha con ballesta y arco, y retrocede en cuanto te acercas. En la <b>fase II</b> siembra el suelo de <b>cepos</b> que revientan en área. En la <b>fase III</b> tira todo lo de lejos y saca la <b>lanza de netherita</b> para rematar de cerca.',
+  ph:[['I — el acecho','Andanada de Ballesta · Lluvia de Flechas · Saeta Perforante · Marcar la Presa'],
+      ['II — el cepo','Cepo · Cepo Dirigido · Red de Cepos · Retirada Calculada'],
+      ['III — la estocada','Hachazo Descendente · Danza de Espada'],
+      ['Siempre','Estocada de Lanza · Cambio de Arma']]},
+
+ {id:'aragon',n:'Aragon',c:'#9B87B5',el:'Tierra',glow:'Morado',hp:2300,ab:10,
+  tag:'Ella no corre; corren sus hijas, y son muchas',
+  hook:'Casi no pelea. Quien te come son las crías y los huevos.',
+  desc:'Una araña gigante y <b>lentísima</b> que apenas se defiende sola: el peligro son las <b>crías diminutas</b>, hasta <b>110 vivas a la vez</b> y con reposición constante. Además <b>pone huevos</b> que eclosionan si no los rompéis a tiempo, así que dejarla criar es perder la pelea sin que ella te toque. Teje telaraña de verdad por la arena, y el terreno se devuelve tal cual estaba al terminar.',
+  ph:[['I','Camada · Puesta · Telar · Hilo'],
+      ['II','Guardianas · Mordisco de la Madre · Cortina de Tela'],
+      ['III','Marea de Crías · Veneno de Nido · Sacudida']]},
+
+ {id:'rabby',n:'Rabby',c:'#F2C14E',el:'Tierra',glow:'Ninguno',hp:2400,ab:14,
+  tag:'Parece inofensivo. No le pegues',
+  hook:'Es pasivo hasta que alguien le pega. Y entonces no para.',
+  desc:'Un vecino que saluda y no hace nada, sin brillo y sin pilar. Con el <b>primer golpe</b> que recibe cae un rayo, se pone nombre de anomalía y empieza la pelea de verdad: batea al cielo, se teletransporta y remata contra el suelo. Su <b>Concentración</b> es el único momento en que brilla —en blanco— y le da <b>cinco veces el daño durante quince segundos</b>; su carga devastadora revienta a quien no lleve buen equipo.',
+  ph:[['I — los puños','Carrera Fantasma · Batazo · Pisotón Sónico · Ráfaga de Golpes'],
+      ['II — los combos','Combo Aéreo · Acoso Relámpago · Puño Cometa · Patada Giratoria'],
+      ['III — se acabó','Concentración · Carga Devastadora · Onda Expansiva · Tromba Final'],
+      ['Siempre','Paso Relámpago · Burla']]},
 
  {id:'darkness',n:'Darkness',c:'#B25CFF',el:'Tierra',glow:'Morado, blanco al final',hp:2600,ab:15,
   tag:'Enderman colosal; el más duro del catálogo',
