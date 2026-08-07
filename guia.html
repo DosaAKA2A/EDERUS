@@ -93,11 +93,29 @@
   .ccard-top{padding:13px 15px 12px;display:flex;flex-direction:column;gap:9px}
   .ccard-title{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .ccard-title .nm{font-weight:700;font-size:16px;line-height:1.1}
+
+  /* Cara del mob base de cada anomalia */
+  .anom-id{display:flex;align-items:center;gap:11px;min-width:0}
+  .mface{--glow:var(--rule-strong);position:relative;flex:none;width:46px;height:46px;border-radius:11px;
+    background-color:#0a1119;background-repeat:no-repeat;image-rendering:pixelated;
+    box-shadow:0 0 0 1.5px color-mix(in srgb,var(--glow) 72%,transparent),0 0 14px -2px color-mix(in srgb,var(--glow) 60%,transparent),inset 0 0 0 1px rgba(0,0,0,.45);
+    transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,opacity .18s ease}
+  .mface::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(115% 80% at 50% 0%,rgba(255,255,255,.17),rgba(255,255,255,0) 62%),linear-gradient(180deg,rgba(0,0,0,0) 52%,rgba(0,0,0,.3))}
+  .mface.dim{filter:grayscale(.78) brightness(.86) contrast(1);opacity:.86;
+    box-shadow:0 0 0 1.5px rgba(143,166,189,.32),inset 0 0 0 1px rgba(0,0,0,.5)}
+  .mface.dim::after{background:linear-gradient(180deg,rgba(19,34,49,.08),rgba(19,34,49,.46))}
+  details.ccard>summary:hover .mface{transform:translateY(-1px) scale(1.06);
+    box-shadow:0 0 0 1.5px var(--glow),0 0 22px -2px color-mix(in srgb,var(--glow) 80%,transparent),inset 0 0 0 1px rgba(0,0,0,.45)}
+  details.ccard>summary:hover .mface.dim{filter:grayscale(.4) brightness(.92) contrast(1);opacity:1;
+    box-shadow:0 0 0 1.5px rgba(143,166,189,.55),inset 0 0 0 1px rgba(0,0,0,.5)}
+  @media (prefers-reduced-motion:reduce){.mface{transition:none}details.ccard>summary:hover .mface{transform:none}}
   .rcount{display:flex;flex-direction:column;align-items:center;line-height:1;flex:none;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:5px 9px}
   .rcount b{font-size:16px;font-variant-numeric:tabular-nums;color:var(--tier)}
   .rcount span{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
   .ccard-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
   .badge{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--tier) 15%,var(--paper));color:var(--tier);border:1px solid color-mix(in srgb,var(--tier) 35%,transparent)}
+  .badge.fac{background:color-mix(in srgb,var(--fac) 16%,var(--paper));color:var(--fac);border-color:color-mix(in srgb,var(--fac) 45%,transparent)}
   .keychip{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px dashed var(--rule-strong);color:var(--muted)}
   .keychip.has{border-style:solid;border-color:color-mix(in srgb,var(--bronze) 45%,transparent);color:var(--bronze);background:color-mix(in srgb,var(--bronze) 10%,var(--paper))}
   .expand{margin-left:auto;font-size:11px;font-weight:600;color:var(--tier);white-space:nowrap}
@@ -388,7 +406,7 @@
       <div class="sec-h"><span class="sec-n">Cómo</span><h2>Encontrarla y pelearla</h2></div>
       <h3>El anuncio</h3>
       <p>Cuando se abre, todo el servidor ve una línea en el chat con las coordenadas. Pasa el ratón por
-      encima de la palabra <strong>Anomalía</strong> y se despliega la ficha: qué es, su elemento, de dónde
+      encima de la palabra <strong>Anomalía</strong> y se despliega la ficha: qué es, de dónde
       viene y <span style="color:var(--gold)">qué suelta</span>. Haz clic en las coordenadas para copiarlas.</p>
 
       <h3>Llegar hasta ella</h3>
@@ -420,17 +438,16 @@
 
     <section>
       <div class="sec-h"><span class="sec-n">Catálogo</span><h2>Las quince anomalías</h2></div>
-      <p class="fine">Ordenadas de menos a más dura. Haz clic en cualquiera para ver sus tres fases y todo
-      lo que sabe hacer.</p>
+      <p class="fine">Ordenadas de menos a más dura. Cada ficha lleva la <strong>cara del mob</strong> sobre el
+      que está construida y el color de su brillo alrededor. Haz clic en cualquiera para ver sus tres fases y
+      todo lo que sabe hacer.</p>
       <div class="cards" id="cards-anomalies"></div>
-      <div class="qkey">
-        <span class="q"><span class="qd" style="background:var(--gold)"></span>Tierra</span>
-        <span class="q"><span class="qd" style="background:var(--azure)"></span>Agua</span>
-        <span class="q"><span class="qd" style="background:#e8f2fa"></span>Viento</span>
-      </div>
-      <p class="fine">El <strong>elemento</strong> no es un adorno: decide dónde puede aparecer. Las de tierra
-      exigen suelo firme y seco, las de agua se pelean <em>en el fondo del mar</em> y las de viento solo
-      salen en cumbres a cielo abierto. Solo hay dos de agua y dos de viento; las once restantes son de tierra.</p>
+      <div class="qkey" id="fac-key"></div>
+      <p class="fine">Las <strong>facciones</strong> agrupan a los jefes por lo que son y por cómo se pelean:
+      las de <strong>Guerra</strong> van de frente y con armas, las de <strong>Naturaleza</strong> te ganan
+      con crías y terreno, las del <strong>Abismo</strong> se pelean en su propio elemento, las de
+      <strong>Magia</strong> castigan a distancia y las de <strong>Engaño</strong> ni siquiera parecen jefes
+      hasta que les pegas.</p>
       <p class="fine">Tres jefes <strong>no brillan a propósito</strong> —el Conejo Asesino, el Mimic y Rabby—:
       son los que aparecen por sorpresa, y el camuflaje forma parte del jefe tanto como sus habilidades.</p>
     </section>
@@ -469,7 +486,7 @@
 
       <div class="shopblock gain">
         <div class="blockhead">
-          <span class="blocktag">Ganas dinero</span>
+          <span class="blocktag">Vendes</span>
           <h3>Lo que la tienda te compra</h3>
           <span class="blocksum">3 categorías</span>
         </div>
@@ -480,7 +497,7 @@
 
       <div class="shopblock spend">
         <div class="blockhead">
-          <span class="blocktag">Gastas dinero</span>
+          <span class="blocktag">Compras</span>
           <h3>Lo que puedes comprar</h3>
           <span class="blocksum">11 categorías</span>
         </div>
@@ -830,7 +847,7 @@ const VAULT=[['Elytra',3500,4,'elytra'],['Llave Spawner',4000,6,'trial_key'],['L
 <script>
 /* ANOMALIAS */
 const AN=[
- {id:'coro_abisal',n:'Coro Abisal',c:'#B69BE3',el:'Agua',glow:'Morado claro',hp:1300,ab:12,
+ {id:'coro_abisal',n:'Coro Abisal',c:'#B69BE3',fac:'abismo',glow:'Morado claro',hp:1300,ab:12,
   tag:'Tres cantores, un núcleo intocable y un orden que romper',
   hook:'No se gana pegando más fuerte, se gana coordinándose.',
   desc:'Tres cantores orbitan un núcleo que <b>no recibe daño</b> mientras el coro siga entero. Hay que apagarlos en el <b>orden que marcan sus luces</b> —blanco, amarillo, rojo— y solo entonces se abre una ventana para castigar al núcleo. Fallar el orden rehace el coro entero y os cobra el error a todos. La ventana empieza en doce segundos y se acorta con cada ronda que ganáis.',
@@ -839,7 +856,7 @@ const AN=[
       ['III','Crescendo · Nota Final · Coro Completo'],
       ['Siempre','Eco · Silencio']]},
 
- {id:'caballero_sepulcral',n:'Caballero Sepulcral',c:'#9BD7E4',el:'Tierra',glow:'Rojo',hp:1400,ab:18,
+ {id:'caballero_sepulcral',n:'Caballero Sepulcral',c:'#9BD7E4',fac:'guerra',glow:'Rojo',hp:1400,ab:18,
   tag:'Jinete de hueso con lanza de netherita',
   hook:'Fuerza bruta: ni una sola arma flota o cae sola del cielo.',
   desc:'Esqueleto con armadura y lanza de netherita montado en un caballo esqueleto. Viene del Páramo de Batalla del Aether. En la segunda transición se vuelve <b>invulnerable</b> mientras tres anclas de hueso lo sostienen: si las rompéis a tiempo pierde la armadura y recibe un 30&nbsp;% más de daño; si no, se levanta pegando un 35&nbsp;% más fuerte.',
@@ -848,7 +865,7 @@ const AN=[
       ['III — heraldo','Sismo del Páramo · Salto Demoledor · Última Carga · Grito del Páramo'],
       ['Siempre','Cacería · Leva de Huesos']]},
 
- {id:'bruja',n:'La Bruja',c:'#B07BD6',el:'Tierra',glow:'Dorado',hp:1500,ab:17,
+ {id:'bruja',n:'La Bruja',c:'#B07BD6',fac:'magia',glow:'Dorado',hp:1500,ab:17,
   tag:'Bruja con caldero y un sapo que crece',
   hook:'Matarle el sapo quita un peligro y le regala un 20 % más de daño.',
   desc:'Está construida sobre una bruja de verdad, con una rana cálida haciendo de <b>Sapo Blanco</b> que la acompaña <b>andando</b> a su lado, no montada encima. El caldero va plantado en el <b>suelo</b> donde cocina, nunca en la cabeza: hierve, rebosa y de él sale la mitad de lo que te tira. En la segunda fase le suelta la correa al sapo, que crece y entra a pelear. Matarlo te quita un peligro de encima, pero <b>la desata</b>: pega un 20&nbsp;% más y corre más.',
@@ -858,7 +875,7 @@ const AN=[
       ['Siempre','Trago Amargo']],
   warn:'<b>El Gran Hechizo</b> marca un círculo enorme y da <b>diez segundos</b> de cuenta atrás. Cuando se acaban, ahí dentro no puede quedar nadie.'},
 
- {id:'conejo_asesino',n:'Conejo Asesino',c:'#E8DCD2',el:'Tierra',glow:'Ninguno',hp:1500,ab:16,
+ {id:'conejo_asesino',n:'Conejo Asesino',c:'#E8DCD2',fac:'natura',glow:'Ninguno',hp:1500,ab:16,
   tag:'Muerde y se multiplica; no brilla, no avisa',
   hook:'Es indistinguible de sus copias. La barra es tu única pista.',
   desc:'Cada vez que muerde <b>se multiplica</b>, y las copias también muerden y también se multiplican, hasta veinte a la vez. Cuantas más copias vivas, <b>menos daño recibe el grande</b>: si os dedicáis solo al jefe, el jefe casi no baja. Mismo tamaño y mismo nombre oculto que sus copias, así que solo se delata —<b>brillando en rojo unos segundos</b>— cuando se compromete con un golpe grande.',
@@ -867,7 +884,7 @@ const AN=[
       ['III — la horda','Estampida de Pelaje · Salto Lunar · División Final · Mordida Final'],
       ['Siempre','Devorar · Cambiazo']]},
 
- {id:'cabra_gritona',n:'Cabra Gritona',c:'#EDF3F7',el:'Viento',glow:'Blanco',hp:1600,ab:15,
+ {id:'cabra_gritona',n:'Cabra Gritona',c:'#EDF3F7',fac:'natura',glow:'Blanco',hp:1600,ab:15,
   tag:'Cabra chillona del tamaño de una casa',
   hook:'Todo lo suyo nace del grito.',
   desc:'El berrido empuja, marea, hace daño y <b>parte el cielo en rayos</b> sobre quien lo reciba, dejándola ardiendo en blanco. Lo demás es embestir, saltar y no dejarse mover. En la primera transición se le parte un cuerno y se vuelve más rápida; en la segunda le responde el cielo y pega un 25&nbsp;% más.',
@@ -876,7 +893,7 @@ const AN=[
       ['III — el trueno','Grito del Trueno · Estampida · Cielo Partido · Aullido Final'],
       ['Siempre','Tozudez']]},
 
- {id:'herbola',n:'Herbola',c:'#7BC96F',el:'Tierra',glow:'Verde',hp:1600,ab:14,
+ {id:'herbola',n:'Herbola',c:'#7BC96F',fac:'natura',glow:'Verde',hp:1600,ab:14,
   tag:'Bogged que convierte en jardín todo lo que pisa',
   hook:'Al morir no acaba la pelea: empieza el llanto del Cantor.',
   desc:'Deja alfombra de musgo por donde pasa y convierte el terreno en azalea y flores, <b>y lo que convierte se queda así</b>. Lleva un loro rojo, el <b>Cantor</b>, cantándole desde la cabeza: mientras cante, ella se regenera. En la segunda fase el loro se suelta, ataca en picado y cada impacto <b>te amarra al suelo</b>; es inmortal. En la tercera llegan bandadas que buscan altura y revientan al caer.',
@@ -886,7 +903,7 @@ const AN=[
       ['Siempre','Siembra']],
   warn:'Cuando cae, el Cantor se eleva iluminado en rojo y carga un círculo de 18 bloques durante <b>doce segundos</b>, con cuenta atrás. Al final estalla. Sal del círculo.'},
 
- {id:'storm_rider',n:'Storm Rider',c:'#7FD4E8',el:'Viento',glow:'Aqua',hp:1700,ab:14,
+ {id:'storm_rider',n:'Storm Rider',c:'#7FD4E8',fac:'abismo',glow:'Aqua',hp:1700,ab:14,
   tag:'Phantom gigante que se estrella y se levanta con dos tridentes',
   hook:'La primera fase se pelea con arco, no con espada.',
   desc:'En la fase uno <b>es</b> un phantom gigante que vuela sobre la arena: el cuerpo a cuerpo le hace un 20&nbsp;% del daño y las flechas entran enteras. Al entrar en la segunda se lanza en <b>picado</b>, revienta contra el suelo y de la explosión sale su forma terrestre, un ahogado con tridente. En la tercera saca el <b>segundo tridente</b> y entra en modo berserker: rapidísimo y demoledor, pero mucho más frágil.',
@@ -895,7 +912,7 @@ const AN=[
       ['III — berserker','Frenesí de Tridentes · Doble Tajo · Tormenta Perfecta · Salto del Trueno'],
       ['Siempre','Relámpago Guía']]},
 
- {id:'leviatan_de_sal',n:'Leviatán de Sal',c:'#4FD1C5',el:'Agua',glow:'Aqua oscuro',hp:1800,ab:14,
+ {id:'leviatan_de_sal',n:'Leviatán de Sal',c:'#4FD1C5',fac:'abismo',glow:'Aqua oscuro',hp:1800,ab:14,
   tag:'Guardián anciano descomunal en el fondo del mar',
   hook:'Se pelea sumergido. Dentro de su arena el abismo te deja respirar.',
   desc:'La única que se pelea entera bajo el agua. Mientras estés <b>dentro de su arena</b> (22 bloques) el abismo te deja respirar y ver; en cuanto sales, se acaba el favor. El borde se dibuja para que sepas dónde está. Y por si te tienta subir a por aire, su habilidad <b>Presión</b> castiga justamente eso: cuanto más alto estás, más duele.',
@@ -904,7 +921,7 @@ const AN=[
       ['III — el leviatán','Rayo del Abismo · Implosión · Maelstrom · Mordida Abisal'],
       ['Siempre','Canto de Sal']]},
 
- {id:'piromante',n:'El Piromante',c:'#E2703A',el:'Tierra',glow:'Rojo',hp:1900,ab:12,
+ {id:'piromante',n:'El Piromante',c:'#E2703A',fac:'fuego',glow:'Rojo',hp:1900,ab:12,
   tag:'Aldeano mago de fuego puro, todo a distancia',
   hook:'Quedarse lejos no sirve de nada: además te persigue.',
   desc:'Un aldeano del desierto con armadura de cuero teñida de rojo y una vara de blaze. Es el <b>único jefe puramente mágico y a distancia</b>: no tiene ni un solo golpe cuerpo a cuerpo, todo lo suyo sale ardiendo y viaja. Y no se planta: <b>persigue</b>, así que la distancia no es refugio. <b>Quema el suelo de verdad</b>, con muy buen radio, pero nunca prende dentro de terreno protegido y lo apaga todo al terminar.',
@@ -913,7 +930,7 @@ const AN=[
       ['III — el infierno','Nova Ígnea · Columna de Lava · Anillo de Cenizas'],
       ['Siempre','Marca Ardiente']]},
 
- {id:'quimera',n:'La Quimera',c:'#C08A4A',el:'Tierra',glow:'Dorado',hp:1900,ab:13,
+ {id:'quimera',n:'La Quimera',c:'#C08A4A',fac:'guerra',glow:'Dorado',hp:1900,ab:13,
   tag:'Ravager con cabra y cola de serpiente',
   hook:'Es intocable hasta que caigan sus cinco pilares.',
   desc:'No es un truco visual: son <b>tres entidades de verdad</b> montadas una encima de otra. No se le puede hacer daño mientras quede en pie uno de sus <b>cinco pilares</b>, y solo cede el ladrillo cincelado —el resto del pilar se derrumba solo. La cola <b>petrifica</b> a quien la mire cuando avisa; el escudo levantado aguanta la mirada, como Perseo, y esos mismos pilares son la única cobertura que hay. Cada pilar que tiras es un pilar menos donde esconderse.',
@@ -922,7 +939,7 @@ const AN=[
       ['III — la serpiente','La Mirada Entera · Pisotón de la Fiera'],
       ['Siempre','Siseo']]},
 
- {id:'mimic',n:'El Mimic',c:'#D08A3E',el:'Tierra',glow:'Ninguno',hp:2000,ab:12,
+ {id:'mimic',n:'El Mimic',c:'#D08A3E',fac:'engano',glow:'Ninguno',hp:2000,ab:12,
   tag:'Uno de esos animales no es un animal',
   hook:'El camuflaje no es un extra del jefe: es el jefe entero.',
   desc:'Sin brillo, sin pilar de luz y sin nombre encima: hay que pegarle para saber cuál es. En la <b>fase I</b> se esconde dentro de un rebaño de la fauna del bioma. En la <b>fase II</b> se mete en uno de <b>cinco cofres</b> idénticos y los falsos muerden, mientras <b>La Codicia</b> os roe a todos y duele más cuanto más tardáis en acertar. En la <b>fase III</b> copia la cara, la armadura y el nombre de un jugador real, y a mitad de fase se desata en berserker puro.',
@@ -930,7 +947,7 @@ const AN=[
       ['II — los cofres','Ronda de Cofres · Dentellada'],
       ['III — el robo de rostro','Tajo Ladrón · Sombra del Otro · Frenesí Carnicero · Salto Carnicero · Torbellino de Acero']]},
 
- {id:'cazador',n:'El Cazador',c:'#B98455',el:'Tierra',glow:'Rojo oscuro',hp:2100,ab:12,
+ {id:'cazador',n:'El Cazador',c:'#B98455',fac:'guerra',glow:'Rojo oscuro',hp:2100,ab:12,
   tag:'Piglin brute de cuero negro y sombrero',
   hook:'Mira lo que lleva en la mano: el arma anuncia lo que va a hacer.',
   desc:'Cambia de arma constantemente y esa es toda la pista que necesitas. En la <b>fase I</b> acecha con ballesta y arco, y retrocede en cuanto te acercas. En la <b>fase II</b> siembra el suelo de <b>cepos</b> que revientan en área. En la <b>fase III</b> tira todo lo de lejos y saca la <b>lanza de netherita</b> para rematar de cerca.',
@@ -939,7 +956,7 @@ const AN=[
       ['III — la estocada','Hachazo Descendente · Danza de Espada'],
       ['Siempre','Estocada de Lanza · Cambio de Arma']]},
 
- {id:'aragon',n:'Áragon',c:'#9B87B5',el:'Tierra',glow:'Morado',hp:2300,ab:10,
+ {id:'aragon',n:'Áragon',c:'#9B87B5',fac:'natura',glow:'Morado',hp:2300,ab:10,
   tag:'Ella no corre; corren sus hijas, y son muchas',
   hook:'Casi no pelea. Quien te come son las crías y los huevos.',
   desc:'Una araña gigante y <b>lentísima</b> que apenas se defiende sola: el peligro son las <b>crías diminutas</b>, hasta <b>110 vivas a la vez</b> y con reposición constante. Además <b>pone huevos</b> que eclosionan si no los rompéis a tiempo, así que dejarla criar es perder la pelea sin que ella te toque. Teje telaraña de verdad por la arena, y el terreno se devuelve tal cual estaba al terminar.',
@@ -947,7 +964,7 @@ const AN=[
       ['II','Guardianas · Mordisco de la Madre · Cortina de Tela'],
       ['III','Marea de Crías · Veneno de Nido · Sacudida']]},
 
- {id:'rabby',n:'Rabby',c:'#F2C14E',el:'Tierra',glow:'Ninguno',hp:2400,ab:14,
+ {id:'rabby',n:'Rabby',c:'#F2C14E',fac:'engano',glow:'Ninguno',hp:2400,ab:14,
   tag:'Parece inofensivo. No le pegues',
   hook:'Es pasivo hasta que alguien le pega. Y entonces no para.',
   desc:'Un vecino que saluda y no hace nada, sin brillo y sin pilar. Con el <b>primer golpe</b> que recibe cae un rayo, se pone nombre de anomalía y empieza la pelea de verdad: batea al cielo, se teletransporta y remata contra el suelo. Su <b>Concentración</b> es el único momento en que brilla —en blanco— y le da <b>cinco veces el daño durante quince segundos</b>; su carga devastadora revienta a quien no lleve buen equipo.',
@@ -956,7 +973,7 @@ const AN=[
       ['III — se acabó','Concentración · Carga Devastadora · Onda Expansiva · Tromba Final'],
       ['Siempre','Paso Relámpago · Burla']]},
 
- {id:'darkness',n:'Darkness',c:'#B25CFF',el:'Tierra',glow:'Morado, blanco al final',hp:2600,ab:15,
+ {id:'darkness',n:'Darkness',c:'#B25CFF',fac:'magia',glow:'Morado, blanco al final',hp:2600,ab:15,
   tag:'Enderman colosal; el más duro del catálogo',
   hook:'Casi todo lo suyo ciega. Se pelea a oscuras.',
   desc:'Se cura <b>partiéndose en siete dobles</b> que vibran de rabia sin moverse ni atacar, y mientras tanto se cambia de sitio con ellos para que lo pierdas de vista: hay que dar con el de verdad y meterle daño suficiente para romperle el ritual. Su <b>Campo Cinético</b> os sujeta, os levanta despacio mientras él se carga, y revienta mandándoos volando. En la última fase crece hasta <b>coloso</b>, pasa a brillar en blanco y abre un <b>agujero negro</b>.',
@@ -965,22 +982,69 @@ const AN=[
       ['III','Ceguera Total · Desgarro · Colapso · Singularidad'],
       ['Siempre','Prisión de Vacío · Campo Cinético']]},
 ];
+/* Facciones: agrupacion tematica que ve el jugador */
+const FAC={
+  fuego:{n:'Fuego',c:'#FF7A33'},
+  magia:{n:'Magia',c:'#B25CFF'},
+  guerra:{n:'Guerra',c:'#E0554E'},
+  natura:{n:'Naturaleza',c:'#5FD07A'},
+  abismo:{n:'Abismo',c:'#35D0C6'},
+  engano:{n:'Engaño',c:'#A695C4'}
+};
+/* Color real del brillo de cada anomalia, para el halo de la cara */
+const GLOWC={
+  'Rojo':'#ff5a4d','Rojo oscuro':'#c2453b','Dorado':'#ffc94a','Morado':'#b25cff',
+  'Morado claro':'#b69be3','Morado, blanco al final':'#b25cff','Verde':'#5fd07a',
+  'Blanco':'#e8f2fa','Aqua':'#7fd4e8','Aqua oscuro':'#2ec4b6'
+};
+/* Cara del mob base: [textura, ancho tex, alto tex, u, v, ancho cara, alto cara] */
+const TEXBASE='https://cdn.jsdelivr.net/gh/PrismarineJS/minecraft-assets@master/data/1.21.4/entity/';
+const FACE={
+  coro_abisal:['guardian',64,64,16,16,12,12],
+  caballero_sepulcral:['skeleton/skeleton',64,32,8,8,8,8],
+  bruja:['witch',64,128,8,8,8,8],
+  conejo_asesino:['rabbit/brown',64,32,37,5,5,4],
+  cabra_gritona:['goat/goat',64,64,51,56,8,8],
+  herbola:['skeleton/bogged',64,32,8,8,8,8],
+  storm_rider:['zombie/drowned',64,64,8,8,8,8],
+  leviatan_de_sal:['guardian_elder',64,64,16,16,12,12],
+  piromante:['villager/villager',64,64,8,8,8,8],
+  quimera:['illager/ravager',128,128,16,16,16,16],
+  mimic:['cow/cow',64,32,6,6,8,8],
+  cazador:['piglin/piglin_brute',64,64,8,8,8,8],
+  aragon:['spider/spider',64,32,40,12,8,8],
+  rabby:['zombie/zombie',64,64,8,8,8,8],
+  darkness:['enderman/enderman',64,32,8,8,8,8]
+};
 (function(){
-  const elc=e=>e==='Agua'?'var(--azure)':e==='Viento'?'#e8f2fa':'var(--gold)';
+  const pc=(n,d)=>(d<=0?0:(n/d*100)).toFixed(3)+'%';
+  const faceStyle=f=>!f?'':
+    'background-image:url('+TEXBASE+f[0]+'.png);'+
+    'background-size:'+pc(f[1],f[5])+' '+pc(f[2],f[6])+';'+
+    'background-position:'+pc(f[3],f[1]-f[5])+' '+pc(f[4],f[2]-f[6])+';';
   const tot=AN.reduce((a,x)=>a+x.ab,0);
   document.getElementById('an-tiles').innerHTML=
     [['Anomalías',AN.length,'jefes'],['Habilidades',tot,'en total'],['Fases',3,'por jefe'],
      ['Vida','1300–2600','según el jefe']]
     .map(([k,v,s])=>'<div class="tile"><span class="k">'+k+'</span><span class="v">'+v+' <small>'+s+'</small></span></div>').join('');
 
-  document.getElementById('cards-anomalies').innerHTML=AN.map(a=>
-    '<details class="ccard" style="--tier:'+a.c+'">'+
+  document.getElementById('fac-key').innerHTML=Object.keys(FAC).map(k=>
+    '<span class="q"><span class="qd" style="background:'+FAC[k].c+'"></span>'+FAC[k].n+'</span>').join('');
+
+  document.getElementById('cards-anomalies').innerHTML=AN.map(a=>{
+    const fa=FAC[a.fac], apagada=a.glow==='Ninguno', gc=GLOWC[a.glow]||'#8fa6bd';
+    return '<details class="ccard" style="--tier:'+a.c+'">'+
       '<summary><div class="ccard-top">'+
-        '<div class="ccard-title"><span class="nm">'+a.n+'</span>'+
+        '<div class="ccard-title">'+
+          '<span class="anom-id">'+
+            '<span class="mface'+(apagada?' dim':'')+'" style="'+faceStyle(FACE[a.id])+'--glow:'+gc+'" '+
+              'role="img" aria-label="Cara del mob de '+a.n+'"></span>'+
+            '<span class="nm">'+a.n+'</span>'+
+          '</span>'+
           '<span class="rcount"><b>'+a.ab+'</b><span>hab.</span></span></div>'+
         '<p class="fine" style="margin:0">'+a.tag+'</p>'+
         '<div class="ccard-meta">'+
-          '<span class="badge">'+a.el+'</span>'+
+          '<span class="badge fac" style="--fac:'+fa.c+'">'+fa.n+'</span>'+
           '<span class="keychip'+(a.glow==='Ninguno'?'':' has')+'">Brillo: '+a.glow+'</span>'+
           '<span class="keychip">'+a.hp.toLocaleString('es-ES')+' vida</span>'+
           '<span class="expand"></span>'+
@@ -992,7 +1056,8 @@ const AN=[
         (a.warn?'<div class="flag">'+a.warn+'</div>':'')+
         a.ph.map(([f,l])=>'<div><h3 style="margin-top:4px">Fase '+f+'</h3><p class="inline">'+l+'</p></div>').join('')+
       '</div>'+
-    '</details>').join('');
+    '</details>';
+  }).join('');
 })();
 </script>
 </body>
