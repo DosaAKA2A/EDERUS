@@ -482,7 +482,7 @@
   <div class="panel" id="p-shops" role="tabpanel" hidden>
     <section>
       <div class="sec-h"><span class="sec-n">EconomyShopGUI</span><h2>Tienda de economía (dinero)</h2></div>
-      <p class="fine">La tienda tiene <strong>14 categorías y 268 artículos</strong>, y se parte en dos mitades que conviene no confundir: <strong>tres categorías te compran material a ti</strong> (ahí entra el dinero) y las <strong>once restantes solo te venden</strong> (ahí sale). Abajo van separadas.</p>
+      <p class="fine">La tienda tiene <strong>13 categorías y 251 artículos</strong>, y se parte en dos mitades que conviene no confundir: <strong>tres categorías te compran material a ti</strong> (ahí entra el dinero) y las <strong>once restantes solo te venden</strong> (ahí sale). Abajo van separadas.</p>
 
       <div class="shopblock gain">
         <div class="blockhead">
@@ -499,9 +499,9 @@
         <div class="blockhead">
           <span class="blocktag">Compras</span>
           <h3>Lo que puedes comprar</h3>
-          <span class="blocksum">11 categorías</span>
+          <span class="blocksum">10 categorías</span>
         </div>
-        <p class="fine">Aquí solo se paga: es donde se retira el dinero de la economía. Cada tarjeta es una categoría real del menú, con cuántos artículos tiene y una muestra de precios (del más barato al más caro). No están los 268 artículos, solo las referencias que sitúan cada categoría.</p>
+        <p class="fine">Aquí solo se paga: es donde se retira el dinero de la economía. Cada tarjeta es una categoría real del menú, con cuántos artículos tiene y una muestra de precios (del más barato al más caro). No están los 251 artículos, solo las referencias que sitúan cada categoría.</p>
         <div class="shopgrid" id="sinks-shop"></div>
         <p class="fine">Los precios de Herrería son por pieza. Un <strong>set completo de netherita</strong> cuesta 96.800 y uno de <strong>diamante</strong>, 16.800.</p>
       </div>
@@ -798,7 +798,7 @@ const ECON={
   'MobDrops':[['Cráneo de wither skeleton',600,32,'wither_skeleton_skull'],['Lágrima de ghast',300,64,'ghast_tear'],['Membrana de fantasma',200,64,'phantom_membrane'],['Vara de blaze',100,128,'blaze_rod'],['Perla de ender',80,128,'ender_pearl'],['Crema de magma',80,128,'magma_cream'],['Bola de slime',60,128,'slime_ball'],['Pólvora',45,192,'gunpowder'],['Ojo de araña',15,256,'spider_eye'],['Cuero',15,256,'leather'],['Hueso',12,256,'bone'],['Cuerda',12,256,'string'],['Azúcar',10,256,'sugar'],['Carne podrida',8,256,'rotten_flesh'],['Pluma',8,256,'feather'],['Huevo',8,256,'egg']],
   'Maderas':[['Troncos',15,384,'oak_log'],['Retoños',5,128,'oak_sapling']],
 };
-// Compra: las 11 categorías que solo venden. n = artículos de la categoría; filas = precios representativos.
+// Compra: las 10 categorías que solo venden. n = artículos de la categoría; filas = precios representativos.
 const SINKS={
   'Bloques':{n:24,rows:[['Adoquín',8,'cobblestone'],['Piedra',15,'stone'],['Micelio',100,'mycelium'],['Obsidiana',200,'obsidian']]},
   'Bloques Modernos':{n:24,rows:[['Terracotas (todos los colores)',20,'terracotta'],['Concretos (todos los colores)',25,'white_concrete']]},
@@ -808,7 +808,7 @@ const SINKS={
   'Cultivos':{n:16,rows:[['Semillas',10,'wheat_seeds'],['Caña de azúcar',25,'sugar_cane'],['Verruga del Nether',60,'nether_wart'],['Fruta de chorus',100,'chorus_fruit']]},
   'Items Marinos':{n:16,rows:[['Pastos marinos',15,'seagrass'],['Prismarina',40,'prismarine_shard'],['Corazón del mar',2000,'heart_of_the_sea'],['Conducto',5000,'conduit']]},
   'Flora':{n:16,rows:[['Flores','10–30','poppy'],['Retoño',25,'oak_sapling'],['Bloque de musgo',40,'moss_block']]},
-  'Plantillas':{n:17,rows:[['Adornos comunes (Sentry, Dune, Coast, Wild)',6000,'dune_armor_trim_smithing_template'],['Plantilla de mejora a netherita',6000,'netherite_upgrade_smithing_template'],['Adornos poco comunes (Eye, Snout, Rib, Spire, Tide)',12000,'rib_armor_trim_smithing_template'],['Adornos raros (Ward, Vex, Wayfinder, Shaper, Raiser, Host)',25000,'ward_armor_trim_smithing_template'],['Adorno Silence (único)',100000,'silence_armor_trim_smithing_template']]},
+  
   'Herramientas':{n:18,rows:[['Pala de madera',15,'wooden_shovel'],['Pico de piedra',135,'stone_pickaxe'],['Pico de hierro',1050,'iron_pickaxe'],['Pico de diamante',2100,'diamond_pickaxe'],['Pico de netherita',22100,'netherite_pickaxe']]},
   'Herrería':{n:36,rows:[['Armadura de cuero, por pieza','40–80','leather_chestplate'],['Espada de diamante',1400,'diamond_sword'],['Armadura de hierro, por pieza','1.400–2.800','iron_chestplate'],['Armadura de diamante, por pieza','2.800–5.600','diamond_chestplate'],['Espada de netherita',21400,'netherite_sword'],['Armadura de netherita, por pieza','22.800–25.600','netherite_chestplate']]},
 };
