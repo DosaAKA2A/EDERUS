@@ -135,13 +135,27 @@
   /* Tiendas: filas de precio, sin scroll */
   .shopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px}
   .shopcard{background:var(--panel);border:1px solid var(--rule);border-radius:9px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
-  .shopcard h4{margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between}
-  .shopcard h4 span{color:var(--muted);font-weight:600}
+  .shopcard h4{margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between;gap:8px}
+  .shopcard h4 span{color:var(--muted);font-weight:600;text-align:right;white-space:nowrap}
   .prow{display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid var(--rule)}
   .prow:last-child{border-bottom:none}
   .prow .pn{flex:1;font-size:12.5px}
   .prow .pp{font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink)}
   .prow.sink .pp{color:var(--warn)}
+  .prow.gainrow .pp{color:var(--pos)}
+  /* Iconos de item (texturas 16x16 de Minecraft) */
+  .prow.wico{align-items:center;gap:9px}
+  .ico{width:22px;height:22px;flex:none;object-fit:contain;image-rendering:crisp-edges;image-rendering:pixelated}
+  /* Tiendas: bloque de venta (ganas) frente a bloque de compra (gastas) */
+  .shopblock{--sh:var(--accent);border:1px solid var(--rule);border-left:3px solid var(--sh);border-radius:0 10px 10px 0;padding:14px 16px;display:flex;flex-direction:column;gap:11px;background:color-mix(in srgb,var(--sh) 5%,var(--paper))}
+  .shopblock.gain{--sh:var(--pos)}
+  .shopblock.spend{--sh:var(--warn)}
+  .blockhead{display:flex;flex-wrap:wrap;align-items:center;gap:7px 11px}
+  .blockhead h3{margin:0;font-size:15.5px;font-weight:700;letter-spacing:-.01em;text-transform:none;color:var(--ink);font-family:var(--font-display)}
+  .blocktag{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:var(--sh);border:1px solid color-mix(in srgb,var(--sh) 42%,transparent);background:color-mix(in srgb,var(--sh) 12%,var(--paper))}
+  .blockhead .blocksum{font-size:12px;color:var(--muted);margin-left:auto;white-space:nowrap}
+  .shopblock .shopcard{background:var(--panel)}
+  .shopblock .shopcard h4{color:var(--sh)}
   .mobcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 18px}
   .mobcgrid .prow .pp{color:var(--mc,var(--bronze))}
 
@@ -448,13 +462,29 @@
   <div class="panel" id="p-shops" role="tabpanel" hidden>
     <section>
       <div class="sec-h"><span class="sec-n">EconomyShopGUI</span><h2>Tienda de economía (dinero)</h2></div>
-      <p class="fine">La tienda tiene <strong>14 categorías y 268 artículos</strong>, y la mayoría son de <strong>solo compra</strong>. Únicamente tres categorías te compran cosas a ti: <strong>Minerales</strong>, <strong>MobDrops</strong> y <strong>Maderas</strong>. Todo lo demás está ahí para gastar dinero, no para generarlo.</p>
-      <h3>Venta y topes diarios</h3>
-      <p class="fine">La regla es simple: <strong>lo que puede producir una máquina vale poco y tiene tope diario</strong>; lo que exige jugar vale mucho y no tiene tope. Cada artículo automatizable trae un máximo de unidades que <strong>cada jugador</strong> puede venderle a la tienda al día, y ese contador se repone cada 24 horas. Así una granja de hierro o una de pólvora deja de imprimir dinero sin límite. El <strong>diamante</strong> y la <strong>netherita</strong> no llevan tope porque no se pueden farmear con máquinas: hay que bajar a minar.</p>
-      <div class="shopgrid" id="econ-shop"></div>
-      <h3>Compra (sumideros de dinero)</h3>
-      <p class="fine">Una muestra de los precios de compra más representativos. Aquí es donde se retira el dinero de la economía.</p>
-      <div class="shopgrid" id="sinks-shop"></div>
+      <p class="fine">La tienda tiene <strong>14 categorías y 268 artículos</strong>, y se parte en dos mitades que conviene no confundir: <strong>tres categorías te compran material a ti</strong> (ahí entra el dinero) y las <strong>once restantes solo te venden</strong> (ahí sale). Abajo van separadas.</p>
+
+      <div class="shopblock gain">
+        <div class="blockhead">
+          <span class="blocktag">Ganas dinero</span>
+          <h3>Lo que la tienda te compra</h3>
+          <span class="blocksum">3 categorías</span>
+        </div>
+        <p class="fine">Llevas el material, la tienda te lo paga. Son las únicas tres categorías que generan dinero: <strong>Minerales</strong>, <strong>MobDrops</strong> y <strong>Maderas</strong>.</p>
+        <p class="fine">La regla es simple: <strong>lo que puede producir una máquina vale poco y tiene tope diario</strong>; lo que exige jugar vale mucho y no tiene tope. Cada artículo automatizable trae un máximo de unidades que <strong>cada jugador</strong> puede venderle a la tienda al día, y ese contador se repone cada 24 horas. Así una granja de hierro o una de pólvora deja de imprimir dinero sin límite. El <strong>diamante</strong> y la <strong>netherita</strong> no llevan tope porque no se pueden farmear con máquinas: hay que bajar a minar.</p>
+        <div class="shopgrid" id="econ-shop"></div>
+      </div>
+
+      <div class="shopblock spend">
+        <div class="blockhead">
+          <span class="blocktag">Gastas dinero</span>
+          <h3>Lo que puedes comprar</h3>
+          <span class="blocksum">11 categorías</span>
+        </div>
+        <p class="fine">Aquí solo se paga: es donde se retira el dinero de la economía. Cada tarjeta es una categoría real del menú, con cuántos artículos tiene y una muestra de precios (del más barato al más caro). No están los 268 artículos, solo las referencias que sitúan cada categoría.</p>
+        <div class="shopgrid" id="sinks-shop"></div>
+        <p class="fine">Los precios de Herrería son por pieza. Un <strong>set completo de netherita</strong> cuesta 96.800 y uno de <strong>diamante</strong>, 16.800.</p>
+      </div>
     </section>
     <section>
       <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>Tiendas de MobCoins</h2></div>
@@ -729,19 +759,38 @@ const PLAY_KITS={butcher:50,destroyer:75,cosmonaut:90,diablo:100};
 })();
 
 /* TIENDAS */
-// Venta: [nombre, precio por unidad, tope de unidades por jugador y día (null = sin tope)]
-const ECON={
-  'Minerales':[['Carbón',25,384],['Hierro en bruto',45,256],['Oro en bruto',55,192],['Lingote de hierro',60,256],['Lingote de oro',70,192],['Lapislázuli',60,256],['Esmeralda',150,128],['Diamante',500,null],['Netherita',5000,null]],
-  'MobDrops':[['Cráneo de wither skeleton',600,32],['Lágrima de ghast',300,64],['Membrana de fantasma',200,64],['Vara de blaze',100,128],['Perla de ender',80,128],['Crema de magma',80,128],['Bola de slime',60,128],['Pólvora',45,192],['Ojo de araña',15,256],['Cuero',15,256],['Hueso',12,256],['Cuerda',12,256],['Azúcar',10,256],['Carne podrida',8,256],['Pluma',8,256],['Huevo',8,256]],
-  'Maderas':[['Troncos',15,384],['Retoños',5,128]],
+// Iconos: texturas 16x16 de minecraft-assets. Cadena de respaldo items/ -> blocks/ -> blocks/_top -> ocultar.
+const ICO_BASE='https://cdn.jsdelivr.net/gh/PrismarineJS/minecraft-assets@master/data/1.21.4/';
+function icoNext(img){
+  const list=img.dataset.ico.split('|');
+  const i=(+img.dataset.i||0)+1;
+  if(i<list.length){img.dataset.i=i;img.src=ICO_BASE+list[i];}
+  else{img.onerror=null;img.style.visibility='hidden';}
+}
+const ico=id=>{
+  if(!id)return '<span class="ico" aria-hidden="true"></span>';
+  const list=['items/'+id+'.png','blocks/'+id+'.png','blocks/'+id+'_top.png'];
+  return '<img class="ico" src="'+ICO_BASE+list[0]+'" data-ico="'+list.join('|')+'" data-i="0" onerror="icoNext(this)" alt="" aria-hidden="true" decoding="async" width="22" height="22">';
 };
-// Compra: muestra de las 14 categorías y 268 artículos de la tienda
+// Venta: [nombre, precio por unidad, tope de unidades por jugador y día (null = sin tope), id de Minecraft]
+const ECON={
+  'Minerales':[['Carbón',25,384,'coal'],['Hierro en bruto',45,256,'raw_iron'],['Oro en bruto',55,192,'raw_gold'],['Lingote de hierro',60,256,'iron_ingot'],['Lingote de oro',70,192,'gold_ingot'],['Lapislázuli',60,256,'lapis_lazuli'],['Esmeralda',150,128,'emerald'],['Diamante',500,null,'diamond'],['Netherita',5000,null,'netherite_ingot']],
+  'MobDrops':[['Cráneo de wither skeleton',600,32,'wither_skeleton_skull'],['Lágrima de ghast',300,64,'ghast_tear'],['Membrana de fantasma',200,64,'phantom_membrane'],['Vara de blaze',100,128,'blaze_rod'],['Perla de ender',80,128,'ender_pearl'],['Crema de magma',80,128,'magma_cream'],['Bola de slime',60,128,'slime_ball'],['Pólvora',45,192,'gunpowder'],['Ojo de araña',15,256,'spider_eye'],['Cuero',15,256,'leather'],['Hueso',12,256,'bone'],['Cuerda',12,256,'string'],['Azúcar',10,256,'sugar'],['Carne podrida',8,256,'rotten_flesh'],['Pluma',8,256,'feather'],['Huevo',8,256,'egg']],
+  'Maderas':[['Troncos',15,384,'oak_log'],['Retoños',5,128,'oak_sapling']],
+};
+// Compra: las 11 categorías que solo venden. n = artículos de la categoría; filas = precios representativos.
 const SINKS={
-  'Armaduras':[['Netherita, por pieza','22.800–25.600'],['Netherita, set completo',96800],['Diamante, por pieza','2.800–5.600'],['Diamante, set completo',16800]],
-  'Herramientas y armas':[['Pico de netherita',22100],['Espada de netherita',21400],['Pico de diamante',2100]],
-  'Utilidad':[['Manzana dorada encantada',9000],['Conducto',5000],['Corazón del mar',2000],['Mesa de encantamientos',800],['Yunque',600]],
-  'Herrería':[['Adorno Silence (único)',100000],['Adornos raros (Ward, Vex, Wayfinder, Shaper, Raiser, Host)',25000],['Adornos poco comunes (Eye, Snout, Rib, Spire, Tide)',12000],['Adornos comunes (Sentry, Dune, Coast, Wild)',6000],['Plantilla de mejora a netherita',6000]],
-  'Bloques':[['Obsidiana',200],['Micelio',100],['Piedra',15],['Adoquín',8]],
+  'Bloques':{n:24,rows:[['Adoquín',8,'cobblestone'],['Piedra',15,'stone'],['Micelio',100,'mycelium'],['Obsidiana',200,'obsidian']]},
+  'Bloques Modernos':{n:24,rows:[['Terracotas (todos los colores)',20,'terracotta'],['Concretos (todos los colores)',25,'white_concrete']]},
+  'Decoración':{n:24,rows:[['Antorcha',5,'torch'],['Linterna',40,'lantern'],['Campana',200,'bell'],['Piedra imantada',400,'lodestone']]},
+  'Variedad':{n:24,rows:[['Botón',10,'oak_planks'],['Cofre',40,'barrel'],['Yunque',600,'anvil'],['Mesa de encantamientos',800,'enchanting_table']]},
+  'Comida':{n:15,rows:[['Bayas',3,'sweet_berries'],['Pan',10,'bread'],['Manzana dorada',300,'golden_apple'],['Manzana dorada encantada',9000,'golden_apple']]},
+  'Cultivos':{n:16,rows:[['Semillas',10,'wheat_seeds'],['Caña de azúcar',25,'sugar_cane'],['Verruga del Nether',60,'nether_wart'],['Fruta de chorus',100,'chorus_fruit']]},
+  'Items Marinos':{n:16,rows:[['Pastos marinos',15,'seagrass'],['Prismarina',40,'prismarine_shard'],['Corazón del mar',2000,'heart_of_the_sea'],['Conducto',5000,'conduit']]},
+  'Flora':{n:16,rows:[['Flores','10–30','poppy'],['Retoño',25,'oak_sapling'],['Bloque de musgo',40,'moss_block']]},
+  'Plantillas':{n:17,rows:[['Adornos comunes (Sentry, Dune, Coast, Wild)',6000,'dune_armor_trim_smithing_template'],['Plantilla de mejora a netherita',6000,'netherite_upgrade_smithing_template'],['Adornos poco comunes (Eye, Snout, Rib, Spire, Tide)',12000,'rib_armor_trim_smithing_template'],['Adornos raros (Ward, Vex, Wayfinder, Shaper, Raiser, Host)',25000,'ward_armor_trim_smithing_template'],['Adorno Silence (único)',100000,'silence_armor_trim_smithing_template']]},
+  'Herramientas':{n:18,rows:[['Pala de madera',15,'wooden_shovel'],['Pico de piedra',135,'stone_pickaxe'],['Pico de hierro',1050,'iron_pickaxe'],['Pico de diamante',2100,'diamond_pickaxe'],['Pico de netherita',22100,'netherite_pickaxe']]},
+  'Herrería':{n:36,rows:[['Armadura de cuero, por pieza','40–80','leather_chestplate'],['Espada de diamante',1400,'diamond_sword'],['Armadura de hierro, por pieza','1.400–2.800','iron_chestplate'],['Armadura de diamante, por pieza','2.800–5.600','diamond_chestplate'],['Espada de netherita',21400,'netherite_sword'],['Armadura de netherita, por pieza','22.800–25.600','netherite_chestplate']]},
 };
 // Lo que rinde matar cada mob (probabilidad x cantidad media, de mobcoins.yml)
 const RATES={
@@ -749,19 +798,20 @@ const RATES={
   'Mobs fuertes':[['Ravager',9],['Evocador',5.4],['Shulker',3],['Wither esqueleto',1.8],['Piglin bruto',1.8]],
   'Mobs corrientes':[['Blaze / Enderman / Ghast',0.84],['Magma cube',0.6],['Araña de cueva / Ahogado',0.5],['Zombi / Esqueleto / Creeper',0.32],['Slime / Araña / Bruja',0.18]],
 };
-// Mercado del Día: [nombre, precio, stock diario]
-const DAILY=[['Cubeta de leche',25,24],['Redstone x32',90,20],['Libros x8',120,20],['Campana',150,12],['Linterna marina x6',170,16],['Cohetes x64',220,16],['Marco luminoso x8',230,12],['Micelio x8',250,10],['Ojo de ender x8',300,12],['Tolva x6',350,12],['Libro Simple aleatorio',350,8],['Manzana dorada x4',380,12],['Yunque x3',420,10],['Cristal del End x4',450,8],['Gema de 32 Almas',480,8],['Llave Vote',500,10],['Mesa de encantamientos',520,8],['Polvo Estelar (Supremo)',550,6],['Llave Mascotas',600,8],['Pergamino Negro',650,5],['Tridente',700,3],['Libro Único aleatorio',720,5],['Libro de Reparación',780,4],['Estrella del Nether',800,3],['Tótem de la inmortalidad',850,4],['Manzana dorada encantada',900,2],['Libro Elite aleatorio',1500,3]];
-// La Bóveda: [nombre, precio, stock mensual]
-const VAULT=[['Elytra',3500,4],['Llave Spawner',4000,6],['Llave KOTH',5000,5],['Llave de Mazmorra',6000,4],['Libro Supremo aleatorio',7000,3],['Bendición de Dios',8000,3],['Llave Legendaria',9000,5],['Ampliador de Slots',10000,3],['Libro Legendario aleatorio',12000,4],['Llave Épica',15000,3],['Invocador del Dios Dragón',20000,3],['Libro Ancestral aleatorio',25000,2]];
+// Mercado del Día: [nombre, precio, stock diario, id de Minecraft]
+const DAILY=[['Cubeta de leche',25,24,'milk_bucket'],['Redstone x32',90,20,'redstone'],['Libros x8',120,20,'book'],['Campana',150,12,'bell'],['Linterna marina x6',170,16,'sea_lantern'],['Cohetes x64',220,16,'firework_rocket'],['Marco luminoso x8',230,12,'glow_item_frame'],['Micelio x8',250,10,'mycelium'],['Ojo de ender x8',300,12,'ender_eye'],['Tolva x6',350,12,'hopper'],['Libro Simple aleatorio',350,8,'enchanted_book'],['Manzana dorada x4',380,12,'golden_apple'],['Yunque x3',420,10,'anvil'],['Cristal del End x4',450,8,'end_crystal'],['Gema de 32 Almas',480,8,'amethyst_shard'],['Llave Vote',500,10,'tripwire_hook'],['Mesa de encantamientos',520,8,'enchanting_table'],['Polvo Estelar (Supremo)',550,6,'glowstone_dust'],['Llave Mascotas',600,8,'tripwire_hook'],['Pergamino Negro',650,5,'writable_book'],['Tridente',700,3,'trident'],['Libro Único aleatorio',720,5,'enchanted_book'],['Libro de Reparación',780,4,'enchanted_book'],['Estrella del Nether',800,3,'nether_star'],['Tótem de la inmortalidad',850,4,'totem_of_undying'],['Manzana dorada encantada',900,2,'golden_apple'],['Libro Elite aleatorio',1500,3,'enchanted_book']];
+// La Bóveda: [nombre, precio, stock mensual, id de Minecraft]
+const VAULT=[['Elytra',3500,4,'elytra'],['Llave Spawner',4000,6,'trial_key'],['Llave KOTH',5000,5,'trial_key'],['Llave de Mazmorra',6000,4,'trial_key'],['Libro Supremo aleatorio',7000,3,'enchanted_book'],['Bendición de Dios',8000,3,'name_tag'],['Llave Legendaria',9000,5,'trial_key'],['Ampliador de Slots',10000,3,'paper'],['Libro Legendario aleatorio',12000,4,'enchanted_book'],['Llave Épica',15000,3,'trial_key'],['Invocador del Dios Dragón',20000,3,'echo_shard'],['Libro Ancestral aleatorio',25000,2,'enchanted_book']];
 (function(){
   const numFmt=v=>typeof v==='number'?fmt(v):v;
   const prow=(n,p,cls)=>'<div class="prow'+(cls||'')+'"><span class="pn">'+n+'</span><span class="pp">'+numFmt(p)+'</span></div>';
-  const srow=(n,p,s)=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+fmt(p)+' <span style="color:var(--muted);font-weight:400">· '+s+'</span></span></div>';
-  const erow=(n,p,cap)=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+numFmt(p)+' <span style="color:var(--muted);font-weight:400">· '+(cap?fmt(cap)+'/día':'sin tope')+'</span></span></div>';
+  const irow=(n,p,id,cls)=>'<div class="prow wico'+(cls||'')+'">'+ico(id)+'<span class="pn">'+n+'</span><span class="pp">'+numFmt(p)+'</span></div>';
+  const srow=(n,p,s,id)=>'<div class="prow wico">'+ico(id)+'<span class="pn">'+n+'</span><span class="pp">'+fmt(p)+' <span style="color:var(--muted);font-weight:400">· '+s+'</span></span></div>';
+  const erow=(n,p,cap,id)=>'<div class="prow wico gainrow">'+ico(id)+'<span class="pn">'+n+'</span><span class="pp">'+numFmt(p)+' <span style="color:var(--muted);font-weight:400">· '+(cap?fmt(cap)+'/día':'sin tope')+'</span></span></div>';
   document.getElementById('econ-shop').innerHTML=Object.entries(ECON).map(([cat,rows])=>
-    '<div class="shopcard"><h4>'+cat+'<span>venta · tope</span></h4>'+rows.map(x=>erow(...x)).join('')+'</div>').join('');
-  document.getElementById('sinks-shop').innerHTML=Object.entries(SINKS).map(([cat,rows])=>
-    '<div class="shopcard"><h4>'+cat+'<span>coste</span></h4>'+rows.map(([n,p])=>prow(n,p,' sink')).join('')+'</div>').join('');
+    '<div class="shopcard"><h4>'+cat+'<span>te pagan · tope</span></h4>'+rows.map(x=>erow(...x)).join('')+'</div>').join('');
+  document.getElementById('sinks-shop').innerHTML=Object.entries(SINKS).map(([cat,d])=>
+    '<div class="shopcard"><h4>'+cat+'<span>'+d.n+' art. · cuesta</span></h4>'+d.rows.map(([n,p,id])=>irow(n,p,id,' sink')).join('')+'</div>').join('');
   document.getElementById('rates-shop').innerHTML=Object.entries(RATES).map(([cat,rows])=>
     '<div class="shopcard"><h4>'+cat+'<span>por muerte</span></h4>'+rows.map(([n,p])=>prow(n,p)).join('')+'</div>').join('');
   const half=Math.ceil(DAILY.length/2);
