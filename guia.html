@@ -261,6 +261,7 @@
     <button class="tab" role="tab" aria-selected="false" data-panel="p-anomalies">Anomalías</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-books">Libros</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-kits">Kits</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-mobcoins">MobCoins</button>
     <button class="tab" role="tab" aria-selected="false" data-panel="p-shops">Tiendas</button>
   </div>
 
@@ -496,6 +497,88 @@
     </section>
   </div>
 
+  <div class="panel" id="p-mobcoins" role="tabpanel" hidden>
+    <section>
+      <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>De dónde salen las MobCoins</h2></div>
+      <p class="fine">Las MobCoins son la segunda moneda del servidor y la única que no se puede fabricar: no las paga ningún trabajo, no las genera ninguna máquina y no se compran con dinero. Salen de matar mobs y de completar misiones, y en los dos casos hay que estar jugando. Por eso son la moneda con la que se pagan las llaves top, los libros de clase alta y los objetos que no están a la venta en ningún otro sitio.</p>
+      <div class="tiles" id="mc-tiles"></div>
+      <p class="fine">Todo lo que hay en esta pestaña sale de la configuración real del servidor: <strong>mobcoins.yml</strong> (lo que suelta cada mob), <strong>settings.yml</strong> (las reglas de la moneda), los ocho cofres de ExcellentCrates, la pista de <strong>/playtime</strong> y la configuración de votos.</p>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Mecánica</span><h2>Cómo caen, cómo se cobran y cómo se pierden</h2></div>
+      <p class="fine">Conviene entender las reglas antes que las cifras, porque son ellas las que ponen el techo a lo que se puede ganar por hora.</p>
+      <ul>
+        <li><strong>Caen al suelo como un objeto</strong> (un girasol) cuando matas al mob, no van directas al saldo. Hay que pasar por encima a recogerlas; en cuanto las recoges se abonan solas.</li>
+        <li><strong>Las tolvas no las recogen.</strong> Una granja que mata sola y embudo abajo no te da ni una moneda: el sistema exige que estés ahí. Es la decisión que sostiene todo lo demás.</li>
+        <li><strong>El Saqueo cuenta.</strong> El multiplicador por Saqueo está activo, así que la espada con la que matas cambia lo que ganas por hora.</li>
+        <li><strong>Al morir pierdes el 4 % del saldo.</strong> Con 25.000 ahorrados, cada muerte cuesta 1.000 MobCoins. Cuanto más ahorras, más caro te sale morir.</li>
+        <li><strong>Empiezas en 0 y no hay tope diario</strong>, ni interés, ni bonificación por rango. Todos los mundos cuentan.</li>
+        <li><strong>Se pueden pasar entre jugadores</strong>: <code>/mobcoins withdraw</code> convierte el saldo en un objeto que otro jugador puede recoger y canjear.</li>
+      </ul>
+      <div class="callout">Que las tolvas queden fuera es lo que impide que una granja de mobs automática imprima moneda premium mientras nadie mira. El resto de la economía (dinero, EXP, drops) sí se automatiza; las MobCoins no.</div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Las vías</span><h2>Todas las formas de conseguirlas</h2></div>
+      <p class="fine">Son ocho familias —mobs, jefes, mazmorra, misiones, cofres, votos, <code>/playtime</code> y comercio entre jugadores— y aquí van desglosadas cofre a cofre. Solo las dos primeras filas son un ritmo sostenido; el resto son picos o goteo. La columna de valor esperado convierte los premios aleatorios en su media real, para poder compararlos entre sí.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Vía</th><th class="num">Cuánto da</th><th class="num">Valor esperado</th><th>Qué hace falta</th></tr></thead>
+          <tbody id="rows-mcways"></tbody>
+        </table>
+      </div>
+      <p class="fine">Las llaves dan MobCoins como uno más de sus premios, nunca garantizado. El valor esperado es lo que rinde una llave de media, contando la probabilidad de que salga justo ese premio: sirve para comparar, no para prometer.</p>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Misiones</span><h2>La vía más rentable, y la que se agota</h2></div>
+      <p class="fine">Las misiones de los NPC son, con diferencia, la mayor fuente de MobCoins del servidor: <strong>36.655 MobCoins</strong> repartidos en las cadenas de oficio, que <strong>solo se cobran una vez por jugador</strong>, más <strong>847 al día</strong> si completas las treinta diarias. Para comparar: las cadenas completas equivalen a unas 245 horas de granja, y son más MobCoins de los que cuesta el artículo más caro de la Bóveda.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Cadena</th><th class="num">Misiones</th><th class="num">MobCoins</th><th>Se repite</th></tr></thead>
+          <tbody id="rows-mcquests"></tbody>
+        </table>
+      </div>
+      <p class="fine">Cada cadena es una escalera: la primera misión paga 53 MobCoins y la vigésima 250, y hay que completarlas en orden. Las semanales pagan solo en dinero, no en MobCoins. Y el límite de misiones activas a la vez (una para todos, tres con Arcus, cinco con Khaos, siete con Zaros) es lo que impide encadenar las treinta diarias de golpe.</p>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Tarifa</span><h2>Lo que paga cada mob</h2></div>
+      <p class="fine"><strong id="mc-species">54</strong> especies sueltan MobCoins. Cada una tiene una probabilidad de soltarlas y un rango de cantidad; la cifra que se muestra es <strong>lo que rinde de media cada muerte</strong> (probabilidad por cantidad media), que es lo comparable. Un zombi paga 0,32: hacen falta unas tres muertes para una sola moneda.</p>
+      <div class="shopgrid" id="rates-full"></div>
+      <p class="fine">Los pasivos de granja (cerdo, vaca, oveja, pollo, conejo, peces) pagan 0,015 de media: <strong>una moneda cada 67 muertes</strong>. Están dentro por coherencia, no como fuente.</p>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Ritmo</span><h2>Cuánto se tarda de verdad</h2></div>
+      <p class="fine">El ritmo depende de cuántos mobs por hora consigas matar <em>y recoger</em>. Estos son los tres escenarios con los que se fijaron los precios de las dos tiendas.</p>
+      <div class="shopgrid" id="mc-scen"></div>
+      <p class="fine">Con esos tres ritmos, esto es lo que cuesta en horas de juego cada artículo de referencia. La columna del medio (granja de spawners, 150 por hora) es la que se usó como referencia al poner los precios.</p>
+      <div class="scroll">
+        <table class="data">
+          <thead><tr><th>Artículo</th><th class="num">Precio</th><th class="num">A pelo · 40/h</th><th class="num">Granja · 150/h</th><th class="num">Blazes · 300/h</th></tr></thead>
+          <tbody id="rows-mctime"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-h"><span class="sec-n">Diseño</span><h2>Por qué las cajas y la tienda están así</h2></div>
+      <p class="fine">Las cifras de arriba son las que sostienen cada decisión de precio y de stock:</p>
+      <ul>
+        <li><strong>El techo por hora es real, no teórico.</strong> Como las tolvas no recogen, nadie pasa de unos cientos de MobCoins por hora por mucho que optimice. Eso permite poner precios altos sin miedo a que una granja los deje en nada al día siguiente.</li>
+        <li><strong>El Mercado del Día cubre el gasto corriente</strong>: de 25 a 1.500 MobCoins, o sea de diez minutos a diez horas de juego. Es lo que se compra sin pensar mientras se ahorra para otra cosa.</li>
+        <li><strong>La Bóveda es la meta a un mes</strong>: de 3.500 a 25.000, entre un día y una semana larga de juego. Por eso cambia cada 30 días y no cada 24 horas: nadie ahorra 25.000 en un día.</li>
+        <li><strong>El stock es por servidor, no por jugador.</strong> Aunque todo se vendiera, la Bóveda retira como mucho 383.000 MobCoins al mes. Es el freno que impide que un jugador con reservas vacíe el catálogo entero.</li>
+        <li><strong>Las cajas nunca sustituyen al farmeo</strong>, solo lo acompañan: una llave Vote rinde 4 MobCoins de media y una Épica 96. Ni la mejor caja del servidor paga un artículo de la Bóveda.</li>
+        <li><strong>Los jefes pagan picos, no ritmo, y no se reciclan.</strong> El dragón deja 275 MobCoins, pero reinvocarlo cuesta cuatro cristales del End, que la propia tienda vende a 450: farmear dragones con monedas da pérdidas. No hay bucle infinito en ningún punto.</li>
+        <li><strong>Las misiones son la rampa de entrada, no la renta.</strong> Las cadenas de oficio dan mucho, pero se cobran una sola vez: sirven para que un jugador nuevo llegue a su primera compra grande sin pasar semanas farmeando. A partir de ahí, quien quiera seguir comprando tiene que volver a los mobs o a las diarias.</li>
+        <li><strong>Hay un sumidero pasivo</strong>: el 4 % que se pierde al morir crece con el ahorro, así que acumular indefinidamente tiene un coste.</li>
+      </ul>
+    </section>
+  </div>
+
   <div class="panel" id="p-shops" role="tabpanel" hidden>
     <section>
       <div class="sec-h"><span class="sec-n">EconomyShopGUI</span><h2>Tienda de economía (dinero)</h2></div>
@@ -527,10 +610,7 @@
       <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>Tiendas de MobCoins</h2></div>
       <p class="fine">Hay dos tiendas y funcionan distinto: una cambia cada día y es barata, la otra dura un mes y guarda lo mejor. Las dos tienen <strong>stock limitado para todo el servidor</strong>: cuando se agota una unidad, ya no está disponible para nadie hasta el siguiente refresco.</p>
 
-      <h3>Cuánto se tarda en ganar MobCoins</h3>
-      <p class="fine">Los precios están calculados sobre lo que rinde matar mobs. Estas son las cifras reales de la configuración:</p>
-      <div class="shopgrid" id="rates-shop"></div>
-      <p class="fine">Referencia usada para fijar precios: <strong>unos 150 MobCoins por hora</strong> con una granja de spawners decente. Un jugador sin granja hace 30-50 por hora; uno con granja de blazes o matando jefes, bastante más.</p>
+      <p class="fine">Los precios están anclados a lo que rinde matar mobs: la referencia son <strong>unos 150 MobCoins por hora</strong> con una granja de spawners y recogida a mano. En la pestaña <strong>MobCoins</strong> están las ocho vías para conseguirlas, la tarifa de cada mob y cuántas horas cuesta cada artículo de estas dos tiendas.</p>
 
       <h3>Mercado del Día — rota cada 24 horas</h3>
       <p class="fine">Un catálogo de <strong id="daily-count">27</strong> artículos comunes del que se muestran <strong>10 cada día</strong>, elegidos al azar. Consumibles, materiales, utilidad y objetos de encantamiento baratos. Precios de 25 a 1.500 MobCoins: de diez minutos a diez horas de juego.</p>
@@ -539,7 +619,7 @@
       <h3>La Bóveda — cambia cada 30 días</h3>
       <p class="fine">Doce artículos fijos y visibles todo el mes, para tener una meta a la que ahorrar. Aquí viven las llaves top, los libros de clase cumbre y los objetos que no se compran en ningún otro sitio. Precios de 3.500 a 25.000 MobCoins: de un día a una semana larga de juego.</p>
       <div class="shopgrid" id="vault-shop"></div>
-      <p class="fine">El stock mensual es deliberadamente corto: si todo se vendiera, la bóveda retiraría unos <strong>410.000 MobCoins</strong> de la economía cada mes. Los artículos estrella (el libro Ancestral, con dos unidades) se agotarán pronto y volverán el mes siguiente.</p>
+      <p class="fine">El stock mensual es deliberadamente corto: si todo se vendiera, la bóveda retiraría unos <strong>383.000 MobCoins</strong> de la economía cada mes. Los artículos estrella (el libro Ancestral, con dos unidades) se agotarán pronto y volverán el mes siguiente.</p>
     </section>
   </div>
 </div>
@@ -829,11 +909,13 @@ const SINKS={
   'Herramientas':{n:18,rows:[['Pala de madera',15,'wooden_shovel'],['Pico de piedra',135,'stone_pickaxe'],['Pico de hierro',1050,'iron_pickaxe'],['Pico de diamante',2100,'diamond_pickaxe'],['Pico de netherita',22100,'netherite_pickaxe']]},
   'Herrería':{n:12,rows:[['Espada de diamante',1400,'diamond_sword'],['Hacha de diamante',2100,'diamond_axe'],['Espada de netherita',21400,'netherite_sword'],['Hacha de netherita',22100,'netherite_axe']]},
 };
-// Lo que rinde matar cada mob (probabilidad x cantidad media, de mobcoins.yml)
+// Lo que rinde matar cada mob (probabilidad x cantidad media, de mobcoins.yml). 54 especies.
 const RATES={
-  'Jefes':[['Dragón del End',275],['Guardián de la Mazmorra',150],['Wither',112],['Warden',45],['Guardián anciano',12]],
-  'Mobs fuertes':[['Ravager',9],['Evocador',5.4],['Shulker',3],['Wither esqueleto',1.8],['Piglin bruto',1.8]],
-  'Mobs corrientes':[['Blaze / Enderman / Ghast',0.84],['Magma cube',0.6],['Araña de cueva / Ahogado',0.5],['Zombi / Esqueleto / Creeper',0.32],['Slime / Araña / Bruja',0.18]],
+  'Jefes':[['Dragón del End',275],['Guardián de la Mazmorra',150],['Wither',112],['Warden',45]],
+  'Élite':[['Dragón de mazmorra I',24.5],['Dragón de mazmorra II',12.5],['Guardián anciano',12.25],['Ravager',9],['Evocador / Ilusionista',5.4],['Shulker',3]],
+  'Nether y saqueadores':[['Esqueleto wither / Piglin bruto',1.8],['Blaze / Enderman / Ghast',0.84],['Fantasma / Vindicador / Guardián',0.84],['Cubo de magma / Hoglin / Zoglin',0.6],['Ahogado / Vex / Saqueador',0.5],['Araña de cueva / Endermite',0.5]],
+  'Comunes':[['Zombi / Esqueleto / Creeper',0.32],['Husk / Stray / Piglin zombificado',0.32],['Gólem de hierro',0.24],['Slime / Araña / Bruja / Lepisma',0.18]],
+  'Pasivos':[['Caballo / Lobo / Panda',0.1],['Aldeano / Camello / Abeja',0.1],['Cerdo / Vaca / Oveja / Pollo',0.015],['Conejo y peces',0.015]],
 };
 // Mercado del Día: [nombre, precio, stock diario, id de Minecraft]
 const DAILY=[['Cubeta de leche',25,24,'milk_bucket'],['Redstone x32',90,20,'redstone'],['Libros x8',120,20,'book'],['Campana',150,12,'bell'],['Linterna marina x6',170,16,'sea_lantern'],['Cohetes x64',220,16,'firework_rocket'],['Marco luminoso x8',230,12,'glow_item_frame'],['Micelio x8',250,10,'mycelium'],['Ojo de ender x8',300,12,'ender_eye'],['Tolva x6',350,12,'hopper'],['Libro Simple aleatorio',350,8,'enchanted_book'],['Manzana dorada x4',380,12,'golden_apple'],['Yunque x3',420,10,'anvil'],['Cristal del End x4',450,8,'end_crystal'],['Gema de 32 Almas',480,8,'amethyst_shard'],['Llave Vote',500,10,'tripwire_hook'],['Mesa de encantamientos',520,8,'enchanting_table'],['Polvo Estelar (Supremo)',550,6,'glowstone_dust'],['Llave Mascotas',600,8,'tripwire_hook'],['Pergamino Negro',650,5,'writable_book'],['Tridente',700,3,'trident'],['Libro Único aleatorio',720,5,'enchanted_book'],['Libro de Reparación',780,4,'enchanted_book'],['Estrella del Nether',800,3,'nether_star'],['Tótem de la inmortalidad',850,4,'totem_of_undying'],['Manzana dorada encantada',900,2,'golden_apple'],['Libro Elite aleatorio',1500,3,'enchanted_book']];
@@ -849,7 +931,7 @@ const VAULT=[['Elytra',3500,4,'elytra'],['Llave Spawner',4000,6,'trial_key'],['L
     '<div class="shopcard"><h4>'+cat+'<span>te pagan · tope</span></h4>'+rows.map(x=>erow(...x)).join('')+'</div>').join('');
   document.getElementById('sinks-shop').innerHTML=Object.entries(SINKS).map(([cat,d])=>
     '<div class="shopcard"><h4>'+cat+'<span>'+d.n+' art. · cuesta</span></h4>'+d.rows.map(([n,p,id])=>irow(n,p,id,' sink')).join('')+'</div>').join('');
-  document.getElementById('rates-shop').innerHTML=Object.entries(RATES).map(([cat,rows])=>
+  document.getElementById('rates-full').innerHTML=Object.entries(RATES).map(([cat,rows])=>
     '<div class="shopcard"><h4>'+cat+'<span>por muerte</span></h4>'+rows.map(([n,p])=>prow(n,p)).join('')+'</div>').join('');
   const half=Math.ceil(DAILY.length/2);
   document.getElementById('daily-shop').innerHTML=
@@ -1075,6 +1157,73 @@ const FACE={
       '</div>'+
     '</details>';
   }).join('');
+})();
+</script>
+
+<script>
+/* MOBCOINS: vias de obtencion y coste en tiempo */
+const MC_TILES=[
+  ['Por mob común','0,32','MobCoins de media'],
+  ['Ritmo de referencia','150','por hora con granja'],
+  ['Especies que pagan','54','de 0,015 a 275'],
+  ['En misiones','36.655','una sola vez por jugador'],
+  ['Al morir','4 %','del saldo, siempre'],
+];
+// [via, cuanto da, valor esperado, requisito]
+const MC_WAYS=[
+  ['Matar mobs','De 0,015 a 275 por muerte','30-350 / hora','La única fuente sostenida. Hay que recoger a mano: las tolvas no cuentan'],
+  ['Jefes vanilla','Dragón 275 · Wither 112 · Warden 45','Pico único','Equipo alto. El dragón no se recicla: los cristales para reinvocarlo cuestan más de lo que paga'],
+  ['Mazmorra del Dragón','Guardián de la Mazmorra 100-200, garantizado','~150 por raid','Invocador y un grupo. Los dragones de la mazmorra suman 25 y 12 más'],
+  ['Misiones','36.655 de una vez · 847 al día','La fuente más grande','Once cadenas de oficio y treinta misiones diarias. Solo una activa a la vez'],
+  ['Caja KOTH','3.000 MobCoins, sale el 6,8 % de las veces','205 por llave','Ganar el evento KOTH'],
+  ['Caja Legendaria','5.000 MobCoins, sale el 2,5 % de las veces','127 por llave','Llave Legendaria'],
+  ['Caja Épica','10.000 MobCoins, sale el 1,0 % de las veces','96 por llave','Llave Épica'],
+  ['Caja Rankup','500 MobCoins, sale el 3,3 % de las veces','17 por llave','Cada rango de minería'],
+  ['Caja Vote','250 MobCoins, sale el 1,7 % de las veces','4 por llave','Una llave por voto'],
+  ['Votar','4 sitios al día, una llave Vote por voto','~17 al día','Cuatro votos diarios, uno por sitio'],
+  ['Vote Party','250 MobCoins a la mitad de los presentes','125 por fiesta','50 votos entre toda la comunidad'],
+  ['/playtime','6.075 en total, repartidos en 20 de los 100 niveles','8 por hora de media','Horas jugadas. El grueso llega en los niveles altos'],
+  ['Entre jugadores','Lo que negocies','—','<code>/mobcoins withdraw</code> convierte el saldo en un objeto'],
+];
+// [cadena, misiones, mobcoins, repeticion]
+const MC_QUESTS=[
+  ['Mina del Dragón',20,5630,'No'],
+  ['Herrero',20,2915,'No'],['Constructor',20,2915,'No'],['Explorador',20,2915,'No'],
+  ['Pescador',20,2915,'No'],['Planeador',20,2915,'No'],['Cazador',20,2915,'No'],
+  ['Asesino',20,2915,'No'],['Leñador',20,2915,'No'],['Minero',20,2915,'No'],
+  ['Granjero',20,2842,'No'],
+  ['Introducción',12,1068,'No'],['Nuevas misiones',15,880,'No'],
+  ['Diarias',30,847,'Sí · cada 24 horas'],
+  ['Semanales',30,0,'Sí · cada 7 días, pagan en dinero'],
+];
+const MC_SCEN={
+  'A pelo · cuevas y superficie':[['MobCoins por hora','30-50'],['Una sesión de 3 horas','~120'],['Para una Elytra','88 horas']],
+  'Granja de spawners · referencia':[['MobCoins por hora','~150'],['Una sesión de 3 horas','~450'],['Para una Elytra','23 horas']],
+  'Granja de blazes · buen equipo':[['MobCoins por hora','250-350'],['Una sesión de 3 horas','~900'],['Para una Elytra','12 horas']],
+};
+// [articulo, precio, tienda]
+const MC_TIME=[
+  ['Cubeta de leche',25,'Mercado'],['Llave Vote',500,'Mercado'],['Manzana dorada encantada',900,'Mercado'],
+  ['Libro Elite aleatorio',1500,'Mercado'],['Elytra',3500,'Bóveda'],['Llave Spawner',4000,'Bóveda'],
+  ['Llave KOTH',5000,'Bóveda'],['Llave de Mazmorra',6000,'Bóveda'],['Llave Épica',6000,'Bóveda'],
+  ['Libro Supremo aleatorio',7000,'Bóveda'],['Bendición de Dios',8000,'Bóveda'],['Llave Legendaria',9000,'Bóveda'],
+  ['Ampliador de Slots',10000,'Bóveda'],['Libro Legendario aleatorio',12000,'Bóveda'],
+  ['Invocador del Dios Dragón',20000,'Bóveda'],['Libro Ancestral aleatorio',25000,'Bóveda'],
+];
+(function(){
+  const dur=h=>h<1?Math.round(h*60)+' min':h<10?h.toFixed(1).replace('.',',')+' h':Math.round(h)+' h';
+  document.getElementById('mc-tiles').innerHTML=MC_TILES.map(([k,v,s])=>
+    '<div class="tile"><span class="k">'+k+'</span><span class="v">'+v+'<small>'+s+'</small></span></div>').join('');
+  document.getElementById('rows-mcways').innerHTML=MC_WAYS.map(([v,d,e,r])=>
+    '<tr><td><strong>'+v+'</strong></td><td class="num">'+d+'</td><td class="num">'+e+'</td><td class="fine">'+r+'</td></tr>').join('');
+  document.getElementById('rows-mcquests').innerHTML=MC_QUESTS.map(([n,q,mc,r])=>
+    '<tr><td><strong>'+n+'</strong></td><td class="num">'+q+'</td><td class="num">'+(mc?fmt(mc):'<span class="dash">—</span>')+'</td><td class="fine">'+r+'</td></tr>').join('');
+  document.getElementById('mc-scen').innerHTML=Object.entries(MC_SCEN).map(([cat,rows])=>
+    '<div class="shopcard"><h4>'+cat.split(' · ')[0]+'<span>'+(cat.split(' · ')[1]||'')+'</span></h4>'+
+    rows.map(([n,v])=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+v+'</span></div>').join('')+'</div>').join('');
+  document.getElementById('rows-mctime').innerHTML=MC_TIME.map(([n,p,t])=>
+    '<tr><td><strong>'+n+'</strong> <span class="fine">· '+t+'</span></td><td class="num">'+fmt(p)+'</td>'+
+    '<td class="num">'+dur(p/40)+'</td><td class="num">'+dur(p/150)+'</td><td class="num">'+dur(p/300)+'</td></tr>').join('');
 })();
 </script>
 </body>
