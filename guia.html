@@ -480,6 +480,7 @@
       <h3>No se compran — solo cofres, kits o /playtime</h3>
       <div class="booknote" id="books-nobuy"></div>
       <div class="callout">Legendary y Fabled estaban antes a la venta (25.000 y 40.000 EXP). Se retiraron para que las clases cumbre solo se ganen jugando; en el encantador aparecen como "Bloqueado".</div>
+      <div class="callout"><strong>La mesa de encantamientos vanilla ya no da nada custom.</strong> Antes tenía un 45 % de soltar encantamientos custom al encantar y un 3 % de devolver un libro custom en vez del vanilla; las dos vías están desactivadas. Los libros custom solo salen del encantador, las cajas, los God Kits, las tiendas de MobCoins, las mazmorras y <code>/playtime</code>.</div>
     </section>
   </div>
 
@@ -521,7 +522,7 @@
 
     <section>
       <div class="sec-h"><span class="sec-n">Las vías</span><h2>Todas las formas de conseguirlas</h2></div>
-      <p class="fine">Son ocho familias —mobs, jefes, mazmorra, misiones, cofres, votos, <code>/playtime</code> y comercio entre jugadores— y aquí van desglosadas cofre a cofre. Solo las dos primeras filas son un ritmo sostenido; el resto son picos o goteo. La columna de valor esperado convierte los premios aleatorios en su media real, para poder compararlos entre sí.</p>
+      <p class="fine">Son nueve familias —mobs, nether, jefes, mazmorra, misiones, pesca, cofres, votos y <code>/playtime</code>, más el comercio entre jugadores— y aquí van desglosadas cofre a cofre. Solo las dos primeras filas son un ritmo sostenido; el resto son picos o goteo. La columna de valor esperado convierte los premios aleatorios en su media real, para poder compararlos entre sí.</p>
       <div class="scroll">
         <table class="data">
           <thead><tr><th>Vía</th><th class="num">Cuánto da</th><th class="num">Valor esperado</th><th>Qué hace falta</th></tr></thead>
@@ -533,7 +534,7 @@
 
     <section>
       <div class="sec-h"><span class="sec-n">Misiones</span><h2>La vía más rentable, y la que se agota</h2></div>
-      <p class="fine">Las misiones de los NPC son, con diferencia, la mayor fuente de MobCoins del servidor: <strong>36.655 MobCoins</strong> repartidos en las cadenas de oficio, que <strong>solo se cobran una vez por jugador</strong>, más <strong>847 al día</strong> si completas las treinta diarias. Para comparar: las cadenas completas equivalen a unas 245 horas de granja, y son más MobCoins de los que cuesta el artículo más caro de la Bóveda.</p>
+      <p class="fine">Las misiones de los NPC son, con diferencia, la mayor fuente de MobCoins del servidor: <strong>36.655 MobCoins</strong> repartidos en las cadenas de oficio, que <strong>solo se cobran una vez por jugador</strong>, más <strong>847 al día</strong> si completas las treinta diarias. Para comparar: las cadenas completas equivalen a unas 67 horas de granja, y son más MobCoins de los que cuesta el artículo más caro de la Bóveda.</p>
       <div class="scroll">
         <table class="data">
           <thead><tr><th>Cadena</th><th class="num">Misiones</th><th class="num">MobCoins</th><th>Se repite</th></tr></thead>
@@ -545,19 +546,20 @@
 
     <section>
       <div class="sec-h"><span class="sec-n">Tarifa</span><h2>Lo que paga cada mob</h2></div>
-      <p class="fine"><strong id="mc-species">54</strong> especies sueltan MobCoins. Cada una tiene una probabilidad de soltarlas y un rango de cantidad; la cifra que se muestra es <strong>lo que rinde de media cada muerte</strong> (probabilidad por cantidad media), que es lo comparable. Un zombi paga 0,32: hacen falta unas tres muertes para una sola moneda.</p>
+      <p class="fine"><strong id="mc-species">55</strong> especies sueltan MobCoins. Cada una tiene una probabilidad de soltarlas y un rango de cantidad; la cifra que se muestra es <strong>lo que rinde de media cada muerte</strong> (probabilidad por cantidad media), que es lo comparable. Un zombi paga 1,2 de media, así que cada muerte deja algo más de una moneda.</p>
+      <p class="fine"><strong>El nether paga mejor que el overworld</strong>, y es a propósito: pelear allí cuesta más. Un piglin deja 1,65 y un esqueleto wither 1,8, contra 1,2 de un zombi. El piglin zombificado, que antes era de los peores, ahora paga 1,5.</p>
       <div class="shopgrid" id="rates-full"></div>
       <p class="fine">Los pasivos de granja (cerdo, vaca, oveja, pollo, conejo, peces) pagan 0,015 de media: <strong>una moneda cada 67 muertes</strong>. Están dentro por coherencia, no como fuente.</p>
     </section>
 
     <section>
       <div class="sec-h"><span class="sec-n">Ritmo</span><h2>Cuánto se tarda de verdad</h2></div>
-      <p class="fine">El ritmo depende de cuántos mobs por hora consigas matar <em>y recoger</em>. Estos son los tres escenarios con los que se fijaron los precios de las dos tiendas.</p>
+      <p class="fine">El ritmo depende de cuántos mobs por hora consigas matar <em>y recoger</em>. Estos son los tres escenarios de referencia con la tarifa actual.</p>
       <div class="shopgrid" id="mc-scen"></div>
-      <p class="fine">Con esos tres ritmos, esto es lo que cuesta en horas de juego cada artículo de referencia. La columna del medio (granja de spawners, 150 por hora) es la que se usó como referencia al poner los precios.</p>
+      <p class="fine">Con esos tres ritmos, esto es lo que cuesta en horas de juego cada artículo de referencia. La columna del medio (granja de spawners, unos 550 por hora) es la referencia con la tarifa actual.</p>
       <div class="scroll">
         <table class="data">
-          <thead><tr><th>Artículo</th><th class="num">Precio</th><th class="num">A pelo · 40/h</th><th class="num">Granja · 150/h</th><th class="num">Blazes · 300/h</th></tr></thead>
+          <thead><tr><th>Artículo</th><th class="num">Precio</th><th class="num">A pelo · 150/h</th><th class="num">Granja · 550/h</th><th class="num">Nether · 800/h</th></tr></thead>
           <tbody id="rows-mctime"></tbody>
         </table>
       </div>
@@ -567,9 +569,9 @@
       <div class="sec-h"><span class="sec-n">Diseño</span><h2>Por qué las cajas y la tienda están así</h2></div>
       <p class="fine">Las cifras de arriba son las que sostienen cada decisión de precio y de stock:</p>
       <ul>
-        <li><strong>El techo por hora es real, no teórico.</strong> Como las tolvas no recogen, nadie pasa de unos cientos de MobCoins por hora por mucho que optimice. Eso permite poner precios altos sin miedo a que una granja los deje en nada al día siguiente.</li>
-        <li><strong>El Mercado del Día cubre el gasto corriente</strong>: de 25 a 1.500 MobCoins, o sea de diez minutos a diez horas de juego. Es lo que se compra sin pensar mientras se ahorra para otra cosa.</li>
-        <li><strong>La Bóveda es la meta a un mes</strong>: de 3.500 a 25.000, entre un día y una semana larga de juego. Por eso cambia cada 30 días y no cada 24 horas: nadie ahorra 25.000 en un día.</li>
+        <li><strong>El techo por hora es real, no teórico.</strong> Como las tolvas no recogen, por mucho que se optimice el techo se queda en torno a 900 MobCoins por hora: hay que estar delante recogiendo. Eso permite poner precios altos sin miedo a que una granja los deje en nada al día siguiente.</li>
+        <li><strong>El Mercado del Día cubre el gasto corriente</strong>: de 25 a 1.500 MobCoins, o sea de tres minutos a menos de tres horas de juego. Es lo que se compra sin pensar mientras se ahorra para otra cosa.</li>
+        <li><strong>La Bóveda es la meta a un mes</strong>: de 3.500 a 25.000, entre seis y cuarenta y cinco horas de juego. Por eso cambia cada 30 días y no cada 24 horas: nadie ahorra 25.000 en un día.</li>
         <li><strong>El stock es por servidor, no por jugador.</strong> Aunque todo se vendiera, la Bóveda retira como mucho 383.000 MobCoins al mes. Es el freno que impide que un jugador con reservas vacíe el catálogo entero.</li>
         <li><strong>Las cajas nunca sustituyen al farmeo</strong>, solo lo acompañan: una llave Vote rinde 4 MobCoins de media y una Épica 96. Ni la mejor caja del servidor paga un artículo de la Bóveda.</li>
         <li><strong>Los jefes pagan picos, no ritmo, y no se reciclan.</strong> El dragón deja 275 MobCoins, pero reinvocarlo cuesta cuatro cristales del End, que la propia tienda vende a 450: farmear dragones con monedas da pérdidas. No hay bucle infinito en ningún punto.</li>
@@ -610,10 +612,10 @@
       <div class="sec-h"><span class="sec-n">UltimateMobCoins</span><h2>Tiendas de MobCoins</h2></div>
       <p class="fine">Hay dos tiendas y funcionan distinto: una cambia cada día y es barata, la otra dura un mes y guarda lo mejor. Las dos tienen <strong>stock limitado para todo el servidor</strong>: cuando se agota una unidad, ya no está disponible para nadie hasta el siguiente refresco.</p>
 
-      <p class="fine">Los precios están anclados a lo que rinde matar mobs: la referencia son <strong>unos 150 MobCoins por hora</strong> con una granja de spawners y recogida a mano. En la pestaña <strong>MobCoins</strong> están las ocho vías para conseguirlas, la tarifa de cada mob y cuántas horas cuesta cada artículo de estas dos tiendas.</p>
+      <p class="fine">Los precios están anclados a lo que rinde matar mobs: la referencia son <strong>unos 550 MobCoins por hora</strong> con una granja de spawners y recogida a mano. En la pestaña <strong>MobCoins</strong> están las vías para conseguirlas, la tarifa de cada mob y cuántas horas cuesta cada artículo de estas dos tiendas.</p>
 
       <h3>Mercado del Día — rota cada 24 horas</h3>
-      <p class="fine">Un catálogo de <strong id="daily-count">27</strong> artículos comunes del que se muestran <strong>10 cada día</strong>, elegidos al azar. Consumibles, materiales, utilidad y objetos de encantamiento baratos. Precios de 25 a 1.500 MobCoins: de diez minutos a diez horas de juego.</p>
+      <p class="fine">Un catálogo de <strong id="daily-count">27</strong> artículos comunes del que se muestran <strong>10 cada día</strong>, elegidos al azar. Consumibles, materiales, utilidad y objetos de encantamiento baratos. Precios de 25 a 1.500 MobCoins: de tres minutos a menos de tres horas de juego.</p>
       <div class="shopgrid" id="daily-shop"></div>
 
       <h3>La Bóveda — cambia cada 30 días</h3>
@@ -909,12 +911,12 @@ const SINKS={
   'Herramientas':{n:18,rows:[['Pala de madera',15,'wooden_shovel'],['Pico de piedra',135,'stone_pickaxe'],['Pico de hierro',1050,'iron_pickaxe'],['Pico de diamante',2100,'diamond_pickaxe'],['Pico de netherita',22100,'netherite_pickaxe']]},
   'Herrería':{n:12,rows:[['Espada de diamante',1400,'diamond_sword'],['Hacha de diamante',2100,'diamond_axe'],['Espada de netherita',21400,'netherite_sword'],['Hacha de netherita',22100,'netherite_axe']]},
 };
-// Lo que rinde matar cada mob (probabilidad x cantidad media, de mobcoins.yml). 54 especies.
+// Lo que rinde matar cada mob (probabilidad x cantidad media, de mobcoins.yml). 55 especies.
 const RATES={
   'Jefes':[['Dragón del End',275],['Guardián de la Mazmorra',150],['Wither',112],['Warden',45]],
   'Élite':[['Dragón de mazmorra I',24.5],['Dragón de mazmorra II',12.5],['Guardián anciano',12.25],['Ravager',9],['Evocador / Ilusionista',5.4],['Shulker',3]],
-  'Nether y saqueadores':[['Esqueleto wither / Piglin bruto',1.8],['Blaze / Enderman / Ghast',0.84],['Fantasma / Vindicador / Guardián',0.84],['Cubo de magma / Hoglin / Zoglin',0.6],['Ahogado / Vex / Saqueador',0.5],['Araña de cueva / Endermite',0.5]],
-  'Comunes':[['Zombi / Esqueleto / Creeper',0.32],['Husk / Stray / Piglin zombificado',0.32],['Gólem de hierro',0.24],['Slime / Araña / Bruja / Lepisma',0.18]],
+  'Nether y saqueadores':[['Esqueleto wither / Piglin bruto',1.8],['Piglin',1.65],['Piglin zombificado',1.5],['Blaze / Enderman / Ghast',0.84],['Fantasma / Vindicador / Guardián',0.84],['Cubo de magma / Hoglin / Zoglin',0.6],['Ahogado / Vex / Saqueador',0.5],['Araña de cueva / Endermite',0.5]],
+  'Comunes':[['Zombi / Esqueleto / Creeper',1.2],['Araña',0.9],['Husk / Stray',0.32],['Gólem de hierro',0.24],['Slime / Bruja / Lepisma',0.18]],
   'Pasivos':[['Caballo / Lobo / Panda',0.1],['Aldeano / Camello / Abeja',0.1],['Cerdo / Vaca / Oveja / Pollo',0.015],['Conejo y peces',0.015]],
 };
 // Mercado del Día: [nombre, precio, stock diario, id de Minecraft]
@@ -1163,15 +1165,17 @@ const FACE={
 <script>
 /* MOBCOINS: vias de obtencion y coste en tiempo */
 const MC_TILES=[
-  ['Por mob común','0,32','MobCoins de media'],
-  ['Ritmo de referencia','150','por hora con granja'],
-  ['Especies que pagan','54','de 0,015 a 275'],
+  ['Por mob común','1,2','MobCoins de media'],
+  ['Ritmo de referencia','~550','por hora con granja'],
+  ['Especies que pagan','55','de 0,015 a 275'],
   ['En misiones','36.655','una sola vez por jugador'],
   ['Al morir','4 %','del saldo, siempre'],
 ];
 // [via, cuanto da, valor esperado, requisito]
 const MC_WAYS=[
-  ['Matar mobs','De 0,015 a 275 por muerte','30-350 / hora','La única fuente sostenida. Hay que recoger a mano: las tolvas no cuentan'],
+  ['Matar mobs','De 0,015 a 275 por muerte','150-900 / hora','La única fuente sostenida. Hay que recoger a mano: las tolvas no cuentan'],
+  ['Nether','Piglin 1,65 · Piglin zombificado 1,5 · Esqueleto wither 1,8','Lo mejor por muerte','Es a propósito: el nether paga más que el overworld porque cuesta más pelear allí'],
+  ['Pescar','Pack Épico 50 MobCoins el 15 % · Pack Legendario 90 el 5 %','Goteo','Los packs salen al pescar y se abren a mano. No sustituye a los mobs'],
   ['Jefes vanilla','Dragón 275 · Wither 112 · Warden 45','Pico único','Equipo alto. El dragón no se recicla: los cristales para reinvocarlo cuestan más de lo que paga'],
   ['Mazmorra del Dragón','Guardián de la Mazmorra 100-200, garantizado','~150 por raid','Invocador y un grupo. Los dragones de la mazmorra suman 25 y 12 más'],
   ['Misiones','36.655 de una vez · 847 al día','La fuente más grande','Once cadenas de oficio y treinta misiones diarias. Solo una activa a la vez'],
@@ -1197,9 +1201,9 @@ const MC_QUESTS=[
   ['Semanales',30,0,'Sí · cada 7 días, pagan en dinero'],
 ];
 const MC_SCEN={
-  'A pelo · cuevas y superficie':[['MobCoins por hora','30-50'],['Una sesión de 3 horas','~120'],['Para una Elytra','88 horas']],
-  'Granja de spawners · referencia':[['MobCoins por hora','~150'],['Una sesión de 3 horas','~450'],['Para una Elytra','23 horas']],
-  'Granja de blazes · buen equipo':[['MobCoins por hora','250-350'],['Una sesión de 3 horas','~900'],['Para una Elytra','12 horas']],
+  'A pelo · cuevas y superficie':[['MobCoins por hora','120-180'],['Una sesión de 3 horas','~450'],['Para una Elytra','23 horas']],
+  'Granja de spawners · referencia':[['MobCoins por hora','~550'],['Una sesión de 3 horas','~1.650'],['Para una Elytra','6,4 horas']],
+  'Granja de nether · piglins y esqueletos wither':[['MobCoins por hora','700-900'],['Una sesión de 3 horas','~2.400'],['Para una Elytra','4,4 horas']],
 };
 // [articulo, precio, tienda]
 const MC_TIME=[
@@ -1223,7 +1227,7 @@ const MC_TIME=[
     rows.map(([n,v])=>'<div class="prow"><span class="pn">'+n+'</span><span class="pp">'+v+'</span></div>').join('')+'</div>').join('');
   document.getElementById('rows-mctime').innerHTML=MC_TIME.map(([n,p,t])=>
     '<tr><td><strong>'+n+'</strong> <span class="fine">· '+t+'</span></td><td class="num">'+fmt(p)+'</td>'+
-    '<td class="num">'+dur(p/40)+'</td><td class="num">'+dur(p/150)+'</td><td class="num">'+dur(p/300)+'</td></tr>').join('');
+    '<td class="num">'+dur(p/150)+'</td><td class="num">'+dur(p/550)+'</td><td class="num">'+dur(p/800)+'</td></tr>').join('');
 })();
 </script>
 </body>
