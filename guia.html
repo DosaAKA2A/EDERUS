@@ -584,16 +584,16 @@
   <div class="panel" id="p-shops" role="tabpanel" hidden>
     <section>
       <div class="sec-h"><span class="sec-n">EconomyShopGUI</span><h2>Tienda de economía (dinero)</h2></div>
-      <p class="fine">La tienda tiene <strong>13 categorías y 251 artículos</strong>, y se parte en dos mitades que conviene no confundir: <strong>tres categorías te compran material a ti</strong> (ahí entra el dinero) y las <strong>once restantes solo te venden</strong> (ahí sale). Abajo van separadas.</p>
+      <p class="fine">La tienda tiene <strong>13 categorías y 962 artículos</strong>: el catálogo de construcción se completó con todos los bloques de la versión 26.1, así que si buscas un bloque, está. Se parte en dos mitades que conviene no confundir: <strong>cinco categorías te compran material a ti</strong> (ahí entra el dinero) y las <strong>ocho restantes solo te venden</strong> (ahí sale). Abajo van separadas.</p>
 
       <div class="shopblock gain">
         <div class="blockhead">
           <span class="blocktag">Vendes</span>
           <h3>Lo que la tienda te compra</h3>
-          <span class="blocksum">3 categorías</span>
+          <span class="blocksum">5 categorías</span>
         </div>
-        <p class="fine">Llevas el material, la tienda te lo paga. Generan dinero <strong>Minerales</strong>, <strong>MobDrops</strong> y <strong>Maderas</strong>, y desde agosto también las <strong>armaduras de Herrería</strong>.</p>
-        <p class="fine">La regla es simple: <strong>lo que puede producir una máquina vale poco y tiene tope diario</strong>; lo que exige jugar vale mucho y no tiene tope. Cada artículo automatizable trae un máximo de unidades que <strong>cada jugador</strong> puede venderle a la tienda al día, y ese contador se repone cada 24 horas. Así una granja de hierro o una de pólvora deja de imprimir dinero sin límite. El <strong>diamante</strong> y la <strong>netherita</strong> no llevan tope porque no se pueden farmear con máquinas: hay que bajar a minar.</p>
+        <p class="fine">Llevas el material, la tienda te lo paga. Generan dinero <strong>Minerales</strong>, <strong>MobDrops</strong>, <strong>Maderas</strong>, <strong>Cultivos</strong> y las <strong>armaduras de Herrería</strong>.</p>
+        <p class="fine">La regla es simple: <strong>lo que puede producir una máquina vale poco y tiene tope diario</strong>; lo que exige jugar vale más. Cada artículo trae un máximo de unidades que <strong>cada jugador</strong> puede venderle a la tienda al día, y ese contador se repone cada 24 horas. Así una granja de hierro o una de pólvora deja de imprimir dinero sin límite. <strong>Desde el 17 de agosto el tope lo lleva todo</strong>: los cultivos —que eran la única vía sin límite—, el diamante (128 al día), la netherita (32) y las armaduras. Y las armaduras de diamante y netherita se pagan ya al valor real de su material, así que fabricarlas para venderlas no deja beneficio.</p>
         <div class="shopgrid" id="econ-shop"></div>
       </div>
 
@@ -601,9 +601,9 @@
         <div class="blockhead">
           <span class="blocktag">Compras</span>
           <h3>Lo que puedes comprar</h3>
-          <span class="blocksum">10 categorías</span>
+          <span class="blocksum">11 categorías</span>
         </div>
-        <p class="fine">Aquí solo se paga: es donde se retira el dinero de la economía. Cada tarjeta es una categoría real del menú, con cuántos artículos tiene y una muestra de precios (del más barato al más caro). No están los 251 artículos, solo las referencias que sitúan cada categoría.</p>
+        <p class="fine">Aquí solo se paga: es donde se retira el dinero de la economía. Cada tarjeta es una categoría real del menú, con cuántos artículos tiene y una muestra de precios (del más barato al más caro). No están los 962 artículos, solo las referencias que sitúan cada categoría.</p>
         <div class="shopgrid" id="sinks-shop"></div>
         <p class="fine">Herrería ya <strong>solo vende armas</strong>: espadas y hachas. Las <strong>armaduras cambiaron de lado</strong> — la tienda te las compra, pero ya no puedes comprarlas.</p>
       </div>
@@ -892,21 +892,23 @@ const ico=id=>{
 };
 // Venta: [nombre, precio por unidad, tope de unidades por jugador y día (null = sin tope), id de Minecraft]
 const ECON={
-  'Minerales':[['Carbón',25,384,'coal'],['Hierro en bruto',45,256,'raw_iron'],['Oro en bruto',55,192,'raw_gold'],['Lingote de hierro',60,256,'iron_ingot'],['Lingote de oro',70,192,'gold_ingot'],['Lapislázuli',60,256,'lapis_lazuli'],['Esmeralda',150,128,'emerald'],['Diamante',500,null,'diamond'],['Netherita',5000,null,'netherite_ingot']],
-  'MobDrops':[['Cráneo de wither skeleton',600,32,'wither_skeleton_skull'],['Lágrima de ghast',300,64,'ghast_tear'],['Membrana de fantasma',200,64,'phantom_membrane'],['Vara de blaze',100,128,'blaze_rod'],['Perla de ender',80,128,'ender_pearl'],['Crema de magma',80,128,'magma_cream'],['Bola de slime',60,128,'slime_ball'],['Pólvora',45,192,'gunpowder'],['Ojo de araña',15,256,'spider_eye'],['Cuero',15,256,'leather'],['Hueso',12,256,'bone'],['Cuerda',12,256,'string'],['Azúcar',10,256,'sugar'],['Carne podrida',8,256,'rotten_flesh'],['Pluma',8,256,'feather'],['Huevo',8,256,'egg']],
-  'Maderas':[['Troncos',15,384,'oak_log'],['Retoños',5,128,'oak_sapling']],
+  'Minerales':[['Carbón',25,384,'coal'],['Hierro en bruto',45,256,'raw_iron'],['Oro en bruto',55,192,'raw_gold'],['Lingote de hierro',60,256,'iron_ingot'],['Lingote de oro',70,192,'gold_ingot'],['Lapislázuli',60,256,'lapis_lazuli'],['Esmeralda',90,128,'emerald'],['Diamante',150,128,'diamond'],['Netherita',500,32,'netherite_ingot']],
+  'MobDrops':[['Cráneo de wither skeleton',600,32,'wither_skeleton_skull'],['Membrana de fantasma',100,64,'phantom_membrane'],['Vara de blaze',100,128,'blaze_rod'],['Crema de magma',80,128,'magma_cream'],['Lágrima de ghast',60,64,'ghast_tear'],['Perla de ender',40,128,'ender_pearl'],['Bola de slime',30,128,'slime_ball'],['Cuero',15,256,'leather'],['Ojo de araña',15,256,'spider_eye'],['Pólvora',10,192,'gunpowder'],['Huevo',4,256,'egg'],['Pluma',4,256,'feather'],['Hueso',3,256,'bone'],['Cuerda',3,256,'string'],['Azúcar',2,256,'sugar'],['Carne podrida',2,256,'rotten_flesh']],
+  'Maderas':[['Troncos (los 11 tipos)',15,384,'oak_log'],['Retoños',5,128,'oak_sapling']],
+  'Cultivos':[['Fruta de chorus',30,128,'chorus_fruit'],['Verruga del Nether',20,256,'nether_wart'],['Pepinillo de mar',16,128,'sea_pickle'],['Cacao / Bayas brillantes',15,256,'cocoa_beans'],['Caña de azúcar / Cactus',10,512,'sugar_cane'],['Bambú / Bayas dulces',8,512,'bamboo'],['Trigo / Melón / Kelp',5,512,'wheat'],['Patata / Zanahoria',4,512,'potato'],['Semillas',3,512,'wheat_seeds']],
+  'Herrería (armaduras)':[['Pechera de netherita',1700,4,'netherite_chestplate'],['Grebas de netherita',1550,4,'netherite_leggings'],['Pechera de diamante',1200,16,'diamond_chestplate'],['Grebas de diamante',1050,18,'diamond_leggings'],['Casco de diamante',750,25,'diamond_helmet'],['Botas de diamante',600,32,'diamond_boots'],['Pechera de oro',560,24,'golden_chestplate'],['Pechera de hierro',480,32,'iron_chestplate'],['Pechera de malla',360,16,'chainmail_chestplate'],['Pechera de cuero',120,32,'leather_chestplate']],
 };
-// Compra: las 10 categorías que solo venden. n = artículos de la categoría; filas = precios representativos.
+// Compra: las 11 categorías que te venden. n = artículos de la categoría; filas = precios representativos.
 const SINKS={
-  'Bloques':{n:24,rows:[['Adoquín',8,'cobblestone'],['Piedra',15,'stone'],['Micelio',100,'mycelium'],['Obsidiana',200,'obsidian']]},
-  'Bloques Modernos':{n:24,rows:[['Terracotas (todos los colores)',20,'terracotta'],['Concretos (todos los colores)',25,'white_concrete']]},
-  'Decoración':{n:24,rows:[['Antorcha',5,'torch'],['Linterna',40,'lantern'],['Campana',200,'bell'],['Piedra imantada',400,'lodestone']]},
-  'Variedad':{n:24,rows:[['Botón',10,'oak_planks'],['Cofre',40,'barrel'],['Yunque',600,'anvil'],['Mesa de encantamientos',800,'enchanting_table']]},
-  'Comida':{n:15,rows:[['Bayas',3,'sweet_berries'],['Pan',10,'bread'],['Manzana dorada',300,'golden_apple'],['Manzana dorada encantada',9000,'golden_apple']]},
-  'Cultivos':{n:16,rows:[['Semillas',10,'wheat_seeds'],['Caña de azúcar',25,'sugar_cane'],['Verruga del Nether',60,'nether_wart'],['Fruta de chorus',100,'chorus_fruit']]},
-  'Items Marinos':{n:16,rows:[['Pastos marinos',15,'seagrass'],['Prismarina',40,'prismarine_shard'],['Corazón del mar',2000,'heart_of_the_sea'],['Conducto',5000,'conduit']]},
-  'Flora':{n:16,rows:[['Flores','10–30','poppy'],['Retoño',25,'oak_sapling'],['Bloque de musgo',40,'moss_block']]},
-  
+  'Bloques':{n:296,rows:[['Losas',25,'cobblestone_slab'],['Adoquín',40,'cobblestone'],['Piedra',75,'stone'],['Obsidiana',1000,'obsidian'],['Ghast seco',80000,'dried_ghast'],['Corazón crujiente',120000,'creaking_heart']]},
+  'Bloques Modernos':{n:132,rows:[['Paneles de cristal',40,'glass_pane'],['Lana y alfombras',100,'white_wool'],['Concretos y terracotas',125,'white_concrete'],['Terracota vidriada',200,'white_glazed_terracotta'],['Cristal tintado',300,'tinted_glass']]},
+  'Madera':{n:165,rows:[['Botones y placas',30,'oak_button'],['Tablones',75,'oak_planks'],['Escaleras y vallas',115,'oak_stairs'],['Puertas',150,'oak_door'],['Estanterías',750,'oak_shelf']]},
+  'Decoración':{n:100,rows:[['Antorcha',25,'torch'],['Linterna',200,'lantern'],['Camas y banderas',750,'red_bed'],['Campana',1000,'bell'],['Piedra imantada',2000,'lodestone']]},
+  'Variedad':{n:44,rows:[['Botón',50,'stone_button'],['Cofre',200,'chest'],['Yunque',3000,'anvil'],['Ancla de resurrección',4000,'respawn_anchor'],['Crafter y tocadiscos',5000,'crafter']]},
+  'Comida':{n:15,rows:[['Alga seca',3,'dried_kelp'],['Pan',10,'bread'],['Carne asada',25,'cooked_beef'],['Manzana dorada',2000,'golden_apple'],['Manzana dorada encantada',60000,'enchanted_golden_apple']]},
+  'Cultivos':{n:17,rows:[['Semillas',10,'wheat_seeds'],['Caña de azúcar',25,'sugar_cane'],['Verruga del Nether',60,'nether_wart'],['Fruta de chorus',100,'chorus_fruit']]},
+  'Items Marinos':{n:16,rows:[['Pastos marinos',75,'seagrass'],['Prismarina',200,'prismarine'],['Esponja',1500,'sponge'],['Corazón del mar',10000,'heart_of_the_sea'],['Conducto',25000,'conduit']]},
+  'Flora':{n:100,rows:[['Flores y hojas',50,'poppy'],['Setas y raíces',100,'brown_mushroom'],['Musgo y azalea',150,'moss_block'],['Corales',300,'tube_coral']]},
   'Herramientas':{n:18,rows:[['Pala de madera',15,'wooden_shovel'],['Pico de piedra',135,'stone_pickaxe'],['Pico de hierro',1050,'iron_pickaxe'],['Pico de diamante',2100,'diamond_pickaxe'],['Pico de netherita',22100,'netherite_pickaxe']]},
   'Herrería':{n:12,rows:[['Espada de diamante',1400,'diamond_sword'],['Hacha de diamante',2100,'diamond_axe'],['Espada de netherita',21400,'netherite_sword'],['Hacha de netherita',22100,'netherite_axe']]},
 };
