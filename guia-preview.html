@@ -777,10 +777,11 @@
 #p-calamity .npcs{list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px;}
 #p-calamity .npcs > li{position: relative; display: grid; grid-template-columns: 112px 1fr; grid-template-rows: auto auto 1fr; gap: 4px 14px; align-items: start; background: var(--capa); border: 1px solid var(--borde); border-radius: 14px; padding: 14px 16px 15px 10px; overflow: hidden;}
 #p-calamity .npcs > li::before{content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--tono); opacity: .85;}
-#p-calamity .npcs .modelo{grid-row: span 3; position: relative; width: 112px; height: 190px; margin: 0; padding: 0; border: 0; border-radius: 10px; background: radial-gradient(ellipse 70% 60% at 50% 62%, color-mix(in srgb, var(--tono) 22%, transparent), transparent 72%); cursor: grab; touch-action: pan-y;}
-#p-calamity .npcs .modelo img{position: absolute; inset: 4px 0 auto; width: 100%; height: calc(100% - 26px); object-fit: contain; image-rendering: auto; filter: drop-shadow(0 6px 8px rgba(0,0,0,.45));}
+#p-calamity .npcs .modelo{grid-row: span 3; position: relative; width: 112px; height: 190px; margin: 0; padding: 0; border: 1px solid color-mix(in srgb, var(--tono) 28%, transparent); border-radius: 10px; background: linear-gradient(180deg, color-mix(in srgb, var(--tono) 16%, #5c5054) 0%, #483d41 62%, #3a3034 100%); cursor: grab; touch-action: pan-y;}
+#p-calamity .npcs .modelo img{position: absolute; inset: 4px 0 auto; width: 100%; height: calc(100% - 26px); object-fit: contain; image-rendering: auto;}
 #p-calamity .npcs .modelo canvas{position: absolute; inset: 0 0 auto; width: 100% !important; height: calc(100% - 22px) !important;}
-#p-calamity .npcs .modelo .girar{position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); font-size: 11px; color: var(--suave); white-space: nowrap; opacity: .8;}
+#p-calamity .npcs .modelo .girar{position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); font-size: 11px; color: #d9cfc8; white-space: nowrap; opacity: .85;}
+#p-calamity .npcs .modelo::before{content: ""; position: absolute; left: 50%; bottom: 22px; width: 64%; height: 12px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.35), transparent);}
 #p-calamity .npcs .modelo.vivo .girar{opacity: .8;}
 #p-calamity .npcs .modelo:focus-visible{outline: 2px solid var(--tono); outline-offset: 2px;}
 #p-calamity .npcs .quien{display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 2px 0 0;}
