@@ -940,7 +940,83 @@
 #p-calamity .ficha-obj .fo-slot img{width:34px;height:34px}}
 #p-calamity{--display:inherit;--cuerpo:inherit;border-radius:18px;border:1px solid var(--borde);padding:8px clamp(14px,3vw,32px) 40px;margin-top:18px}
 @media (max-width:560px){#p-calamity{padding-inline:14px}}
-</style>
+#p-calamity #cal-biomas{--bg: #120d0c;
+  --panel: #1b1413;
+  --panel-2: #241a18;
+  --line: #3a2b27;
+  --fg: #ede4dc;
+  --muted: #a8978d;
+  --dim: #7a6a62;
+  --accent: #d9493f;
+  --cifra: #ffd27a;
+  --bien: #8ee39a;
+  --display: inherit;
+  --body: inherit;
+  --mono: ui-monospace, Consolas, "Cascadia Mono", monospace;}
+#p-calamity #cal-biomas .cifras{display: flex; flex-wrap: wrap; gap: 10px;}
+#p-calamity #cal-biomas .cifra{background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 14px; display: grid; min-width: 112px;}
+#p-calamity #cal-biomas .cifra b{font-family: var(--display); font-weight: 600; font-size: 24px; line-height: 1.1; color: var(--cifra); font-variant-numeric: tabular-nums;}
+#p-calamity #cal-biomas .cifra small{color: var(--muted); font-size: 12.5px;}
+#p-calamity #cal-biomas .filtros{display: flex; flex-wrap: wrap; gap: 8px; margin-block: 22px 18px;}
+#p-calamity #cal-biomas .filtros button{font: inherit; font-size: 14px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer;}
+#p-calamity #cal-biomas .filtros button:hover{color: var(--fg); border-color: var(--dim);}
+#p-calamity #cal-biomas .filtros button[aria-pressed="true"]{color: var(--bg); background: var(--fg); border-color: var(--fg);}
+#p-calamity #cal-biomas .filtros button:focus-visible,#p-calamity #cal-biomas .mob:focus-visible{outline: 2px solid var(--cifra); outline-offset: 2px;}
+#p-calamity #cal-biomas .leyenda{display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 13px; margin-bottom: 18px;}
+#p-calamity #cal-biomas .leyenda i{display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: 0;}
+#p-calamity #cal-biomas .grid{display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 16px;}
+@media (max-width: 420px){#p-calamity #cal-biomas .grid{grid-template-columns: 1fr;}}
+#p-calamity #cal-biomas .card{background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; min-width: 0;}
+#p-calamity #cal-biomas .terreno{display: block; width: 100%; height: 76px; image-rendering: pixelated;}
+#p-calamity #cal-biomas .cuerpo{padding: 14px 16px 16px; display: grid; gap: 12px;}
+#p-calamity #cal-biomas .cab{display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;}
+#p-calamity #cal-biomas .cab h2{font-family: var(--display); font-weight: 600; font-size: 20px; line-height: 1.1; margin: 0;}
+#p-calamity #cal-biomas .id{font-family: var(--mono); font-size: 11.5px; color: var(--dim);}
+#p-calamity #cal-biomas .desc{margin: 0; color: var(--muted); font-size: 14px;}
+#p-calamity #cal-biomas .tags{display: flex; flex-wrap: wrap; gap: 6px;}
+#p-calamity #cal-biomas .tag{font-size: 12.5px; padding: 3px 9px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); color: var(--fg);}
+#p-calamity #cal-biomas .tag em{font-style: normal; color: var(--muted);}
+#p-calamity #cal-biomas .tag.spawn{border-color: #7a2b26; color: #ffb4a8;}
+#p-calamity #cal-biomas .bloque{display: grid; gap: 7px;}
+#p-calamity #cal-biomas .bloque h3{margin: 0; font-size: 12.5px; letter-spacing: .06em; color: var(--dim); font-weight: 400;}
+#p-calamity #cal-biomas .mobs{display: grid; gap: 6px;}
+#p-calamity #cal-biomas .mob{display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 10px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px 6px 6px; min-width: 0;}
+#p-calamity #cal-biomas .mob .cara{width: 36px; height: 36px; border-radius: 4px; display: grid; place-items: center; background: #0d0909; border: 2px solid var(--tinte, #3a2b27); overflow: hidden;}
+#p-calamity #cal-biomas .mob .cara img{width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; display: block;}
+#p-calamity #cal-biomas .mob .n{min-width: 0;}
+#p-calamity #cal-biomas .mob .n b{display: block; font-weight: 400; font-size: 14.5px; line-height: 1.25;}
+#p-calamity #cal-biomas .mob .n small{color: var(--muted); font-size: 12px;}
+#p-calamity #cal-biomas .mob .vida{font-family: var(--mono); font-size: 12px; color: var(--cifra); white-space: nowrap;}
+#p-calamity #cal-biomas .mob.dest{border-color: #6b4a1f; background: linear-gradient(90deg, rgba(255,210,122,.08), transparent 70%), var(--panel-2);}
+#p-calamity #cal-biomas .mob.esp{border-style: dashed;}
+#p-calamity #cal-biomas .mob .n small.hab{display: block; color: #c9b77a; font-size: 11.5px;}
+#p-calamity #cal-biomas .fauna{margin: 0; font-size: 13.5px; color: var(--muted);}
+#p-calamity #cal-biomas .fauna.vacia{color: var(--dim); font-style: italic;}
+#p-calamity #cal-biomas .jefes{margin-top: 26px; display: grid; gap: 12px;}
+#p-calamity #cal-biomas .jefes h2.sec{font-family: var(--display); font-weight: 600; font-size: 20px; margin: 0;}
+#p-calamity #cal-biomas .jefes .sub{margin: 0; color: var(--muted); font-size: 14px; max-width: 75ch;}
+#p-calamity #cal-biomas .jefes-grid{display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;}
+#p-calamity #cal-biomas .jefe{--j: #c23b3b; background: linear-gradient(160deg, color-mix(in srgb, var(--j) 22%, transparent), transparent 60%), var(--panel); border: 1px solid color-mix(in srgb, var(--j) 55%, var(--line)); border-radius: 8px; padding: 14px; display: grid; gap: 10px; min-width: 0;}
+#p-calamity #cal-biomas .jefe .top{display: flex; gap: 12px; align-items: center;}
+#p-calamity #cal-biomas .jefe .cara{width: 56px; height: 56px; border-radius: 6px; border: 2px solid var(--j); background: #0d0909; overflow: hidden; flex: none;}
+#p-calamity #cal-biomas .jefe .cara img{width: 100%; height: 100%; image-rendering: pixelated; display: block; object-fit: contain;}
+#p-calamity #cal-biomas .jefe b{display: block; font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.2;}
+#p-calamity #cal-biomas .jefe small{color: var(--muted); font-size: 12.5px;}
+#p-calamity #cal-biomas .jefe .donde{margin: 0; font-size: 13px; color: var(--muted);}
+#p-calamity #cal-biomas .jefe .propio{font-size: 13px; color: var(--fg); margin: 0;}
+#p-calamity #cal-biomas .botin{display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 13px;}
+#p-calamity #cal-biomas .botin li{display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding-top: 4px;}
+#p-calamity #cal-biomas .botin li span:last-child{font-family: var(--mono); font-size: 12px; color: var(--cifra); white-space: nowrap;}
+#p-calamity #cal-biomas .mob.jefe-row{--j: #c23b3b; border: 1px solid color-mix(in srgb, var(--j) 70%, var(--line)); background: linear-gradient(90deg, color-mix(in srgb, var(--j) 28%, transparent), transparent 75%), var(--panel-2); padding-block: 9px;}
+#p-calamity #cal-biomas .mob.jefe-row .cara{width: 36px; height: 36px; border-color: var(--j);}
+#p-calamity #cal-biomas .mob.jefe-row .n b{font-size: 15.5px;}
+#p-calamity #cal-biomas .mob.jefe-row .vida{color: #ffb4a8;}
+#p-calamity #cal-biomas .etq-jefe{display: inline-block; font-size: 11px; letter-spacing: .06em; color: #1a0f0f; background: #ffb4a8; border-radius: 3px; padding: 1px 6px; margin-left: 6px; vertical-align: 2px;}
+@media (prefers-reduced-motion: no-preference){#p-calamity #cal-biomas .card{transition: opacity .2s;}}
+#p-calamity #cal-biomas{display:block;margin-top:14px}
+#p-calamity #cal-biomas .filtros{margin-block:18px 14px}
+#p-calamity #cal-biomas h2,#p-calamity #cal-biomas h3{text-wrap:initial}
+@media (max-width:560px){#p-calamity #cal-biomas .cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}#p-calamity #cal-biomas .cifra{min-width:0;padding:8px 10px;align-content:start}#p-calamity #cal-biomas .cifra b{font-size:21px}}</style>
   <div class="panel" id="p-calamity" role="tabpanel" hidden><div class="hoja">
   <header class="portada">
     <div>
@@ -1149,15 +1225,12 @@
   <div class="subpanel" id="cal-amenazas" role="tabpanel" aria-labelledby="calt-amenazas" hidden>
     <section>
       <h2>Los mobs de cada bioma</h2>
-      <p class="intro">Cada bioma tiene sus mobs. A veces sale uno destacado: más raro, con 5 niveles más y mejor botín.</p>
-      <ul class="criaturas">
-        <li><img class="px cara-mob" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAB+UlEQVR4nO3dPU4bURhG4UsYsED8CStEkIYUJBWUKRHZQNrUKVkDy8gCsgZ2QMEK6BCR+JFoiILw2Di2kRPW8BZXB4nz1N+MLB/d5tOMPbN/uPu/VDQdvymvycrqfDT/ur6dF8gAMAPADAAzAMwAMAPADAAzAMwAMAPAmtq7nXQ3sr3xodR0dXcZzbe9STT/OBpF854AmAFgBoAZAGYAmAFgBoAZAGYAmAFgBoA1a+sL0QWbb7ej+fm5uWh+qbMYzY/Gw2j+48qn7P5P2S7o5jrbNXkCYAaAGQBmAJgBYAaAGQBmAJgBYAaAGQDWvF/Kdju93200/26rW3W3k5q02W6nP2irPtfkCYAZAGYAmAFgBoAZAGYAmAFgBoAZAGYAWNMLdx0nP89KTd+OvkTzo/Ypmj/+cVpqOvi+F817AmAGgBkAZgCYAWAGgBkAZgCYAWAGgBkANvP16HP029Hpc0Sps4vzqvff28neEUvdDq6ieU8AzAAwA8AMADMAzAAwA8AMADMAzAAwA8Cah/u/0QWTya9ovv9nGs2vdv6Vl7RrWu7ORvPDQfackicAZgCYAWAGgBkAZgCYAWAGgBkAZgCYAWBN+r9g/XG225k+ZLum+2i6lNm1haqfZ9jplJo8ATADwAwAMwDMADADwAwAMwDMADADwAxQWM9z8FUTR5K0dQAAAABJRU5ErkJggg==" alt="">Caníbal de la Jungla<em>Jungla Hambrienta</em></li>
-        <li><img class="px cara-mob" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABnUlEQVR4nO3dP2qDYBiA8S/FoQSCdvIGoSXXaK5VQndPUnKCOOsVSrZ0c4oSCN3aM7zDx6Pk+c2vIjy8i/hn1bbtX8pouk6h+fKlTI/kib6AR2cAmAFgBoAZAGYAmAFgBoAZAGYAmAFgRfSAcrMJzdd1HZo/f59D89vXbcrp934PzU+3W2jeDYAZAGYAmAFgBoAZAGYAmAFgBoAZAGYAWBG9VxNVVdWinwt6Xq+zzrsBMAPADAAzAMwAMAPADAAzAMwAMAPADLC054KixnEMzdeZ703NjRsAMwDMADADwAwAMwDMADADwAwAMwDMALAi+g7Ux+GQcvoMnj/6TlbTNGlO1+8GwAwAMwDMADADwAwAMwDMADADwAwAMwBsdfw6Zv12dPSdr67rUk67t12aEzcAZgCYAWAGgBkAZgCYAWAGgBkAZgCYAWDF5ecSOuDUntKS9X2f9fz7931o3g2AGQBmAJgBYAaAGQBmAJgBYAaAGQBmANgq9z/ll/79n2EYsp7fDYAZAGYAmAFgBoAZAGYAmAFgBoAZAGaAxPoHNLo0KUtA6/EAAAAASUVORK5CYII=" alt="">Espantapájaros<em>Ciénaga de Flores</em></li>
-        <li><img class="px cara-mob" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACXUlEQVR4nO3dvUvUcQDH8Tv5lXQtEmadB1JgRYMIFxYJNzQEQVObg3PRkEVLDUYQGUlDYEtEED0IQVFkW0EINTgUhfMVZvYEDSYIppX9DR8o3g3v1/z5csP7vsuPeyiPv7qxWgoMNU8k89LeSj3aH2ofjPZ96/ui/ePKrWi/NL8c7d+8aEb7lmitv84AMAPADAAzAMwAMAPADAAzAMwAMAPAyjuvbI+eBe2u74peYHbhbbTv2dAb7d9NfYj23Qc3RvvFmaVof6zjTLT3BsAMADMAzAAwA8AMADMAzAAwA8AMADMArOiqt0UHJi8/i/bVojPabzu7I9p/bf0e7R+cfBrtOyvVaF85X4n23gCYAWAGgBkAZgCYAWAGgBkAZgCYAWAGgBVr1rZGB1aXy9F+6v7raN97qjvaz3fORfvZiS/R/kf/z2h/feFStPcGwAwAMwDMADADwAwAMwDMADADwAwAMwCsaLTujw5Uj2af8+kd3RPtL56+EO3Lv7L30PPpyWg/8mQk2n9q+RjtvQEwA8AMADMAzAAwA8AMADMAzAAwA8AMACtqpc3RgamZl9H+zs3b0X7u0bfSvzS4biDaHzjXiPYDK4ejvTcAZgCYAWAGgBkAZgCYAWAGgBkAZgCYAWBFV9vW6EBHJXt29PDuROl/8v5e9h2xpSMr0X6sORbtvQEwA8AMADMAzAAwA8AMADMAzAAwA8AMACvGF69FB2qNWrTf1N8e7YevZv9ZX/ud/b7Q8eGhaN+c/hzte/ZtifbeAJgBYAaAGQBmAJgBYAaAGQBmAJgBYAYosf4AXbVY5VhDKtQAAAAASUVORK5CYII=" alt="">Creeper Dominado<em>Dominio Creeper</em></li>
-        <li><img class="px cara-mob" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAB+klEQVR4nO3csWpTURzH8ZtwISIBDYJD3SQEJERoqYuELqUlmEEQF9+hQ5dCH6HQxaGPUbq1SCZxEFzboUug4JDRIHRIHBKf4Qc9fBW+n/l/D/fmy1kO96ax1e+tq8Dj22kyXnU/7Efz89/3VUmdJ+1o/tv5l2j+ab8XzTejaT04A8AMADMAzAAwA8AMADMAzAAwA8AMAKtfv3oZXTDfeF70LGXn46gqaXoxieYHe8OiZ03uAJgBYAaAGQBmAJgBYAaAGQBmAJgBYAaANYbN5vpfes+nE56lpErfz2jyPZp3B8AMADMAzAAwA8AMADMAzAAwA8AMADMArJ6tVtEFz8KzlE8/rqP5s/ts/YN2u+j61e7bouu7A2AGgBkAZgCYAWAGgBkAZgCYAWAGgBkAVr/YHhR9TyY9G5mFZ1Ol1++Gz/trqx/NuwNgBoAZAGYAmAFgBoAZAGYAmAFgBoAZANZ4vzeMvhFL/e/ffM0L/5e1OwBmAJgBYAaAGQBmAJgBYAaAGQBmAJgBYPViuYwuGI/fRfMnp5+j+Teb2XtK6f1Pvt5E88dHh9H85eVVNO8OgBkAZgCYAWAGgBkAZgCYAWAGgBkAZgBYffdzFl3wZ7moSlqEZzuPWq2qpPR509/THQAzAMwAMAPADAAzAMwAMAPADAAzAMwAFesvt75cmz9FCuoAAAAASUVORK5CYII=" alt="">Tejedora<em>Jungla Hambrienta</em></li>
-        <li><img class="px cara-mob" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACi0lEQVR4nO2dsUocURSGZ8MsmB1QRBSyBGxkfYDUKWxS5gFsTBMkeaO8hqVNCmsfQLG2E01gJ4IBfYH5ix/O5J/I95Wz1zu79+O4h3PPnZ19OTl+bgZYLLqhy03frxtnvELNo3j6dd84zLe2rfFV799dtzfWXaEcBIRBQBgEhEFAmFa9UJXtKNxsYW5mNe59q+ZxszsiIAwCwiAgDALCICBM69ZY+qJsoetqspGxGbtmRQSEQUAYBIRBQBgEhGl/r/8MvrDZvbW+5VWtxs0iqqjasarKdtQ6EwFhEBAGAWEQEAYBU90RU9/aik13nuWyGbMfyZ1HZTXuOrgQAWEQEAYBYRAQBgFhWlXzUaiswM0WVNbRj9y9XJXtqHVza2tEQBgEhEFAGASEQcCrqQWZ2ZTb7dwXdWur+6palqKqRkQEhEFAGASEQUAYBPxvfUEqi3D7ZNz+IoXbz7O7uzd4/dZ8/ztiR8+tNREBYRAQBgFhEBAGAVPdEVPZiKy9FPXhLIq6l9U8tzdXNZ9XoHb0VK2JCAiDgDAICIOAMAiYbC1I/IHbt+NmTWM/52fr3fuSear6joiAMAgIg4AwCAiDgKnWgmTfi7h+J25QVWvqxPOF1muvRpQ6I0Z39EThX1AYBIRBQBgEhJmtVgeDv6AB/wYiIAwCwiAgDALCICAMAsIgIAwCwiAgDALCICBMe7jv9cmcnf+0xn84/WiN37mWh/dLuFv9tcZf/riwxn/+dGSNJwLCICAMAsIgIAwCwsy+f/v6XNE/o1B9NY9P1jSjszEf9zlI6oQ+ERAGAWEQEAYBYRAQRhZe5Il18wbqrNnjw7i/TOHidnG766a6uImAMAgIg4AwCAiDgCbLC+5Rys34ZE9rAAAAAElFTkSuQmCC" alt="">Ídolo Hambriento<em>destacado de la jungla</em></li>
-      </ul>
-      <ul class="biomas"><li class="bioma"><h3>Bosque Voraz</h3><p>Devorador y Acechador Verde</p><p class="dest"><span>Destacado:</span> Raíz Voraz</p><p class="mj"><span>Minijefe:</span> Matriarca Tejedora</p></li><li class="bioma"><h3>Ciénaga de Flores</h3><p>Espantapájaros y Sanguijuela</p><p class="dest"><span>Destacado:</span> Bruja de la Ciénaga</p><p class="mj"><span>Minijefe:</span> Sanador del Fango</p></li><li class="bioma"><h3>Colmenar</h3><p>Apicultor Picado y Abejorro Asesino</p><p class="dest"><span>Destacado:</span> Reina de la Colmena</p><p class="mj"><span>Minijefe:</span> Matriarca Tejedora</p></li><li class="bioma"><h3>Cónclave de Cotorras</h3><p>Cotorra Fantasma y Chamán del Cónclave</p><p class="dest"><span>Destacado:</span> Gran Guacamayo</p><p class="mj"><span>Minijefe:</span> Centinela de Toba</p></li><li class="bioma"><h3>Dominio Creeper</h3><p>Creeper Dominado y Lodo Explosivo</p><p class="dest"><span>Destacado:</span> Creeper Soberano</p><p class="mj"><span>Minijefe:</span> Centinela de Toba</p></li><li class="bioma"><h3>Jungla Hambrienta</h3><p>Caníbal de la Jungla y Tejedora</p><p class="dest"><span>Destacado:</span> Ídolo Hambriento</p><p class="mj"><span>Minijefe:</span> Matriarca Tejedora</p></li><li class="bioma"><h3>Llanuras de Hongos</h3><p>Hongo Andante y Recolector Micótico</p><p class="dest"><span>Destacado:</span> Guardián de Esporas</p><p class="mj"><span>Minijefe:</span> Custodio de las Ruinas</p></li><li class="bioma"><h3>Manantiales de Arena</h3><p>Ahogado de Arena y Escorpión del Manantial</p><p class="dest"><span>Destacado:</span> Jabalí Hundido</p><p class="mj"><span>Minijefe:</span> Heraldo Carmesí</p></li><li class="bioma"><h3>Organismo Carmesí</h3><p>Carne Carmesí y Espora Roja</p><p class="dest"><span>Destacado:</span> Corazón Carmesí</p><p class="mj"><span>Minijefe:</span> Heraldo Carmesí</p></li><li class="bioma"><h3>Pantano Sofocante</h3><p>Piglin del Fango y Creeper Sofocante</p><p class="dest"><span>Destacado:</span> Bruto del Pantano</p><p class="mj"><span>Minijefe:</span> Sanador del Fango</p></li><li class="bioma"><h3>Taiga Condenada</h3><p>Leñador Condenado y Espectro de Pino</p><p class="dest"><span>Destacado:</span> Profeta Condenado</p><p class="mj"><span>Minijefe:</span> Centinela de Toba</p></li><li class="bioma"><h3>Trópico de Juncos</h3><p>Cazador Tropical y Araña de Helecho</p><p class="dest"><span>Destacado:</span> Tótem Selvático</p><p class="mj"><span>Minijefe:</span> Custodio de las Ruinas</p></li><li class="bioma"><h3>Valle de Bambú</h3><p>Guerrero de Bambú y Arquero de Bambú</p><p class="dest"><span>Destacado:</span> Maestro del Valle</p><p class="mj"><span>Minijefe:</span> Custodio de las Ruinas</p></li></ul>
+      <p class="intro">Los 13 biomas de Calamity y lo que vive en cada uno. Los monstruos normales de Minecraft no aparecen solos: Calamity los cambia por los suyos, dos comunes y un destacado por bioma. Los animales sí salen como siempre.</p>
+      <div id="cal-biomas"><div class="cifras" id="cb-cifras"></div><div class="filtros" role="group" aria-label="Filtrar por zona" id="cb-filtros"></div><div class="leyenda">
+    <span><i style="background:#3a2b27;border:1px solid #6b5a52"></i>Común: vida base 24</span>
+    <span><i style="background:#6b4a1f"></i>Destacado: vida base 80, un 5&nbsp;% de las veces</span>
+    <span><i style="border:1px dashed #a8978d"></i>Especial: sale aparte, con su propio sitio</span>
+  </div><div class="grid" id="cb-grid"></div></div>
       <article class="ficha" style="margin-top:14px">
         <div class="da" style="margin-top:0;padding-top:0;border-top:0"><b>Los mobs te dan</b>
           <ul class="botin">
@@ -1829,6 +1902,219 @@
       }).catch(function(){});
     });
   });
+})();
+</script><script>
+(function(){
+const CARA = {"ZOMBIE": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAzklEQVR4nFWPTQ7BUBSFT3nVVPyFkIhJDTDSoaGwAVNjQ2voMizAGuzAwAo6ExI/iQkhvFa9vqYq7yYkzuTcc7+bk1ytP+0mABCHKWV/KhQzYF+oglVrEtifd+APiacQYKWyiXrVQkbXkTOyEGGAdqEDEUkcDzukGjkL3oVTlYJKkkvaqUb28DmWc5fA2BlC8AiL2YryYGJDGzm9RLUouZs1ud3qkJ/8Pdj99oKUW3jXGEXj/TvMV9II/AhMfeCFMeL7CzcA6ZJJc2AYdPwBfmxUGqEK53QAAAAASUVORK5CYII=", "HUSK": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAvElEQVR4nGPcMCPl/8od1xlYWDkYgp0VGUBAWUESTH/7+pmB5d3nP2BJXg52hrV774MlVOU/Muip8IPZjJEB1v8FeSEcfmFxhs9fPoPZ/35+Y3jx+jUDE0jy84+fDEzsXCiSIDEJUVEGFhBjz5FrYIlgb2uw5Po958F8FxstVCvuPHgEplUU5MD0+88fGVh+/vjF8J7hI8OnT98YeLg54QqFhfkZQHIsP3/9YQDh379/gzErKytYEUgSRAMAI7lWx3r4q8wAAAAASUVORK5CYII=", "SKELETON": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAkElEQVR4nGPcs2fPfwYGBoaP7z8y8Avyg5gogAlE8PPyMqhpqIEViYuLgzFIDARYQBwQEBAQQDGBg4sLjMEmgMCHDx/AOtEBy49v3xjqGhrAnKaGBoaPnz8z9Pb2wvmMa1evBTsSZPyxY8fAEtqa2ggTHj56yLB7z24UY48fPw6mXV1cGRhh3kS3/+XLl2AaAAZRLm0jyeCnAAAAAElFTkSuQmCC", "STRAY": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAfUlEQVR4nGNcs2vvfwYGBoYPX94zCPAIgpgMkjISDM+fvACzmWACmhqaYEUgNkwMrADGUJRRhJsAAyA5RpgVuADYCisLSzCGuQWZzzhn3RqwCSDjr9++DjFaEmItCLA8f/6C4fmb9yjGwviSIoIMLJqqmgyaqghXwxVBvQkA+DspYLUIaZwAAAAASUVORK5CYII=", "PIGLIN": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAApElEQVR4nGNgIBIwvlhQ8p9LSojh27N3DCAaBEBsEEDms8AUISuAgW9IGljQdSIDLqg4CDA9vv2F4fqJ+wy8rpUMDx99hEuA2CAxkBxIDYsw9y8GYW5+ht3pbgx3795lOIdk4scnbgx6VvoMDAy/GJjefmVjuHTsIgO/jAKGT0FiIDmQGqYvb1+DBc8d3IuhECYGUsPy8ckDhs/v3+IMP3xyWAEAhq1O6gEogPkAAAAASUVORK5CYII=", "PIGLIN_BRUTE": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAsElEQVR4nGNgIBIwvlhQ8p9LSojh27N3DCAaBEBsEEDmM8EUwQRgbBDYOWET3AAmmE6YbmSgKqcAF2d6fPsLw/UT9xl4XSsZHj76CFcEYutPXw6WA6lhEeb+xSDMzc+wO92N4e7duwznkExkfxbJIG8hw8DA8IuB6e1XNoZLxy4y8MsoYFh9+9EDsBxIDdOXt6/BgucO7sVQ+ObnKzANUsPy8ckDhs/v3+IMP3xyWAEADeNT+Or8FLoAAAAASUVORK5CYII=", "WITCH": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAqElEQVR4nGNkYGBgWD2/9//v378ZWFlZGbCB0MRiRhYYB6box9dvDMxsEDYrkkYmrEYwMDD8/fUbhQ83EWQ1TBJdEQOyidgkYQbATQS5q3PqVKwKqwoLEAo5uLkYLl97zlAdX8igaSYMlrh+6i1D68J+hjUL+sB8RhDRUBT3X0FBiYGbmxPFtK9fvzM8eHCPoaFvESJ4YBInjp8Bsy0sTbD7GgbQFcAAAMOfPNby430wAAAAAElFTkSuQmCC", "VINDICATOR": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAuklEQVR4nHVPOw6DMAx9Kb+Ina1X6MolunAJhqoSSydOwNSxExJTD8DSCzBwGVhBgQxUdptIkeBJdp79XuJYAMCrrjc6F6UQSUkUCAJAa6b3PBcnHEH/TAaO0b72x6KU5f5ec8/sU3o3DRfXLEMcx8znecanbd3R4zhyQUIQhhzGZDQ23ooCfd9jOV+g15WDOPVIIwhKj7LckiSBlBKe59lx0zRhGAY8q0rYZQhd1zmLpGnq/pFuHsFoX8dnR8tsWVdSAAAAAElFTkSuQmCC", "PILLAGER": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAuElEQVR4nHVPMQ6DMAy8NEAjdp7RlU904RMMVSWWTryAqWMnJKY+gKUfYOAzsIICGajsNpEiwUl2zr5LHAsAeNX1RueiNc5KEQXCEDCG6T3PxQlHMD+ThWd0r/2xaO14sNfcMweU3k3DxTXLEMcx83me8Wlbf/Q4jlyQEEYRhzVZjY23okDf91guEmZdOYhTjzSCoPQoyy1JEiilIKV046ZpwjAMeFaVcMsQuq7zFknT1P8j3TyC1b6rm0eZWcHzTAAAAABJRU5ErkJggg==", "EVOKER": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAuElEQVR4nHVPMQ6DMAy8NEAjdp7RlU904RMMVSWWTryAqWMnJKY+gKUfYOAzsIICGajsNpEiwUl2zr5LHAsAeNX1RueiNc5KEQXCEDCG6T3PxQlHMD+ThWd0r/2xaO14sNfcMweU3k3DxTXLEMcx83me8Wlbf/Q4jlyQEEYRhzVZjY23okDf91guEmZdOYhTjzSCoPQoyy1JEiilIKV046ZpwjAMeFaVcMsQuq7zFknT1P8j3TyC1b6rm0eZWcHzTAAAAABJRU5ErkJggg==", "SPIDER": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAArklEQVR4nGM00lb7z3X9DoNKkBvD+49fGEBAkJ+H4dCaHQwC2moMLHqaSgzvpcTAAnYhHmAFd9btYtB1tQErZLRhYvoP0w0SAAEY22PXMQYGJQaG//6uNv9X8PH9BymG0SAxEM0kbaILVj3lyxeGZ//+wWmw8UbaDIwglTCHIRsPczDTj58/GZxdnBl2HTgOFgTxQWyQGIjNdP/RM4ZfP3+AVYMEONjZwWyQGEgOAACsWpShh+3zAAAAAElFTkSuQmCC", "CAVE_SPIDER": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAvElEQVR4nGPklpb4b/j8FcNfJ3OGO99+M4CAChcrw8s9xxleSkswMFq6WP4HSfAeO8Mg7mIJVsC87yTDTQsjsEJGGyam/zDdIAEQgLHzT11lYFBiYPgvamXyfwUf33+QYhgNEgPRTB/UFMCqp3z5wvDs3z84DRK7piLHwMIsIgI2FmbnXwYGhs/ffjOIg9wiIsLA9PrLP4ZIVzcG1lu34faD2CAxkBwTw9OHDL9+/oBL/n3zBswGiz19yAAADzlbJnH0MVkAAAAASUVORK5CYII=", "CREEPER": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAABDElEQVR4nDXNP0sCcQCA4fcO6+gniISdpiQE/aEhhAuTAscgqKXNwTloKKKppSUyioZANxHCShACodoKQijCoEis8SrTLIcGEaTDIy4Ker7AI2Xu9qwlfZkJoTHnihK0BzkV+xiNNsUrHWkkMWSNa2NUmk+Mdgd4LlQZmOmhVTZYVNeQ/ZqT/O4FX2mTQccwdsVBbuWch5SOEAK5o1PBaksUsvc8Gjc0vFUqJ3VeKlVSzR1sYWWK3gUvge0QW6ubSN8yl6U8sbMY73INmw8PhfIth+kD3o4/+RXtijC9HiZiziP7nf2owvNX/Hs9qmPUTOLXceRMK4kvLHBPukiUNsgVs/TNquilD9whwQ/cNFzxVrH37QAAAABJRU5ErkJggg==", "SLIME": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAiElEQVR4nFVOOQ6DQAwcVivhYptIFFCRfC1f4Gt5QX4RKRKhgo5mC6eLZogLprBkz+Vmet4fVgyEV4cZ4K4V67Yg7XUTMb9fJ5IY+hHpUnotVlqRFNEZSBxMCVBEp0z2FxBM4iG6w6Qfhu6oiX7V1a/2THL+LDqe0joA2ZCpul1HqZkWTx9pjh+QpDvy5jhFAQAAAABJRU5ErkJggg==", "MAGMA_CUBE": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAwUlEQVR4nG2RTQrCMBCFv3YjSEV3UnDRrYfwBN7Gy3kI8QhduxDBYiniwshrM3Fo+yBMMvNe5i8jYgdhBSyBGiiArQWBK2SyuTkUfDlyC3Qx1jGDDYTLYdEf3cdvIvo0wh7CDShjWfpVb8NzXJInf9eDLWN5HklQuJ/zZvD5DBPBatRcHTO0oyxJ4CGhlWeiiUAjFUGQ9b14JIHN3Qgiv5v/XmZLUpPWhxq3yfmNJ2g5j/MxfO6nUBXD4nSXr3KL+wExAUB3tU4GmwAAAABJRU5ErkJggg==", "ZOGLIN": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAC3ElEQVR4nL1WTWgTURD+EiKUbZNNUpNgoy3dg5IgQUIjQnuq7UEULxXUoycLHkRB68FDPQSsF/EgLf4iWEW0t4KX6k0QC0V6KFok0tQYTLv5a7oULEbebN42u81ufgQHltnZtzvf+2a+nV3gP5nNbGH45OlycF8AqfQvir+tpLW19yODEDxeOldyWaBY0tZ6796vmdNhBvR8uB/KShIIhigWhvu1xBxEM1cHgQk93aaMTIFsghvtITfKSl53TTCACRVvC0qwMrvZAgeg0hiMJWeg3Pg91ZtqGIg9bHyQxRygXGOt1qbqlu7a6gx8Yi8gAtdzUV1fGJiOcbEEhQVVomiY0fkTExg6MIotWcYdcUEDqAartvzqOvKFLTQt78GBgTLzly5fweznONo6OzFuH9KVTqmUioEcefxITWiz2ZpixE30iOQZu/E/c3oFerxoD0roihysl8a8R26v2pNAIICr555h+ctyzfvKFYGsPXzQGtCteFwXz61O4ZQioWxXRXBj7RX5jXQRF6TjiPmjrQFV25ZCmkJfh6T1aKLnIuYzC4AEhGUHNuVFSzE46iVnlkz+IPUpjixNBmZMCGGofVJ+Z0kQ/8SosLGhnS/tyaMP6lRYKiXwNPEOzm0XrZ2RYuhKbDcP1CbwvQMzixMk7zfyPMUxIUo9YQeVr1LWn1hurXSczUhkjPzUi1HqyWYqod5ULCFcSaHISVOQuow4Kwb65MNN+A73EqvbvrOqKIJVL26xBLfY1hojbowZY1XIFTArx9XEOcMAdXVYCqIpMfApYfxMaJPcYqg6rAAYA6OxFxS+3Z8FGkehSAtAFZDMeoa8f68fL9+O0RRgbJggvn9N7PwrHALaDRO94aHKQF5PT9PBy1Zr1HgEFzFq6Qvb3b0ffdHdSVkynpABsKMRs+yR6HTi3uQkxXx6a30plhA8dlS3AfprahaIg3Hj/YG8o6zUx0/k+ftjNVT/AiFWRcaUbRuZAAAAAElFTkSuQmCC", "HOGLIN": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACAElEQVR4nL2WvUoDQRDH9ySEkITk4EggFklhQBAMQWytxAew1dYnEHwNn8DGQlsfQKxsRawEISlSGNBwEMMliM3Jf/fmbu/c3dxe4cBxH7s7v5nZmdlj7J/E0Q3cn5+G9Nxwq6zutfjzdDxJvQf+jC3mq3jd0eWNUueGDrS51YshssgQEppDa1RS0g14tR/mDTrMX5ZT3xhrcS/qEYzuvS7GcKlF6xEBoDQrUC6gLDVHNio3CIuzC/FOAF8xpjJqbejEBtNGJ6GCACZ7nJ5rCfr8WvKr3aylACoYZDTRe2NM7zAMeXrfnh2zfi/ZeDl0QRQqQE6u7oRCx3GsPCIZ7u3E1mc9YkyAs+luBfq4vogUmrPJjwyg+dYgdTalLQ+k77K3VqCHxxEPGynL1o4QUby4puMVT55CHr08v/JEAEQAE48CyQA8myBrQbLSrEderbm2SHODUEOUUao98KLMgwy9Fo9AIRAdC/yu6OQLQyfIDYI3aPuqsMXSTcIHqNxFcoOwuY0o/iKzzBY33KqxDZWK7o8sVNDtIk11d9D5c5Blj4lAyjgYJdZYglSKsofd09t7/L6/LVLeGkRCyqBI12rcSpkb4htq1gjCYrcyY/PvRLncYN2KvtnmBqF+kN6HB/0YQL9aEKQzjYnxpOasQLx3jSe8UHV9DI0XQvVj6ne/p0oPIkuR96EAAAAASUVORK5CYII=", "RAVAGER": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABkklEQVR4nK1UsUoDQRDdhATMHVyQcAEPwU4/wFrQQjv9ABttRPRXtLC108YPsLSxsBRbITGNELQKmsBeAieczLjvMrvZSJQ8OGbuZvbt25nZKymDw4P9PAhClaZakSWQT8j6H2yr9UW2Mh6YNVfXNyX6VgGhTACQDCJJJuMSBSFUpCI5DMeLXbjqgTKcgR7axKlWWmsviUs2MGsnjoxABD9JimORhU9EksSrMApr/Lhq3SZJMuRHxk5XaBLQDElK3yInf2oNiaiRJEVQFhx1i+Nm8Y1yo7DmryEFaHdWImolR4P8t05rnGemAootQlZoEtAAIgYRUF9atlRnToMshRzQQ9VzFNM8YoR8JJGvKY/PL2oeKKs5owJnbeWnNrd392zXjzfYNtrWZKne6hfbp8sHtns7W2zb7Q5b/kMQTk+OctSHQDUaZX4VC1V7VuO4qc7OLyb/NjwixqeOjz791wsNwxot7nxB2H/vFkm/3VWopw0pPxWnsggxMrNipvzd7c2cnv++WwoJrdeutcFf32nNN+S3+8ugnrNdAAAAAElFTkSuQmCC", "PHANTOM": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAN0lEQVR4nGNgIBcwOgd2/ecVkMKQ+PzhGQMj1xbW/yCO29r5cIldwYkQnQGJS/6DVCHrRueTDgAC5xI3HZA7rwAAAABJRU5ErkJggg==", "SILVERFISH": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAfklEQVR4nKWPvQlDIQCEzweChEBIZZHeDRzBjRzCzjHsHcMRrB3AQvwjaMiDN8G75o6P4+CAuyJX0Frvx+sD8s0IIaC1BsYYjqvgvcf7CTjnMMY42ZwThzFmCyF2jBE5Z/w9pQSlFKSUINbavdZCKQWUUtRawTk/V3rvtz8AP5pZNXiqulCgAAAAAElFTkSuQmCC", "GHAST": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABy0lEQVR4nOVXzWrCQBDeWWJjQLwI0gcQD32K+jRCH6jg09in6CHYi/RQBCFIIW57sExwwrid3ezG2Bz6gZhMZueb2czPBowxJxWAsiwv7rMsq2T436TL19gA7oBrYdfgjugY8v1u14kO59JdkrfRBXwFPgfQ2PfhUF3fz2ZBRj82m+p/MB6ryXTqfRXgcoCiiCWXnEBIjngd+AugA3US9gUoiiKoD9wKWvWMRBJiAj6vVuKCh/lcPS4WKh0OL+TmeFQv67V6zXNx3dNyKSailsiJyAUkQkL+Q5kLZEvqDyBVwee59Krr8yIqp1BQ+Y5Y1CPLBlaB+Aq4IjmAoC2kQWQbIxmP1CZtnYQTRu4CPUPd0B1L1I2ATuwD9HSIMbsNS51TkvnmQLADA2srfW2bP/syRoUA3vL8ohNSfTclTxOwkrA8aReoslDm3IHUQR4aDQcS8WZFNu0GBtKZkG+lHUkM0PG7NK3vpQpKXMSuSGLAybl97ghQDvi23zZ0Dexc0D5yKYprYecCxBzLscXS0LGnHg0cnJRN+fLrWF6WZdQ3gTRyXWNYAueD9+321EXdt80F3Qc554R/fyaEPj5OCfWHSegCqZO10eH4Af77HVmMyZNlAAAAAElFTkSuQmCC", "VEX": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAX0lEQVR4nGNkYGBgmLLm8H8+ASGGTx/egbgMIDbToj1X/4N5UAEYYNm3bR2YYWLlAJcEibHAVJw5doBBUkEdTINB2/zt/x+8/PgfBEB2gQCIz1g5adV/aSlJFPNBjgAAV70vEAmkcbIAAAAASUVORK5CYII=", "IRON_GOLEM": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAwUlEQVR4nGNkYGBguHDhwn8QzcbGxoAMfv36BaYNDAwYWUCMr1+/MnBzc8MlkMHXr1/BNFjh3/snGD4xMDDw8nKjKPr8GaIIrhCkgJlbiIFTUAJFIfP7Fwx/v75DKOzon4FhJVZw++yh/3IMfGAMYp/fOAPOB7FBaphAxPf3LxjyGWTAmr48uQY3ACQGchLcapDbviQpMSQzKMEVJSfZMXyByoEAI8xqkKkwQRAb5gkeGS0GVWM7SDjCTEUGIAXIAABtDUead9vTOgAAAABJRU5ErkJggg==", "WITHER_SKELETON": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAj0lEQVR4nFVOuwrDMAyUi4dikyXFNBmKZu/6i5JvztJ/8OwpFI/BXlNOxSW9RfeQxBkROYiISikUQgClWiu11lRfHsx0HQYVWAK896rhmxjjAQNXffYlcHsOe4BL4D7PZEFSSmqIiM7Xuv60eS6Llnxv298n8Ns0fTugcc5Zgw5mJuccWWz5fVdx7hDGUfUHiME32Iz04YEAAAAASUVORK5CYII=", "BEE": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAj0lEQVR4nGP8dy3jPwMDA8P7t7cZBIVVQUw4mwnEMAo9D+aA2CDsnPEFrIjxQp/HfxGFzwycohxgAZCiZzcuM7x5wMvA5DfhAcMM6WlgCZiRID5InNFA2/z/u88fGc4vlYYrMIx+yiDEy8/ABJIAMb6//gGWANEgPkic8WiTzX9uHh6wBMhukF0g8PXLFwYAudBB2tYvbBgAAAAASUVORK5CYII=", "CREAKING": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAABOklEQVR4nI2RP0vDUBTFT2vAiEuSRcEhBafSoTq5+Bmk4Cpugq5+hC4KgtCvIEXqIPgh3OvgqjaIogjJzZNgOohyXrjPlC6e5f279/3OO6+xv9v7eXl7x9rqCoIwwuTpEUEQQERAcc59yVKwrtNuo1lvkCytCsMIRTmdaaaW/UVb43FxHt9iYXMd3+MH9MMdS6PiuAWRO0dXecQNsAWMgdx0HI10tUc3EHGNHoskS509S+2Reo++idzttKuN1p7oo8MIA+zNUb/KEku+D621QRS8hRtZiiSZIDfG0VW02+1uVPaYSFFOZ8I4TrYdnaNSXBD02LK2/sIAKlsqhkUyHbg3aaQaRv1v1HpdzboNfXi9mBT9N+ri+qbh8XA4GuHj+RWFye3Bydmp/f2jg0O7/jTGjsOryznqv/ULFFu3Kz9Hz9gAAAAASUVORK5CYII="};
+
+const TIPO = { VEX:"Vex", SPIDER:"Araña", HUSK:"Husk", ZOMBIE:"Zombi", PILLAGER:"Saqueador", WITCH:"Bruja", PIGLIN_BRUTE:"Piglin bruto",
+  ZOGLIN:"Zoglin", SKELETON:"Esqueleto", RAVAGER:"Devastador", PHANTOM:"Phantom", CREEPER:"Creeper", CAVE_SPIDER:"Araña de cueva",
+  STRAY:"Stray", MAGMA_CUBE:"Cubo de magma", VINDICATOR:"Vindicador", SLIME:"Slime", HOGLIN:"Hoglin", PIGLIN:"Piglin", EVOKER:"Invocador",
+  SILVERFISH:"Lepisma", CREAKING:"Creaking", GHAST:"Ghast", BEE:"Abeja", IRON_GOLEM:"Gólem de hierro", WITHER_SKELETON:"Esqueleto wither" };
+
+const ZONAS = { muerta:"Zonas muertas", pantano:"Pantanos", selva:"Selvas y bosques", rareza:"Rarezas" };
+
+
+const JEFES = {
+  "Heraldo Carmesí": { t:"RAVAGER", c:"#c23b3b", donde:"Organismo Carmesí y Manantiales de Arena", gema:"Gema del Heraldo", mascota:null },
+  "Centinela de Toba": { t:"WITHER_SKELETON", c:"#9a9187", donde:"Taiga Condenada, Dominio Creeper y Cónclave", gema:"Gema del Centinela", mascota:null },
+  "Reina Abeja": { t:"BEE", c:"#f2b807", donde:"Colmenar", gema:"(sin gema propia)", mascota:"huevo de Abeja" },
+  "Matriarca Tejedora": { t:"CAVE_SPIDER", c:"#a46ba4", donde:"Jungla Hambrienta y Bosque Voraz", gema:"Gema de la Matriarca", mascota:"huevo de Araña de cueva" },
+  "Custodio de las Ruinas": { t:"IRON_GOLEM", c:"#9ba7a0", donde:"Llanuras de Hongos, Trópico y Valle de Bambú", gema:"Gema del Custodio", mascota:"huevo de Gólem de hierro" },
+  "Sanador del Fango": { t:"EVOKER", c:"#6e8c5a", donde:"Pantano Sofocante y Ciénaga de Flores", gema:"Gema del Sanador", mascota:"huevo de Invocador" }
+};
+const BOTIN_COMUN = [
+  ["MobCoins", "250 a 350"], ["Experiencia", "1.500"], ["Reliquia de grado III", "siempre"], ["Reliquia de grado II", "30 %"],
+  ["Esencias", "1 + 1 cada 25 niveles"], ["Sello de su minijefe (Forja)", "10 %, seguro a la 8.ª"],
+  ["Llave del Umbral", "25 %"], ["Libro LEGENDARY", "8 %"], ["Llave Ominosa", "3 %"]
+];
+
+const HAB = { "Carne Carmesí":"Berserk", "Espora Roja":"División", "Corazón Carmesí":"Ígneo, Curandero",
+  "Ahogado de Arena":"Acorazado", "Escorpión del Manantial":"Ágil", "Jabalí Hundido":"Berserk",
+  "Leñador Condenado":"", "Espectro de Pino":"Flecha helada", "Profeta Condenado":"",
+  "Creeper Dominado":"Ágil", "Lodo Explosivo":"División", "Creeper Soberano":"Acorazado, Alarma",
+  "Cotorra Fantasma":"Ágil", "Chamán del Cónclave":"", "Gran Guacamayo":"Alarma",
+  "Caníbal de la Jungla":"Berserk", "Tejedora":"Venenoso", "Ídolo Hambriento":"Berserk",
+  "Devorador":"Berserk", "Acechador Verde":"Ágil", "Raíz Voraz":"Berserk",
+  "Zángano":"Ágil", "Obrera Furiosa":"Venenoso", "Guardiana del Panal":"Acorazado, Alarma",
+  "Hongo Andante":"División", "Recolector Micótico":"Venenoso", "Guardián de Esporas":"Acorazado",
+  "Cazador Tropical":"Flecha pesada", "Araña de Helecho":"Venenoso", "Tótem Selvático":"Berserk",
+  "Guerrero de Bambú":"Ágil", "Arquero de Bambú":"Flecha pesada", "Maestro del Valle":"Acorazado, Berserk",
+  "Piglin del Fango":"", "Creeper Sofocante":"Ígneo", "Bruto del Pantano":"Acorazado",
+  "Espantapájaros":"Flecha pesada", "Sanguijuela":"Ágil", "Bruja de la Ciénaga":"Curandero",
+  "Heraldo Carmesí":"Berserk, Ígneo", "Centinela de Toba":"Flecha pesada, Acorazado, Berserk",
+  "Matriarca Tejedora":"Venenoso, División, Ágil", "Custodio de las Ruinas":"Acorazado, Alarma, Espinas",
+  "Sanador del Fango":"Curandero, Alarma, Flecha helada", "Reina Abeja":"Venenoso, Ágil, Alarma, Berserk",
+  "Crujidor Pálido":"Espinas", "Ghast Carmesí":"Ígneo" };
+
+const ESPECIALES = {
+  crujidor: { n:"Crujidor Pálido", t:"CREAKING", c:"#cfc8b8", vida:90, nota:"5 % por intento, hasta 2" },
+  ghast: { n:"Ghast Carmesí", t:"GHAST", c:"#e8dcd6", vida:80, nota:"3 % por intento, vuela de 8 a 16 bloques" }
+};
+
+const B = [
+  { id:"crimson_organism", n:"Organismo Carmesí", z:"muerta", spawn:true,
+    d:"Un cuerpo vivo: rocas de carne, huesos, enredaderas llorosas y vegetación carmesí. Aquí está el spawn de Calamity.",
+    clima:"Cielo rojo", jefe:"Heraldo Carmesí", pal:["#5a0f16","#8b1d24","#b3202a","#c2414b","#e3d9cc","#3a0a0e"],
+    c:[["Carne Carmesí","ZOGLIN","#b3202a"],["Espora Roja","MAGMA_CUBE","#d7263d"]], dst:["Corazón Carmesí","RAVAGER","#8b0000"],
+    esp:["ghast"], fauna:[] },
+  { id:"quicksand_springs", n:"Manantiales de Arena", z:"muerta",
+    d:"Tierra seca con arenas movedizas, charcos de agua estancada, huesos, arbustos secos y trigo silvestre.",
+    clima:"Temporal", jefe:"Heraldo Carmesí", pal:["#c9a96b","#b08d57","#8a6d42","#d8c08a","#493207","#e8dcc0"],
+    c:[["Ahogado de Arena","HUSK","#c2a36b"],["Escorpión del Manantial","CAVE_SPIDER","#b08d57"]], dst:["Jabalí Hundido","HOGLIN","#9c6b3c"],
+    esp:[], fauna:["cerdo","ocelote","armadillo","rana","gallina","loro","caballo","conejo","mula"] },
+  { id:"condemned_taiga", n:"Taiga Condenada", z:"muerta",
+    d:"Tierra quemada: basalto, piedra negra, fuego suelto, cráteres y lagos de lava.",
+    clima:"Ceniza", jefe:"Centinela de Toba", pal:["#1c1514","#2c2422","#3d3431","#55241a","#e0611c","#ff9a2e"],
+    c:[["Leñador Condenado","VINDICATOR","#4b3621"],["Espectro de Pino","STRAY","#7fa3a8"]], dst:["Profeta Condenado","EVOKER","#3b4a3f"],
+    esp:["ghast"], fauna:[] },
+  { id:"creeper_dominion", n:"Dominio Creeper", z:"selva",
+    d:"Pradera de musgo y helechos. Está llena de creepers y slimes.",
+    clima:"Lluvia ácida", jefe:"Centinela de Toba", pal:["#2f7d32","#41c74b","#5daa3c","#6bbf3a","#1f4d22","#9be07a"],
+    c:[["Creeper Dominado","CREEPER","#5daa3c"],["Lodo Explosivo","SLIME","#6bbf3a"]], dst:["Creeper Soberano","CREEPER","#2f7d32"],
+    esp:[], fauna:["cerdo"] },
+  { id:"conure_conclave", n:"Cónclave de Cotorras", z:"selva",
+    d:"Bosque de árboles gigantes, abedules, flores, bayas e islas flotantes. Lleno de loros.",
+    clima:"Temporal", jefe:"Centinela de Toba", pal:["#3f6b2a","#63b33f","#e8e2d6","#ff4500","#3fbf7f","#f2c200"],
+    c:[["Cotorra Fantasma","PHANTOM","#3fbf7f"],["Chamán del Cónclave","WITCH","#2e8b57"]], dst:["Gran Guacamayo","PHANTOM","#ff4500"],
+    esp:["crujidor"], fauna:["gallina","llama","loro","ocelote"] },
+  { id:"hungering_jungle", n:"Jungla Hambrienta", z:"selva",
+    d:"Jungla cerrada y oscura, con árboles de pantano, abetos viejos, lianas y nenúfares.",
+    clima:"Lluvia ácida", jefe:"Matriarca Tejedora", pal:["#16301a","#24451c","#335c22","#4a3420","#1c2a12","#5d7a2e"],
+    c:[["Caníbal de la Jungla","ZOMBIE","#6b3e26"],["Tejedora","SPIDER","#4a2f1f"]], dst:["Ídolo Hambriento","RAVAGER","#5b3a1e"],
+    esp:["crujidor"], fauna:["cerdo","sniffer","rana","loro","caballo","armadillo","lobo","gallina","ocelote"] },
+  { id:"ravenous_greenwood", n:"Bosque Voraz", z:"selva",
+    d:"Bosque de árboles enormes y abetos viejos, con bayas y hojarasca. Es el bioma con más animales.",
+    clima:"Esporas", jefe:"Matriarca Tejedora", pal:["#2e5e1e","#3f6b2a","#3e2b1d","#5b7a35","#a33a2a","#1e3a14"],
+    c:[["Devorador","ZOMBIE","#2e5e1e"],["Acechador Verde","SPIDER","#3c8d2f"]], dst:["Raíz Voraz","RAVAGER","#3e2b1d"],
+    esp:["crujidor"], fauna:["cerdo","llama","lobo","conejo","rana","vaca","loro","ocelote","caballo","armadillo","mula","zorro"] },
+  { id:"honeybee_biome", n:"Colmenar", z:"rareza",
+    d:"Todo es miel: árboles de miel, columnas de panal, charcos y montones de miel. Solo hay abejas.",
+    clima:"Polinización (te pone lento)", jefe:"Reina Abeja", pal:["#e8b923","#ffb000","#c98a12","#f6d36b","#7a5212","#fff0b8"],
+    c:[["Zángano","BEE","#e8b923"],["Obrera Furiosa","BEE","#f2c200"]], dst:["Guardiana del Panal","BEE","#ffb000"],
+    esp:[], fauna:["abeja"] },
+  { id:"polypore_plains", n:"Llanuras de Hongos", z:"rareza",
+    d:"Hongos gigantes, bejines y raíces de hongo por todas partes. Solo hay champiñacas.",
+    clima:"Esporas", jefe:"Custodio de las Ruinas", pal:["#6d4c41","#8e6e53","#a0522d","#d9cfc0","#42671e","#b23a2a"],
+    c:[["Hongo Andante","SLIME","#a0522d"],["Recolector Micótico","WITCH","#8e6e53"]], dst:["Guardián de Esporas","PIGLIN_BRUTE","#6d4c41"],
+    esp:[], fauna:["champiñaca"] },
+  { id:"horsetail_tropics", n:"Trópico de Juncos", z:"pantano",
+    d:"Selva baja de colas de caballo y azaleas, con la vegetación de las cuevas frondosas a cielo abierto y melones.",
+    clima:"Lluvia ácida", jefe:"Custodio de las Ruinas", pal:["#5e8c31","#8ddb54","#4f7942","#d77ab8","#2f5a22","#c6e86a"],
+    c:[["Cazador Tropical","SKELETON","#5e8c31"],["Araña de Helecho","SPIDER","#4f7942"]], dst:["Tótem Selvático","VINDICATOR","#8b5a2b"],
+    esp:[], fauna:["cerdo","llama","lobo","sniffer","abeja","ocelote","caballo","rana","loro"] },
+  { id:"bamboo_valley", n:"Valle de Bambú", z:"selva",
+    d:"Bambú muy denso, rocas y helechos, con pandas y ocelotes.",
+    clima:"Temporal", jefe:"Custodio de las Ruinas", pal:["#7ba05b","#9cb86f","#d0bd59","#4e7a2a","#e0d48a","#5a6b3a"],
+    c:[["Guerrero de Bambú","VINDICATOR","#7ba05b"],["Arquero de Bambú","PILLAGER","#9cb86f"]], dst:["Maestro del Valle","VINDICATOR","#4e7a2a"],
+    esp:[], fauna:["cerdo","llama","ocelote","armadillo","panda"] },
+  { id:"sweltering_swamp", n:"Pantano Sofocante", z:"pantano",
+    d:"Pantano caliente de manglares gigantes, hongos y bambú. Es el único bioma con piglins de Calamity.",
+    clima:"Lluvia ácida", jefe:"Sanador del Fango", pal:["#3b3a1e","#4d5a2a","#6e7231","#5c4a2e","#2a3a2a","#8fbc5a"],
+    c:[["Piglin del Fango","PIGLIN","#6b5b3e"],["Creeper Sofocante","CREEPER","#8fbc5a"]], dst:["Bruto del Pantano","PIGLIN_BRUTE","#5c4a2e"],
+    esp:[], fauna:["cerdo","gallina","mula","rana","loro","ocelote"] },
+  { id:"wildflower_bog", n:"Ciénaga de Flores", z:"pantano",
+    d:"Pantano lleno de flores y azaleas, con agua estancada y pepinos de mar.",
+    clima:"Lluvia ácida", jefe:"Sanador del Fango", pal:["#42671e","#6e7231","#556b2f","#e48ac0","#f2e36b","#a7c4e8"],
+    c:[["Espantapájaros","SKELETON","#c9a66b"],["Sanguijuela","SILVERFISH","#556b2f"]], dst:["Bruja de la Ciénaga","WITCH","#7b9f35"],
+    esp:[], fauna:["cerdo","llama","sniffer","rana","abeja","gallina","loro","ocelote"] }
+];
+
+const el = (t, cls, html) => { const e = document.createElement(t); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function mob(n, t, c, vida, clase, extra) {
+  const m = el("div", "mob" + (clase ? " " + clase : ""));
+  m.innerHTML = '<span class="cara" style="--tinte:' + c + '">' + (CARA[t] ? '<img alt="" src="' + CARA[t] + '">' : '') + '</span>' +
+    '<span class="n"><b>' + esc(n) + '</b><small>' + esc(TIPO[t] || t) + (extra ? " · " + esc(extra) : "") + '</small>' +
+    (HAB[n] ? '<small class="hab">' + esc(HAB[n]) + '</small>' : '') + '</span>' +
+    '<span class="vida">' + vida + ' vida</span>';
+  return m;
+}
+
+// Franja de terreno: pixeles de la paleta del bioma, con cielo arriba y suelo abajo (semilla fija por bioma)
+function pintar(canvas, pal, semilla) {
+  const W = 96, H = 19; canvas.width = W; canvas.height = H;
+  const g = canvas.getContext("2d");
+  let s = semilla;
+  const rnd = () => (s = (s * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  const cielo = g.createLinearGradient(0, 0, 0, H);
+  cielo.addColorStop(0, pal[5]); cielo.addColorStop(1, pal[0]);
+  g.fillStyle = cielo; g.fillRect(0, 0, W, H);
+  let alto = 9 + Math.floor(rnd() * 3);
+  for (let x = 0; x < W; x++) {
+    if (rnd() < 0.28) alto += rnd() < 0.5 ? -1 : 1;
+    alto = Math.max(6, Math.min(13, alto));
+    for (let y = H - alto; y < H; y++) {
+      const prof = y - (H - alto);
+      const i = prof === 0 ? 1 : prof < 3 ? (rnd() < 0.7 ? 2 : 3) : (rnd() < 0.6 ? 0 : 3);
+      g.fillStyle = pal[i]; g.fillRect(x, y, 1, 1);
+    }
+    if (rnd() < 0.12) { // detalle: planta, flor u hongo
+      const h = 1 + Math.floor(rnd() * 3);
+      g.fillStyle = pal[4]; g.fillRect(x, H - alto - h, 1, h);
+    }
+  }
+}
+
+const filtros = document.getElementById("cb-filtros");
+const grid = document.getElementById("cb-grid");
+let zona = "todas";
+try { zona = localStorage.getItem("zona-biomas") || "todas"; } catch (e) {}
+
+[["todas", "Todos"], ...Object.entries(ZONAS)].forEach(([k, v]) => {
+  const b = el("button", null, esc(v) + (k === "todas" ? "" : " · " + B.filter(x => x.z === k).length));
+  b.type = "button"; b.id = "filtro-" + k;
+  b.addEventListener("click", () => { zona = k; try { localStorage.setItem("zona-biomas", k); } catch (e) {} aplicar(); });
+  b.dataset.z = k; filtros.appendChild(b);
+});
+
+B.forEach((b, i) => {
+  const card = el("article", "card"); card.dataset.z = b.z;
+  const cv = el("canvas", "terreno"); cv.setAttribute("aria-hidden", "true");
+  pintar(cv, b.pal, 9173 + i * 7919);
+  card.appendChild(cv);
+  const cu = el("div", "cuerpo");
+  cu.appendChild(el("div", "cab", '<h2>' + esc(b.n) + '</h2><span class="id">panacea/' + b.id + '</span>'));
+  cu.appendChild(el("p", "desc", esc(b.d)));
+  const tags = el("div", "tags");
+  tags.innerHTML = '<span class="tag"><em>Zona:</em> ' + esc(ZONAS[b.z]) + '</span>' +
+    '<span class="tag"><em>Clima:</em> ' + esc(b.clima) + '</span>' +
+    
+    (b.spawn ? '<span class="tag spawn">Spawn de Calamity</span>' : "");
+  cu.appendChild(tags);
+
+  const bm = el("div", "bloque"); bm.appendChild(el("h3", null, "Mobs de Calamity"));
+  const lista = el("div", "mobs");
+  const J = JEFES[b.jefe];
+  if (J) {
+    const fila = mob(b.jefe, J.t, J.c, "×6", "jefe-row", "minijefe del bioma");
+    fila.style.setProperty("--j", J.c);
+    fila.querySelector(".n b").insertAdjacentHTML("beforeend", '<span class="etq-jefe">Minijefe</span>');
+    lista.appendChild(fila);
+  }
+  b.c.forEach(m => lista.appendChild(mob(m[0], m[1], m[2], 24, "", "común")));
+  lista.appendChild(mob(b.dst[0], b.dst[1], b.dst[2], 80, "dest", "destacado"));
+  b.esp.forEach(k => { const e = ESPECIALES[k]; lista.appendChild(mob(e.n, e.t, e.c, e.vida, "esp", e.nota)); });
+  bm.appendChild(lista); cu.appendChild(bm);
+
+  const bf = el("div", "bloque"); bf.appendChild(el("h3", null, "Animales"));
+  bf.appendChild(b.fauna.length ? el("p", "fauna", esc(b.fauna.join(", "))) : el("p", "fauna vacia", "Ninguno: aquí no vive nada normal."));
+  cu.appendChild(bf);
+  card.appendChild(cu);
+  grid.appendChild(card);
+});
+
+function aplicar() {
+  [...filtros.children].forEach(b => b.setAttribute("aria-pressed", String(b.dataset.z === zona)));
+  [...grid.children].forEach(c => { c.hidden = zona !== "todas" && c.dataset.z !== zona; });
+}
+aplicar();
+
+const totComunes = B.reduce((a, b) => a + b.c.length, 0);
+document.getElementById("cb-cifras").innerHTML = [
+  [B.length, "biomas"], [totComunes, "mobs comunes"], [B.length, "destacados"], [3, "especiales"], [Object.keys(JEFES).length, "minijefes"]
+].map(([n, t]) => '<div class="cifra"><b>' + n + '</b><small>' + t + '</small></div>').join("");
 })();
 </script>
 </div>
