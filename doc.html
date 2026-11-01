@@ -514,7 +514,8 @@ const fmt=v=>v==null||v===''?'—':(typeof v==='number'?NF.format(v):v);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s??'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 // ---------- iconos
-function ico(id,dye,lg){if(!id)return '<span class="ic'+(lg?' lg':'')+'"></span>';id=String(id).toLowerCase();
+const ALIAS={crossbow:'crossbow_standby',sunflower:'sunflower_front',illusioner_spawn_egg:'evoker_spawn_egg'};
+function ico(id,dye,lg){if(!id)return '<span class="ic'+(lg?' lg':'')+'"></span>';id=String(id).toLowerCase();id=ALIAS[id]||id;
   const base=`<img alt="" loading="lazy" data-id="${esc(id)}" data-i="0">`;
   if(dye&&id.startsWith('leather_')){return `<span class="ic${lg?' lg':''}"><span class="tint" style="background:${dye};-webkit-mask-image:url(${CDN}1.21.4/items/${id}.png);mask-image:url(${CDN}1.21.4/items/${id}.png)"></span><img alt="" loading="lazy" src="${CDN}1.21.4/items/${id}_overlay.png" onerror="this.remove()"></span>`}
   return `<span class="ic${lg?' lg':''}">${base}</span>`}
